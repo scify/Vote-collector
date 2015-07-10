@@ -64,11 +64,16 @@ class VoteTypesController extends Controller {
         $vt->save();
 
         // Save the answers of the vote type
-        foreach($request->input('answers') as $answer) {
-            $vta = new VoteTypeAnswer;
-            $vta->type = $vt->id;
-            $vta->answer = $answer;
-            $vta->save();
+        if (count($request->input('answers')) > 1) {
+            foreach($request->input('answers') as $answer) {
+                if ($answer != '') {
+                    $vta = new VoteTypeAnswer;
+                    $vta->type = $vt->id;
+                    $vta->answer = $answer;
+                    $vta->save();
+                }
+
+            }
         }
     }
 
