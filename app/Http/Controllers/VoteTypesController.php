@@ -66,13 +66,7 @@ class VoteTypesController extends Controller {
         // Save the answers of the vote type
         if (count($request->input('answers')) > 1) {
             foreach($request->input('answers') as $answer) {
-                if ($answer != '') {
-                    $vta = new VoteTypeAnswer;
-                    $vta->type = $vt->id;
-                    $vta->answer = $answer;
-                    $vta->save();
-                }
-
+                $this->saveVoteTypeAnswer($answer, $vt);
             }
         }
     }
@@ -98,18 +92,44 @@ class VoteTypesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		// Find vote type
+        $votetype = VoteType::findOrFail($id);
+
+        // Get answers of this vote type to show in the form
+        $answers = VoteTypeAnswer::where('type', '=', $id)->get()->toArray();
+
+        return view('votetypes.edit', compact('votetype', 'answers'));
 	}
 
-	/**
-	 * Update the specified vote type in storage.
-	 *
-	 * @param  int  $id The id of the vote type to update
-	 * @return Response
-	 */
-	public function update($id)
+    /**
+     * Update the specified vote type in storage.
+     *
+     * @param VoteTypeRequest $request
+     * @param  int $id The id of the vote type to update
+     * @return Response
+     */
+	public function update(VoteTypeRequest $request, $id)
 	{
-		//
+        // Find vote type, and update the title
+        $vt = VoteType::findOrFail($id);
+        $vt->title = $request->input('title');
+        $vt->save();
+
+        // Get previous answers of this vote type from the database, and delete them
+        $prevAnswers = VoteTypeAnswer::where('type', '=', $vt->id)->get();
+        foreach($prevAnswers as $answer) {
+            $answer->delete();
+        }
+
+        // Get new answers of this vote type from the form, and save them to the database
+        $answers = $request->input('answers');
+        foreach($answers as $answer) {
+            $this->saveVoteTypeAnswer($answer, $vt->id);
+        }
+
+        // Redirect
+        Session::flash('message', 'Vote type updated successfully!');
+        return Redirect::to('votetypes');
 	}
 
 	/**
@@ -128,5 +148,21 @@ class VoteTypesController extends Controller {
         Session::flash('message', 'Vote type deleted successfully!');
         return Redirect::to('votetypes');
 	}
+
+    /**
+     * Saves an answer to the database, for the specified vote type
+     *
+     * @param $answer   The answer to save to database
+     * @param $vtid     ID of the vote type that this answer belongs to
+     */
+    public function saveVoteTypeAnswer($answer, $vtid)
+    {
+        if ($answer != '') {
+            $vta = new VoteTypeAnswer;
+            $vta->type = $vtid;
+            $vta->answer = $answer;
+            $vta->save();
+        }
+    }
 
 }
