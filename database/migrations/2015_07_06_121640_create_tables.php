@@ -71,7 +71,7 @@ class CreateTables extends Migration
             $table->timestamps();
 
             $table->foreign('voting_type')->references('id')->on('vote_types')->onDelete('cascade');
-            $table->foreign('objective')->references('id')->on('vote_objectives');
+            $table->foreign('objective')->references('id')->on('vote_objectives')->onDelete('cascade');
         });
 
         // Votes

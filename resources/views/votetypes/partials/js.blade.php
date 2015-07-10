@@ -25,9 +25,13 @@
     function addField() {
         var answer_div = document.getElementById('answers');    // div to append p's to
 
-        // Create div to put field and remove button in
-        var div = document.createElement('div');
-        div.className = 'input-group';
+        // Create form-group div to put everything in (needed to have space between fields)
+        var divFG = document.createElement('div');
+        divFG.className = 'form-group';
+
+        // Create input-group div to put field and remove button in
+        var divIG = document.createElement('div');
+        divIG.className = 'input-group';
 
         // Create text field
         var field = document.createElement('input');
@@ -49,8 +53,9 @@
         btn.className = 'btn btn-danger';
 
         span.appendChild(btn);          // append button to span
-        div.appendChild(field);         // append text field to p
-        div.appendChild(span);          // append span to p
-        answer_div.appendChild(div);    // append p to answers div!!!
+        divIG.appendChild(field);       // append text field to p
+        divIG.appendChild(span);        // append span to p
+        divFG.appendChild(divIG);       // append input group div to form group div
+        answer_div.appendChild(divFG);  // append form group div to answers div!!!
     }
 </script>
