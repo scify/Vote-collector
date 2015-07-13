@@ -1,16 +1,16 @@
 @extends('app')
 
 @section('content')
-    <h1>Members</h1>
+    <h1>Βουλευτές</h1>
 
     @if (count($members) > 0)
         <div class="table-responsive">
             <table class="table table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th colspan="3">Actions</th>
+                        <th>Όνομα</th>
+                        <th>Επώνυμο</th>
+                        <th colspan="3">Ενέργειες</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,7 @@
                             <td>
                                 {!! Form::open(['url' => 'members/' . $member->id]) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
+                                    {!! Form::submit('Διαγραφή', ['class' => 'btn btn-danger btn-xs']) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>
@@ -47,9 +47,9 @@
         </div>
     @else
         <p>
-            There are no members!
+            Δεν υπάρχουν βουλευτές!
         </p>
     @endif
 
-    <a href="members/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> New member</a>
+    <a href="members/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Νέος βουλευτής</a>
 @stop

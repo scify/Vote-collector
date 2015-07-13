@@ -1,18 +1,18 @@
 @extends('app')
 
 @section('content')
-    <h1>Showing voting</h1>
+    <h1>Προβολή ψηφοφορίας</h1>
 
     <div class="jumbotron">
         <h1>{{ $voting->title }}</h1>
 
         <p>
-            Type: {{ $type->title }}
+            Τύπος: {{ $type->title }}
         </p>
         <p>
-            Objective: {{ $objective->title }}
+            Αντικείμενο: {{ $objective->title }}
         </p>
     </div>
 
-    <a href="/votings" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+    <a href="/votings" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
 @stop

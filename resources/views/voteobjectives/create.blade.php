@@ -1,11 +1,11 @@
 @extends('app')
 
 @section('content')
-    <h1>Create vote objective</h1>
+    <h1>Δημιουργία αντικειμένου ψηφοφορίας</h1>
 
     @include('errors.list')
 
     {!! Form::open(['action' => 'VoteObjectivesController@store']) !!}
-        @include('voteobjectives._form', ['submitButtonText' => 'Create objective'])
+        @include('voteobjectives._form', ['submitButtonText' => 'Δημιουργία'])
     {!! Form::close() !!}
 @stop

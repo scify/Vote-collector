@@ -1,9 +1,9 @@
 <div class="form-group">
-    {!! Form::label('title', 'Title') !!}
+    {!! Form::label('title', 'Τίτλος') !!}
     {!! Form::text('title', Input::old('title'), array('class' => 'form-control')) !!}
 </div>
 
-<h4>Answers:</h4>
+<h4>Απαντήσεις:</h4>
 
 <div id="answers">
     <div class="form-group">
@@ -27,7 +27,7 @@
     @endif
 </div>
 
-<a href="#" id="addAnswer" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus"></span> Add answer</a>
+<a href="#" id="addAnswer" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus"></span> Προσθήκη απάντησης</a>
 
 {!! Form::submit($submitButtonText, array('class' => 'btn btn-primary')) !!}
-<a href="/votetypes" class="btn btn-default">Cancel</a>
+<a href="/votetypes" class="btn btn-default">Άκυρο</a>

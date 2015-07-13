@@ -13,7 +13,7 @@ class GroupTableSeeder extends Seeder
     {
         DB::table('groups')->delete();
 
-        App\Group::create(['name' => 'group 1']);
-        App\Group::create(['name' => 'group 2']);
+        App\Group::create(['name' => 'Ομάδα 1']);
+        App\Group::create(['name' => 'Ομάδα 2']);
     }
 }

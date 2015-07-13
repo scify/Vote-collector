@@ -4,15 +4,15 @@
     <h1>{{$group->name}}</h1>
 
     @if (count($members) > 0)
-        <h2>Members of group:</h2>
+        <h2>Μέλη:</h2>
 
         <div class="table-responsive">
             <table class="table table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>Actions</th>
+                        <th>Όνομα</th>
+                        <th>Επώνυμο</th>
+                        <th>Ενέργειες</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,7 +33,7 @@
         </div>
     @else
         <p>
-            This group has no members!
+            Αυτή η κοινοβουλευτική ομάδα δεν έχει κανένα μέλος!
         </p>
     @endif
 

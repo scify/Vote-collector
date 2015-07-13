@@ -51,7 +51,7 @@ class VotingsController extends Controller {
         $this->createVoting($request);
 
         // Redirect
-        Session::flash('message', 'Voting created successfully');
+        Session::flash('message', 'Η ψηφοφορία δημιουργήθηκε με επιτυχία!');
         return Redirect::to('votings');
 	}
 
@@ -83,7 +83,7 @@ class VotingsController extends Controller {
         $voting->delete();
 
         // Redirect
-        Session::flash('message', 'Voting deleted successfully');
+        Session::flash('message', 'Η ψηφοφορία διαγράφηκε με επιτυχία!');
         return Redirect::to('votings');
 	}
 

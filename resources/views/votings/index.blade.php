@@ -1,17 +1,17 @@
 @extends('app')
 
 @section('content')
-    <h1>Votings</h1>
+    <h1>Ψηφοφορίες</h1>
 
     @if(count($votings) > 0)
         <div class="table-responsive">
             <table class="table table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Type</th>
-                        <th>Objective</th>
-                        <th colspan="2">Actions</th>
+                        <th>Τίτλος</th>
+                        <th>Τύπος</th>
+                        <th>Αντικείμενο</th>
+                        <th colspan="2">Ενέργειες</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@
                             <td>
                                 {!! Form::open(['url' => 'votings/' . $voting->id]) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
+                                    {!! Form::submit('Διαγραφή', ['class' => 'btn btn-danger btn-xs']) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>
@@ -45,9 +45,9 @@
         </div>
     @else
         <p>
-            There are no votings!
+            Δεν υπάρχουν ψηφοφορίες!
         </p>
     @endif
 
-    <a href="votings/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> New voting</a>
+    <a href="votings/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Νέα ψηφοφορία</a>
 @stop

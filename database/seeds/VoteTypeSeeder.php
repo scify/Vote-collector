@@ -13,7 +13,7 @@ class VoteTypeSeeder extends Seeder
     {
         DB::table('vote_types')->delete();
 
-        App\VoteType::create(['title' => 'Synithis']);
-        App\VoteType::create(['title' => 'Proedriki']);
+        App\VoteType::create(['title' => 'Συνήθης']);
+        App\VoteType::create(['title' => 'Προεδρική']);
     }
 }

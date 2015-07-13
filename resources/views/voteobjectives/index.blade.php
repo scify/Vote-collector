@@ -1,15 +1,15 @@
 @extends('app')
 
 @section('content')
-    <h1>Vote Objectives</h1>
+    <h1>Αντικείμενα ψηφοφορίας</h1>
 
     @if (count($voteObjectives) > 0)
         <div class="table-responsive">
             <table class="table table-condensed table-striped">
                 <thead>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th colspan="3">Actions</th>
+                    <th>Τίτλος</th>
+                    <th>Περιγραφή</th>
+                    <th colspan="3">Ενέργειες</th>
                 </thead>
                 <tbody>
                     @foreach($voteObjectives as $vo)
@@ -37,7 +37,7 @@
                             <td>
                                 {!! Form::open(['url' => 'voteobjectives/' . $vo->id]) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
+                                    {!! Form::submit('Διαγραφή', ['class' => 'btn btn-danger btn-xs']) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>
@@ -47,9 +47,9 @@
         </div>
     @else
         <p>
-            There are no vote objectives!
+            Δεν υπάρχουν αντικείμενα ψηφοφορίας!
         </p>
     @endif
 
-    <a href="voteobjectives/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> New objective</a>
+    <a href="voteobjectives/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Νέο αντικείμενο</a>
 @stop

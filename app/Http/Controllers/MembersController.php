@@ -47,7 +47,7 @@ class MembersController extends Controller {
         $this->createMember($request);
 
         // Redirect
-        Session::flash('message', 'Member created successfully!');
+        Session::flash('message', 'Ο/Η βουλευτής δημιουργήθηκε με επιτυχία!');
         return Redirect::to('members');
 	}
 
@@ -103,7 +103,7 @@ class MembersController extends Controller {
         }
 
         // Redirect
-        Session::flash('message', 'Updated member successfully!');
+        Session::flash('message', 'Ο/Η βουλευτής αποθηκεύτηκε με επιτυχία!');
         return Redirect::to('members');
 	}
 
@@ -120,7 +120,7 @@ class MembersController extends Controller {
         $member->delete();
 
         // Redirect
-        Session::flash('message', 'Member deleted successfully!');
+        Session::flash('message', 'Ο/Η βουλευτής διαγράφηκε με επιτυχία!');
         return Redirect::to('members');
 	}
 

@@ -48,7 +48,7 @@ class VoteObjectivesController extends Controller {
         ]);
 
         // Redirect
-        Session::flash('message', 'Vote objective created successfully!');
+        Session::flash('message', 'Το αντικείμενο ψηφοφορίας δημιουργήθηκε με επιτυχία!');
         return Redirect::to('voteobjectives');
 	}
 
@@ -94,7 +94,7 @@ class VoteObjectivesController extends Controller {
         $vo->save();
 
         // Redirect
-        Session::flash('message', 'Vote objective updated successfully!');
+        Session::flash('message', 'Το αντικείμενο ψηφοφορίας αποθηκεύτηκε με επιτυχία!');
         return Redirect::to('voteobjectives');
 	}
 
@@ -111,7 +111,7 @@ class VoteObjectivesController extends Controller {
         $vo->delete();
 
         // Redirect
-        Session::flash('message', 'Vote objective deleted successfully!');
+        Session::flash('message', 'Το αντικείμενο ψηφοφορίας διαγράφηκε με επιτυχία!');
         return Redirect::to('voteobjectives');
 	}
 

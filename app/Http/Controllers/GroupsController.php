@@ -65,7 +65,7 @@ class GroupsController extends Controller
         $this->createGroup($request);
 
         // Redirect
-        Session::flash('message', 'Group created successfully!');
+        Session::flash('message', 'Η κοινοβουλευτική ομάδα δημιουργήθηκε με επιτυχία!');
         return Redirect::to('groups');
     }
 
@@ -120,7 +120,7 @@ class GroupsController extends Controller
         }
 
         // Redirect
-        Session::flash('message', 'Updated group successfully!');
+        Session::flash('message', 'Η κοινοβουλευτική ομάδα αποθηκεύτηκε με επιτυχία!');
         return Redirect::to('groups');
     }
 
@@ -137,7 +137,7 @@ class GroupsController extends Controller
         $group->delete();
 
         // Redirect
-        Session::flash('message', 'Group deleted successfully.');
+        Session::flash('message', 'Η κοινοβουλευτική ομάδα διαγράφηκε με επιτυχία!');
         return Redirect::to('groups');
     }
 

@@ -1,11 +1,11 @@
 @extends('app')
 
 @section('content')
-    <h1>Showing member</h1>
+    <h1>Προβολή βουλευτή</h1>
 
     <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#info" data-toggle="tab">Info</a></li>
-      <li role="presentation"><a href="#groups" data-toggle="tab">Groups</a></li>
+      <li role="presentation" class="active"><a href="#info" data-toggle="tab">Πληροφορίες</a></li>
+      <li role="presentation"><a href="#groups" data-toggle="tab">Κοιν. Ομάδες</a></li>
     </ul>
 
     <div class="tab-content">
@@ -14,7 +14,7 @@
                 <h2>{{ $member->first_name }} {{ $member->last_name }}</h2>
 
                 <p>
-                    Member of {{ $groups->count() }} group{{ ($groups->count() == 1)?'':'s' }}.
+                    Μέλος σε {{ $groups->count() }} κοιν. ομάδ{{ ($groups->count() == 1)?'α':'ες' }}.
                 </p>
             </div>
         </div>
@@ -24,8 +24,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Actions</th>
+                                <th>Όνομα</th>
+                                <th>Ενέργειες</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,7 +47,7 @@
                 </div>
             @else
                 <p>
-                    This member does not belong to any groups.
+                    Αυτός ο βουλευτής δεν συμμετέχει σε καμία κοινοβουλευτική ομάδα.
                 </p>
             @endif
         </div>
@@ -55,5 +55,5 @@
 
 
 
-    <a href="/members" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+    <a href="/members" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
 @stop

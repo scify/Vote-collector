@@ -1,12 +1,12 @@
 @extends('app')
 
 @section('content')
-    <h1>Create new vote type</h1>
+    <h1>Δημιουργία τύπου ψηφοφορίας</h1>
 
     @include('errors.list')
 
     {!! Form::open(['action' => 'VoteTypesController@store']) !!}
-        @include('votetypes.partials.form', ['submitButtonText' => 'Create vote type'])
+        @include('votetypes.partials.form', ['submitButtonText' => 'Δημιουργία'])
     {!! Form::close() !!}
 @stop
 

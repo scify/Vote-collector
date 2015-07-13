@@ -1,10 +1,10 @@
 @extends('app')
 
 @section('content')
-    <h2>Vote type: {{ $vt->title }}</h2>
+    <h2>Τύπος ψηφοφορίας: {{ $vt->title }}</h2>
 
     @if (count($vt->answers) > 0)
-        <h3>Answers:</h3>
+        <h3>Απαντήσεις:</h3>
 
         <div class="table-responsive">
             <table class="table table-condensed">
@@ -19,7 +19,7 @@
         </div>
     @else
         <p>
-            This vote type has no answers!
+            Αυτός ο τύπος ψηφοφορίας δεν έχει απαντήσεις!
         </p>
     @endif
 

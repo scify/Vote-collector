@@ -1,11 +1,11 @@
 @extends('app')
 
 @section('content')
-    <h1>Create new group</h1>
+    <h1>Δημιουργία Κοινοβουλευτικής Ομάδας</h1>
 
     @include('errors.list')
 
     {!! Form::open(['action' => 'GroupsController@store']) !!}
-        @include('groups._form', ['submitButtonText' => 'Create group'])
+        @include('groups._form', ['submitButtonText' => 'Δημιουργία'])
     {!! Form::close() !!}
 @stop

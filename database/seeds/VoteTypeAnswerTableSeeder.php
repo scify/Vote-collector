@@ -13,11 +13,11 @@ class VoteTypeAnswerTableSeeder extends Seeder
     {
         DB::table('vote_type_answers')->delete();
 
-        App\VoteTypeAnswer::create(['type' => 1, 'answer' => 'Nai']);
-        App\VoteTypeAnswer::create(['type' => 1, 'answer' => 'Oxi']);
-        App\VoteTypeAnswer::create(['type' => 1, 'answer' => 'Parwn']);
+        App\VoteTypeAnswer::create(['type' => 1, 'answer' => 'Ναι']);
+        App\VoteTypeAnswer::create(['type' => 1, 'answer' => 'Όχι']);
+        App\VoteTypeAnswer::create(['type' => 1, 'answer' => 'Παρών']);
 
-        App\VoteTypeAnswer::create(['type' => 2, 'answer' => 'Giwrgos']);
-        App\VoteTypeAnswer::create(['type' => 2, 'answer' => 'Mixalis']);
+        App\VoteTypeAnswer::create(['type' => 2, 'answer' => 'Γιώργος']);
+        App\VoteTypeAnswer::create(['type' => 2, 'answer' => 'Μιχάλης']);
     }
 }

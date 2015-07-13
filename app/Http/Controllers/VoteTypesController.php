@@ -48,7 +48,7 @@ class VoteTypesController extends Controller {
         $this->createVoteType($request);
 
         // Redirect
-        Session::flash('message', 'Vote type created successfully!');
+        Session::flash('message', 'Ο τύπος ψηφοφορίας δημιουργήθηκε με επιτυχία!');
         return Redirect::to('/votetypes');
 	}
 
@@ -126,7 +126,7 @@ class VoteTypesController extends Controller {
         }
 
         // Redirect
-        Session::flash('message', 'Vote type updated successfully!');
+        Session::flash('message', 'Ο τύπος ψηφοφορίας αποθηκεύτηκε με επιτυχία!');
         return Redirect::to('votetypes');
 	}
 
@@ -143,7 +143,7 @@ class VoteTypesController extends Controller {
         $vt->delete();
 
         // Redirect
-        Session::flash('message', 'Vote type deleted successfully!');
+        Session::flash('message', 'Ο τύπος ψηφοφορίας διαγράφηκε με επιτυχία!');
         return Redirect::to('votetypes');
 	}
 

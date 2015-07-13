@@ -1,15 +1,15 @@
 @extends('app')
 
 @section('content')
-    <h1>Groups</h1>
+    <h1>Κοινοβουλευτικές Ομάδες</h1>
 
     @if(count($groups) > 0)
         <div class="table-responsive">
             <table class="table table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th colspan="3">Actions</th>
+                        <th>Όνομα</th>
+                        <th colspan="3">Ενέργειες</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +34,7 @@
                                 <!-- ????? http://blog.elenakolevska.com/restful-deleting-in-laravel/ ?????? -->
                                 {!! Form::open(['url' => 'groups/' . $group->id]) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
+                                    {!! Form::submit('Διαγραφή', ['class' => 'btn btn-danger btn-xs']) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>
@@ -44,10 +44,10 @@
         </div>
     @else
         <p>
-            There are no groups!
+            Δεν υπάρχουν κοινοβουλευτικές ομάδες!
         </p>
     @endif
 
-    <a href="groups/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> New group</a>
+    <a href="groups/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Νέα ομάδα</a>
 
 @stop
