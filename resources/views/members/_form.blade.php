@@ -9,7 +9,7 @@
 <!-- Group selection -->
 <div class="form-group">
     {!! Form::label('group_list', 'Groups:') !!}
-    {!! Form::select('group_list[]', $groups, null, ['class' => 'form-control', 'multiple']) !!}
+    {!! Form::select('group_list[]', $groups, null, ['class' => 'form-control selectpicker', 'multiple', 'data-selected-text-format' => 'count']) !!}
 </div>
 
 {!! Form::submit($submitButtonText, array('class' => 'btn btn-primary')) !!}

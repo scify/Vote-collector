@@ -6,7 +6,7 @@ use App\Group;
 use App\GroupMember;
 use App\Member;
 use App\Http\Requests\GroupRequest;
-use \Redirect;
+use Illuminate\Support\Facades\Redirect;
 use \Session;
 use \DB;
 

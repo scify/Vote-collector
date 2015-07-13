@@ -7,7 +7,7 @@
 <!-- Members selection -->
 <div class="form-group">
     {!! Form::label('member_list', 'Members:') !!}
-    {!! Form::select('member_list[]', $members, null, ['class' => 'form-control', 'multiple']) !!}
+    {!! Form::select('member_list[]', $members, null, ['class' => 'form-control selectpicker', 'multiple', 'data-selected-text-format' => 'count']) !!}
 </div>
 
 {!! Form::submit($submitButtonText, array('class' => 'btn btn-primary')) !!}

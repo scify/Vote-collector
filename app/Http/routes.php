@@ -19,3 +19,4 @@ Route::resource('groups', 'GroupsController');
 Route::resource('members', 'MembersController');
 Route::resource('votetypes', 'VoteTypesController');
 Route::resource('voteobjectives', 'VoteObjectivesController');
+Route::resource('votings', 'VotingsController');
