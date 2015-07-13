@@ -52,8 +52,4 @@
             @endif
         </div>
     </div>
-
-
-
-    <a href="/members" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
 @stop

@@ -13,6 +13,4 @@
             Αντικείμενο: {{ $objective->title }}
         </p>
     </div>
-
-    <a href="/votings" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
 @stop
