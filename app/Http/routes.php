@@ -20,3 +20,5 @@ Route::resource('members', 'MembersController');
 Route::resource('votetypes', 'VoteTypesController');
 Route::resource('voteobjectives', 'VoteObjectivesController');
 Route::resource('votings', 'VotingsController');
+
+Route::post('membersorder', 'MembersController@changeOrder');

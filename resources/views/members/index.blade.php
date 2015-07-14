@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                     @foreach ($members as $member)
-                        <tr>
+                        <tr class="member" data-id="{{$member->id}}">
                             <td class="priority">
                                 {{ $member->order }}
                             </td>
@@ -56,5 +56,6 @@
 @stop
 
 @section('footer')
-    @include('members.partials.js')
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{{ URL::asset('js/members/members.js') }}"></script>
 @stop

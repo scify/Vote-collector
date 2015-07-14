@@ -7,7 +7,9 @@ use App\Member;
 use App\Http\Requests;
 use App\Http\Requests\MemberRequest;
 use \Redirect;
+use \Response;
 use \Session;
+use \Input;
 
 
 class MembersController extends Controller {
@@ -125,12 +127,28 @@ class MembersController extends Controller {
             $m->save();
         }
 
+        // Delete the member
         $member->delete();
 
         // Redirect
         Session::flash('message', 'Ο/Η βουλευτής διαγράφηκε με επιτυχία!');
         return Redirect::to('members');
 	}
+
+    /**
+     * Get new order of members from post data and save it to database
+     */
+    public function changeOrder() {
+        $newOrders = Input::get('data');
+
+        foreach($newOrders as $newOrder) {
+            $member = Member::findOrFail($newOrder['id']);
+            $member->order = $newOrder['order'];
+            $member->save();
+        }
+
+        return Response::json('success', 200);
+    }
 
     /**
      * Save a new member
@@ -163,5 +181,4 @@ class MembersController extends Controller {
     {
         $member->groups()->sync($groups);
     }
-
 }
