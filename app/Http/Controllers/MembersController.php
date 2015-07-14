@@ -19,7 +19,7 @@ class MembersController extends Controller {
 	 */
 	public function index()
 	{
-        $members = Member::all();   // get members for the list
+        $members = Member::orderBy('order', 'ASC')->get();  // get members for the list (sorted based on order)
 
         return view('members.index', compact('members'));
 	}
@@ -115,8 +115,16 @@ class MembersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-        // Find and delete member
+        // Find member
         $member = Member::findOrFail($id);
+
+        // Find members with order bigger than this member's and fix them
+        $membersToFix = Member::where('order', '>', $member->order)->get();
+        foreach($membersToFix as $m) {
+            $m->order = $m->order - 1;
+            $m->save();
+        }
+
         $member->delete();
 
         // Redirect
@@ -135,6 +143,7 @@ class MembersController extends Controller {
         $member = new Member;
         $member->first_name = $request->input('first_name');
         $member->last_name = $request->input('last_name');
+        $member->order = Member::all()->count() + 1;        // new members are added at the end of the list
         $member->save();
 
         // Get selected members and save them (if there are any)
