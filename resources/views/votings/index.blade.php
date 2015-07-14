@@ -33,10 +33,7 @@
                                 </a>
                             </td>
                             <td>
-                                {!! Form::open(['url' => 'votings/' . $voting->id]) !!}
-                                    {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::submit('Διαγραφή', ['class' => 'btn btn-danger btn-xs']) !!}
-                                {!! Form::close() !!}
+                                @include('partials.deleteBtn', ['url' => 'votings', 'id' => $voting->id])
                             </td>
                         </tr>
                     @endforeach

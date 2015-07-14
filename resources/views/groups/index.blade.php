@@ -31,11 +31,7 @@
                                 </a>
                             </td>
                             <td>
-                                <!-- ????? http://blog.elenakolevska.com/restful-deleting-in-laravel/ ?????? -->
-                                {!! Form::open(['url' => 'groups/' . $group->id]) !!}
-                                    {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::submit('Διαγραφή', ['class' => 'btn btn-danger btn-xs']) !!}
-                                {!! Form::close() !!}
+                                @include('partials.deleteBtn', ['url' => 'groups', 'id' => $group->id])
                             </td>
                         </tr>
                     @endforeach

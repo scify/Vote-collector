@@ -5,9 +5,10 @@
 
     @if (count($members) > 0)
         <div class="table-responsive">
-            <table class="table table-condensed table-striped">
+            <table id="members_list" class="table table-condensed table-striped">
                 <thead>
                     <tr>
+                        <th>Σειρά</th>
                         <th>Όνομα</th>
                         <th>Επώνυμο</th>
                         <th colspan="3">Ενέργειες</th>
@@ -16,6 +17,9 @@
                 <tbody>
                     @foreach ($members as $member)
                         <tr>
+                            <td class="priority">
+                                {{ $member->order }}
+                            </td>
                             <td>
                                 {{ $member->first_name }}
                             </td>
@@ -35,10 +39,7 @@
                                 </a>
                             </td>
                             <td>
-                                {!! Form::open(['url' => 'members/' . $member->id]) !!}
-                                    {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::submit('Διαγραφή', ['class' => 'btn btn-danger btn-xs']) !!}
-                                {!! Form::close() !!}
+                                @include('partials.deleteBtn', ['url' => 'members', 'id' => $member->id])
                             </td>
                         </tr>
                     @endforeach
@@ -52,4 +53,8 @@
     @endif
 
     <a href="members/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Νέος βουλευτής</a>
+@stop
+
+@section('footer')
+    @include('members.partials.js')
 @stop

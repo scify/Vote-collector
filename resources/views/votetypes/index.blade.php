@@ -29,11 +29,7 @@
                                 </a>
                             </td>
                             <td>
-                                <!-- ????? http://blog.elenakolevska.com/restful-deleting-in-laravel/ ?????? -->
-                                {!! Form::open(['url' => 'votetypes/' . $vt->id]) !!}
-                                    {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::submit('Διαγραφή', ['class' => 'btn btn-danger btn-xs']) !!}
-                                {!! Form::close() !!}
+                                @include('partials.deleteBtn', ['url' => 'votetypes', 'id' => $vt->id])
                             </td>
                         </tr>
                     @endforeach

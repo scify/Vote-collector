@@ -6,6 +6,6 @@
     @include('errors.list')
 
     {!! Form::model($member, ['route' => ['members.update', $member->id], 'method' => 'PUT']) !!}
-        @include('members._form', ['submitButtonText' => 'Αποθήκευση'])
+        @include('members.partials.form', ['submitButtonText' => 'Αποθήκευση'])
     {!! Form::close() !!}
 @stop

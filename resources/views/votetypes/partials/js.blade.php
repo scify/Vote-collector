@@ -1,4 +1,4 @@
-<!-- Javascript for adding and removing answer fields -->
+{{-- Javascript for adding and removing answer fields --}}
 <script type="text/javascript">
     // Event listener for adding an answer
     document.getElementById('addAnswer').addEventListener('click', addField);
