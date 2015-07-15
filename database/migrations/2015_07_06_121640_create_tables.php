@@ -82,11 +82,22 @@ class CreateTables extends Migration
             $table->integer('member_id')->unsigned();
             $table->integer('answer_id')->unsigned();
 
-            $table->foreign('voting_id')->references('id')->on('votings');
-            $table->foreign('member_id')->references('id')->on('members');
-            $table->foreign('answer_id')->references('id')->on('vote_type_answers');
+            $table->foreign('voting_id')->references('id')->on('votings')->onDelete('cascade');
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            $table->foreign('answer_id')->references('id')->on('vote_type_answers')->onDelete('cascade');
 
             $table->primary(['voting_id', 'member_id']);
+        });
+
+        //
+        Schema::create('group_votes', function(Blueprint $table) {
+            $table->integer('voting_id')->unsigned();
+            $table->integer('group_id')->unsigned();
+            $table->integer('answer_id')->unsigned();
+
+            $table->foreign('voting_id')->references('id')->on('votings')->onDelete('cascade');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
+            $table->foreign('answer_id')->references('id')->on('vote_type_answers')->onDelete('cascade');
         });
     }
 
@@ -97,6 +108,7 @@ class CreateTables extends Migration
      */
     public function down()
     {
+        Schema::drop('group_votes');
         Schema::drop('votes');
         Schema::drop('votings');
         Schema::drop('vote_type_answers');

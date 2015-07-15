@@ -23,4 +23,13 @@ class Voting extends Model
         return $this->hasMany('App\Vote');
     }
 
+    // Returns true if this voting has any default votes set
+    public function defaultVotesSet() {
+        if (GroupVote::where('voting_id', '=', $this->id)->count() > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
 }

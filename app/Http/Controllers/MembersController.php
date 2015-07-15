@@ -137,16 +137,22 @@ class MembersController extends Controller {
 
     /**
      * Get new order of members from post data and save it to database
+     *
+     * @return mixed
      */
-    public function changeOrder() {
+    public function changeOrder()
+    {
+        // Get id/order pairs
         $newOrders = Input::get('data');
 
+        // Change each member's order to the new one
         foreach($newOrders as $newOrder) {
             $member = Member::findOrFail($newOrder['id']);
             $member->order = $newOrder['order'];
             $member->save();
         }
 
+        // Return success json
         return Response::json('success', 200);
     }
 
@@ -161,7 +167,7 @@ class MembersController extends Controller {
         $member = new Member;
         $member->first_name = $request->input('first_name');
         $member->last_name = $request->input('last_name');
-        $member->order = Member::all()->count() + 1;        // new members are added at the end of the list
+        $member->order = Member::all()->count() + 1;    // new members are added at the end of the list
         $member->save();
 
         // Get selected members and save them (if there are any)

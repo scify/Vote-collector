@@ -11,7 +11,7 @@
                         <th>Τίτλος</th>
                         <th>Τύπος</th>
                         <th>Αντικείμενο</th>
-                        <th colspan="2">Ενέργειες</th>
+                        <th colspan="3">Ενέργειες</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +31,17 @@
                                 <a href="votings/{{ $voting->id }}" class="btn btn-default btn-xs">
                                     <span class="glyphicon glyphicon-info-sign"></span>
                                 </a>
+                            </td>
+                            <td>
+                                @if( $voting->defaultVotesSet() )
+                                    <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
+                                        <span class="glyphicon glyphicon-book"></span> Εκκίνηση
+                                    </a>
+                                @else
+                                    <a href="votings/answers/{{ $voting->id }}" class="btn btn-primary btn-xs">
+                                        <span class="glyphicon glyphicon-file"></span> Επιλογή απαντήσεων
+                                    </a>
+                                @endif
                             </td>
                             <td>
                                 @include('partials.deleteBtn', ['url' => 'votings', 'id' => $voting->id])

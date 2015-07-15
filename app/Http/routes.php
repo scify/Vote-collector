@@ -21,4 +21,10 @@ Route::resource('votetypes', 'VoteTypesController');
 Route::resource('voteobjectives', 'VoteObjectivesController');
 Route::resource('votings', 'VotingsController');
 
-Route::post('membersorder', 'MembersController@changeOrder');
+Route::get('votings/answers/{id}', 'VotingsController@defaultAnswers'); // Page for setting default answers
+Route::post('votings/answers', 'VotingsController@saveDefaultAnswers'); // For saving default answers
+
+Route::get('votings/reading/{id}', 'VotingsController@reading');        // Page for the first & second reading
+Route::post('votings/reading', 'VotingsController@saveAnswers');        // Page for the first & second reading
+
+Route::post('membersorder', 'MembersController@changeOrder');           // For saving new members order
