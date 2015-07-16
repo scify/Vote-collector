@@ -14,5 +14,6 @@
     {!! Form::select('group_list[]', $groups, null, ['class' => 'form-control', 'multiple']) !!}
 </div>
 
+
 {!! Form::submit($submitButtonText, array('class' => 'btn btn-primary')) !!}
 <a href="/members" class="btn btn-default">Άκυρο</a>

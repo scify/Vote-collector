@@ -1,9 +1,5 @@
 @extends('app')
 
-@section('head')
-    <link href="{{ URL::asset('css/select2-bootstrap.css') }}" rel="stylesheet" />
-@stop
-
 @section('content')
     <h1>Δημιουργία βουλευτή</h1>
 

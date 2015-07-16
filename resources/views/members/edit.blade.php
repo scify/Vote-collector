@@ -1,9 +1,5 @@
 @extends('app')
 
-@section('head')
-    <link href="{{ URL::asset('css/select2-bootstrap.css') }}" rel="stylesheet" />
-@stop
-
 @section('content')
     <h1>Επεξεργασία {{ $member->first_name }} {{ $member->last_name }}</h1>
 
