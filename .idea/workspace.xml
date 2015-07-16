@@ -41,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19112629" vertical-offset="0" max-vertical-offset="586">
-              <caret line="7" column="104" selection-start-line="7" selection-start-column="104" selection-end-line="7" selection-end-column="104" />
+            <state vertical-scroll-proportion="-3.84" vertical-offset="0" max-vertical-offset="528">
+              <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -56,6 +56,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-10.24" vertical-offset="0" max-vertical-offset="352">
               <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_form.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/groups/_form.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.24573378" vertical-offset="0" max-vertical-offset="586">
+              <caret line="9" column="92" selection-start-line="9" selection-start-column="92" selection-end-line="9" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -81,9 +91,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/voteobjectives/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/voteobjectives/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/votetypes/partials/form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/_form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/VoteObjectivesController.php" />
@@ -132,6 +139,9 @@
         <option value="$PROJECT_DIR$/resources/views/members/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/members/_form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/app.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/groups/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/groups/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/groups/_form.blade.php" />
       </list>
     </option>
   </component>
@@ -596,13 +606,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/seeds/VoteTypeAnswerTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5460751" vertical-offset="0" max-vertical-offset="586">
-          <caret line="20" column="69" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/VoteTypeSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43686005" vertical-offset="0" max-vertical-offset="586">
@@ -726,13 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16894197" vertical-offset="61" max-vertical-offset="864">
           <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/groups/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.081911266" vertical-offset="0" max-vertical-offset="586">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -889,14 +885,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/groups/_form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36300173" vertical-offset="0" max-vertical-offset="573">
-          <caret line="13" column="51" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/members.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05237316" vertical-offset="0" max-vertical-offset="1600">
@@ -972,6 +960,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.84" vertical-offset="0" max-vertical-offset="528">
+          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/members/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.24" vertical-offset="0" max-vertical-offset="352">
@@ -980,10 +976,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/app.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/groups/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19112629" vertical-offset="0" max-vertical-offset="586">
-          <caret line="7" column="104" selection-start-line="7" selection-start-column="104" selection-end-line="7" selection-end-column="104" />
+        <state vertical-scroll-proportion="0.43686005" vertical-offset="0" max-vertical-offset="586">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/groups/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43686005" vertical-offset="0" max-vertical-offset="586">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/groups/_form.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24573378" vertical-offset="0" max-vertical-offset="586">
+          <caret line="9" column="92" selection-start-line="9" selection-start-column="92" selection-end-line="9" selection-end-column="92" />
           <folding />
         </state>
       </provider>
