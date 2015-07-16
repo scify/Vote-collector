@@ -162,7 +162,7 @@ class VotingsController extends Controller {
      */
     public function reading($id) {
         $voting = Voting::findOrFail($id);  // Get the voting to start the reading for
-
+        //todo: if a type does not have any answers, do not show default answer selection as an option
         if ($voting->defaultVotesSet()) {   // Check if the voting has default votes for each group
             $members = Member::orderBy('order', 'ASC')->get();  // get members sorted based on their order
             $gvotes = GroupVote::where('voting_id', '=', $voting->id)->get();

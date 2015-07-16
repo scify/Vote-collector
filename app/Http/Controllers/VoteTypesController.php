@@ -113,16 +113,34 @@ class VoteTypesController extends Controller {
         $vt->title = $request->input('title');
         $vt->save();
 
-        // Get previous answers of this vote type from the database, and delete them
-        $prevAnswers = VoteTypeAnswer::where('type', '=', $vt->id)->get();
-        foreach($prevAnswers as $answer) {
-            $answer->delete();
+        $prevAnswers = VoteTypeAnswer::where('type', '=', $vt->id)->get();  // Get previous answers of this vote type from the database
+
+        $answers = $request->input('answers');                              // Get new answers of this vote type from the form
+
+        // Check if the answers are the same (if they are, only title changed)
+        $same = true;
+        if ($prevAnswers->count() == count($answers)) {
+            // Count is the same, check each answer
+            for ($i = 0; $i < $prevAnswers->count(); $i++) {
+                if ($prevAnswers[$i]->answer != $answers[$i]) {
+                    $same = false;
+                    break;
+                }
+            }
+        } else {
+            $same = false;  // If count is different, answers have changed
         }
 
-        // Get new answers of this vote type from the form, and save them to the database
-        $answers = $request->input('answers');
-        foreach($answers as $answer) {
-            $this->saveVoteTypeAnswer($answer, $vt->id);
+        if (!$same) {
+            // Delete all previous answers of this vote type (GroupVotes will be deleted too)
+            foreach($prevAnswers as $pa) {
+                $pa->delete();
+            }
+
+            // Add the new answers to the vote type
+            foreach($answers as $answer) {
+                $this->saveVoteTypeAnswer($answer, $vt->id);
+            }
         }
 
         // Redirect

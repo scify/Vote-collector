@@ -37,10 +37,12 @@
                                     <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
                                         <span class="glyphicon glyphicon-book"></span> Εκκίνηση
                                     </a>
-                                @else
+                                @elseif ($voting->type->answers->count() > 0)
                                     <a href="votings/answers/{{ $voting->id }}" class="btn btn-primary btn-xs">
                                         <span class="glyphicon glyphicon-file"></span> Επιλογή απαντήσεων
                                     </a>
+                                @else
+                                    <span class="label label-warning">Δεν υπάρχουν απαντήσεις!</span>
                                 @endif
                             </td>
                             <td>

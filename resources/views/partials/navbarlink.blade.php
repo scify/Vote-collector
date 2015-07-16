@@ -3,5 +3,5 @@
     for bootstrap to make it look pressed
 --}}
 <li class="{{ Request::path() == $link ? 'active' : '' }}">
-    <a href="/{{ $link }}">{{ $linkText }}</a>
+    <a href="{{ url($link) }}">{{ $linkText }}</a>
 </li>
