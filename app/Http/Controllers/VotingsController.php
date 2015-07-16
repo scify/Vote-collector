@@ -128,6 +128,13 @@ class VotingsController extends Controller {
     public function saveDefaultAnswers(Request $request) {
         $voting = Voting::findOrFail($request->get('voting_id'));   // Find the voting to store answers for
 
+        // Delete this voting's default answers if there are any
+        $prevVotes = GroupVote::where('voting_id', '=', $voting->id)->get();
+        foreach($prevVotes as $gv) {
+            $gv->delete();
+        }
+
+        // Save the new default answers
         $groups = Group::all();                                     // Get all groups
 
         foreach($groups as $group) {
@@ -155,7 +162,7 @@ class VotingsController extends Controller {
      */
     public function reading($id) {
         $voting = Voting::findOrFail($id);  // Get the voting to start the reading for
-        //todo: if a group with members is created after the default votes are entered, the page will show errors
+
         if ($voting->defaultVotesSet()) {   // Check if the voting has default votes for each group
             $members = Member::orderBy('order', 'ASC')->get();  // get members sorted based on their order
             $gvotes = GroupVote::where('voting_id', '=', $voting->id)->get();
