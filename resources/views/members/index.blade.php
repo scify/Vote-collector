@@ -57,5 +57,5 @@
 
 @section('footer')
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="{{ URL::asset('js/members/members.js') }}"></script>
+    <script src="{{ URL::asset('js/members.js') }}"></script>
 @stop

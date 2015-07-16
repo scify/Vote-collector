@@ -11,5 +11,5 @@
 @stop
 
 @section('footer')
-    <script src="{{ URL::asset('js/votetypes/votetypes.js') }}"></script>
+    <script src="{{ URL::asset('js/votetypes.js') }}"></script>
 @stop
