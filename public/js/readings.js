@@ -63,7 +63,7 @@ function removeCurrentStatus(member) {
  * @returns string
  */
 function getMemberButtons() {
-    var buttons =   '<div id="currentMemberButtons" class="btn-toolbar">' +
+    var buttons =   '<div id="currentMemberButtons" class="btn-toolbar col-sm-4">' +
                         '<a id="nextBtn" class="btn btn-primary" href="#"><span class="glyphicon glyphicon-chevron-down"></span> Επόμενος</a>' +
                         '<a id="absentBtn" class="btn btn-warning" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>' +
                     '</div>';
@@ -78,9 +78,11 @@ function nextMember(event) {
     // Get which button was pressed
     var btn = event.data.btn;
 
-    // If it was the next button, the member voted so change the status
+    //console.log($(memberDivs[currentMember]).data('status')); <- this prints the status
+
+    // If it was the next button, the member voted so change the status attribute
     if (btn == 'next') {
-        $(memberDivs[currentMember]).data('status', 'voted');   //todo: this does not change the data-status attribute?
+        $(memberDivs[currentMember]).data('status', 'voted');
     }
 
     removeCurrentStatus(memberDivs[currentMember]);     // Remove current status from the current member
@@ -91,8 +93,21 @@ function nextMember(event) {
         addCurrentStatus(memberDivs[currentMember]);    // and add current status to them
     } else {
         // switch to second reading???????
-        console.log('Last member reached!!');
+        if (reading == 1) {
+            // switch to second reading
+            startSecondReading();
+        } else {
+            // voting ended
+            console.log('Voting ended!');
+        }
     }
 
-    return false;
+    return false;   // This line prevents the page from scrolling to the top when a button is clicked
+}
+
+/**
+ * Switches from the first to the second reading
+ */
+function startSecondReading() {
+
 }
