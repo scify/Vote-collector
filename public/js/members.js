@@ -74,6 +74,7 @@ function saveOrder() {
         },
         error: function(data) {
             console.log('FAILLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL');
+            //todo: maybe show error to the user instead of logging to console
         }
     });
 }

@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('head')
+    <link rel="stylesheet" src="{{ URL::asset('css/readings.css') }}">
+@stop
+
 @section('content')
     <h1>Πρώτη ανάγνωση</h1>
 
@@ -7,7 +11,7 @@
 
         @foreach($members as $member)
             <fieldset>
-                <div class="form-group">
+                <div class="form-group member" data-status="not_voted">
                     {!! Form::label('answer_' . $member->id, $member->first_name . ' ' . $member->last_name, ['class' => 'control-label col-sm-2']) !!}
                     <div class="col-sm-3">
                         {!! Form::select('answer_' . $member->id, $voting->type->answers->lists('answer', 'id'), $member->groupAnswer($voting->id), ['class' => 'form-control selectpicker']) !!}
@@ -19,4 +23,8 @@
         {!! Form::submit('Αποθήκευση', ['class' => 'btn btn-primary']) !!}
         <a href="/votings" class="btn btn-default">Άκυρο</a>
     {!! Form::close() !!}
+@stop
+
+@section('footer')
+    <script src="{{ URL::asset('js/readings.js') }}"></script>
 @stop
