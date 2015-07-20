@@ -1,13 +1,13 @@
 <!-- Name -->
 <div class="form-group">
     {!! Form::label('first_name', 'Όνομα') !!}
-    {!! Form::text('first_name', Input::old('first_name'), array('class' => 'form-control')) !!}
+    {!! Form::text('first_name', Input::old('first_name'), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Surname -->
 <div class="form-group">
     {!! Form::label('last_name', 'Επώνυμο') !!}
-    {!! Form::text('last_name', Input::old('last_name'), array('class' => 'form-control')) !!}
+    {!! Form::text('last_name', Input::old('last_name'), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Group selection -->

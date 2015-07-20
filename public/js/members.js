@@ -85,12 +85,12 @@ function collectMembersByOrder() {
 
     $(".member").each(function(index,member){
         var order = {
-            order: index+1,
-            id : $(member).data("id")
+            order: $($(member).children('.priority')[0]).html(),
+            id: $(member).data("id")
         };
 
         newOrdering.push(order);
     });
-
+    
     return newOrdering;
 }

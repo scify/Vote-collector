@@ -2,6 +2,7 @@
 
 @section('content')
     <h1>Βουλευτές</h1>
+
     @foreach($districts as $district)
         @if($district->members->count() > 0)
             <div class="panel panel-default">
