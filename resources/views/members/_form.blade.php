@@ -18,12 +18,12 @@
 
 <!-- Perifereia selection -->
 <div class="form-group">
-    {!! Form::label('perifereia', 'Περιφέρεια') !!}
+    {!! Form::label('district', 'Περιφέρεια') !!}
     {{-- If user is editing a member, the select must be disabled (perifereia does not change) --}}
     @if(isset($edit))
-        {!! Form::select('perifereia', $perifereies, null, ['class' => 'form-control', 'disabled']) !!}
+        {!! Form::select('district', $districts, null, ['class' => 'form-control', 'disabled']) !!}
     @else
-        {!! Form::select('perifereia', $perifereies, null, ['class' => 'form-control']) !!}
+        {!! Form::select('district', $districts, null, ['class' => 'form-control']) !!}
     @endif
 </div>
 

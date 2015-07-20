@@ -6,7 +6,7 @@ use App\Group;
 use App\Member;
 use App\Http\Requests;
 use App\Http\Requests\MemberRequest;
-use App\Perifereia;
+use App\District;
 use \Redirect;
 use \Response;
 use \Session;
@@ -34,10 +34,10 @@ class MembersController extends Controller {
 	 */
 	public function create()
 	{
-        $groups = Group::lists('name', 'id');           // Get list of all groups and their ids for the form
-        $perifereies = Perifereia::lists('name', 'id'); // Get list of all perifereies
+        $groups = Group::lists('name', 'id');       // Get list of all groups and their ids for the form
+        $districts = District::lists('name', 'id'); // Get list of all districts
 
-		return view('members.create', compact('groups', 'perifereies'));
+		return view('members.create', compact('groups', 'districts'));
 	}
 
     /**
@@ -79,9 +79,9 @@ class MembersController extends Controller {
 	{
 		$member = Member::findOrFail($id);              // Find member
         $groups = Group::lists('name', 'id');           // Get list of all groups and their ids for the form
-        $perifereies = Perifereia::lists('name', 'id'); // Get list of all perifereies
+        $districts = District::lists('name', 'id');     // Get list of all Districts
 
-        return view('members.edit', compact('member', 'groups', 'perifereies'));
+        return view('members.edit', compact('member', 'groups', 'districts'));
 	}
 
     /**
@@ -124,7 +124,7 @@ class MembersController extends Controller {
         $member = Member::findOrFail($id);
 
         // Find members of the same perifereia with order bigger than this member's and fix them
-        $membersToFix = Member::where('perifereia', '=', $member->perifereia)
+        $membersToFix = Member::where('district_id', '=', $member->district->id)
                             ->where('order', '>', $member->order)->get();
         foreach($membersToFix as $m) {
             $m->order = $m->order - 1;
@@ -167,16 +167,15 @@ class MembersController extends Controller {
      */
     private function createMember(MemberRequest $request)
     {
-        // Find order of the new member based on perifereia (to add the member at the end of their perifereia)
-        $perifereia = Perifereia::findOrFail($request->input('perifereia'));
-        $order = $perifereia->members->count() + 1;
-
+        // Find order of the new member based on district (to add the member at the end of their district)
+        $district = District::findOrFail($request->input('district'));
+        $order = $district->members->count() + 1;
 
         // Make a new member and save it
         $member = new Member;
         $member->first_name = $request->input('first_name');
         $member->last_name = $request->input('last_name');
-        $member->perifereia = $request->input('perifereia');
+        $member->district_id = $request->input('district');
         $member->order = $order;
         $member->save();
 

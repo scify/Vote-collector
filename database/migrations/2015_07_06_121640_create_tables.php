@@ -12,8 +12,8 @@ class CreateTables extends Migration
      */
     public function up()
     {
-        // Perifereies
-        Schema::create('perifereies', function(Blueprint $table) {
+        // Districts table (perifereies)
+        Schema::create('districts', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -25,10 +25,10 @@ class CreateTables extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->integer('order');
-            $table->integer('perifereia')->unsigned();
+            $table->integer('district_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('perifereia')->references('id')->on('perifereies')->onDelete('cascade');
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
         });
 
         // Groups table
@@ -131,7 +131,7 @@ class CreateTables extends Migration
         Schema::drop('group_member');
         Schema::drop('groups');
         Schema::drop('members');
-        Schema::drop('perifereies');
+        Schema::drop('districts');
 
     }
 }

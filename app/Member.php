@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
-    protected $fillable = ['first_name', 'last_name', 'perifereia'];
+    protected $fillable = ['first_name', 'last_name', 'district_id'];
 
     public function groups() {
         return $this->belongsToMany('App\Group');
@@ -16,8 +16,8 @@ class Member extends Model
         return $this->hasMany('App\Vote');
     }
 
-    public function perifereia() {
-        return $this->belongsTo('App\Perifereia');
+    public function district() {
+        return $this->belongsTo('App\District');
     }
 
     /**

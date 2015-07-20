@@ -13,14 +13,14 @@ class MemberTableSeeder extends Seeder
     {
         DB::table('members')->delete();
 
-        // Perifereia 1
-        $m = App\Member::create(['first_name' => 'John', 'last_name' => 'Smith', 'order' => 1, 'perifereia' => 1]);
+        // District 1
+        $m = App\Member::create(['first_name' => 'John', 'last_name' => 'Smith', 'order' => 1, 'district_id' => 1]);
         $m->groups()->attach([2]);
-        $m = App\Member::create(['first_name' => 'Sam', 'last_name' => 'Sam', 'order' => 2, 'perifereia' => 1]);
+        $m = App\Member::create(['first_name' => 'Sam', 'last_name' => 'Sam', 'order' => 2, 'district_id' => 1]);
         $m->groups()->attach([2, 1]);
 
-        // Perifereia 2
-        $m = App\Member::create(['first_name' => 'Max', 'last_name' => 'Max', 'order' => 1, 'perifereia' => 2]);
+        // District 2
+        $m = App\Member::create(['first_name' => 'Max', 'last_name' => 'Max', 'order' => 1, 'district_id' => 2]);
         $m->groups()->attach([1]);
     }
 }
