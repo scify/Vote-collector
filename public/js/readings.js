@@ -106,7 +106,7 @@ function nextMember(event) {
 }
 
 /**
- * Switches from the first to the second reading
+ * Switches from the first to the second readingΠροσθ
  */
 function startSecondReading() {
 

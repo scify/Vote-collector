@@ -6,7 +6,7 @@
     @include('errors.list')
 
     {!! Form::model($votetype, ['route' => ['votetypes.update', $votetype->id], 'method' => 'PUT']) !!}
-        @include('votetypes.partials.form', ['submitButtonText' => 'Αποθήκευση', 'edit' => 'true'])
+        @include('votetypes.partials.form', ['submitButtonText' => 'Αποθήκευση'])
     {!! Form::close() !!}
 @stop
 

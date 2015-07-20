@@ -6,6 +6,7 @@ use App\Group;
 use App\Member;
 use App\Http\Requests;
 use App\Http\Requests\MemberRequest;
+use App\Perifereia;
 use \Redirect;
 use \Response;
 use \Session;
@@ -33,9 +34,10 @@ class MembersController extends Controller {
 	 */
 	public function create()
 	{
-        $groups = Group::lists('name', 'id');   // Get list of all groups and their ids for the form
+        $groups = Group::lists('name', 'id');           // Get list of all groups and their ids for the form
+        $perifereies = Perifereia::lists('name', 'id'); // Get list of all perifereies
 
-		return view('members.create', compact('groups'));
+		return view('members.create', compact('groups', 'perifereies'));
 	}
 
     /**
@@ -75,10 +77,11 @@ class MembersController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$member = Member::findOrFail($id);      // Find member
-        $groups = Group::lists('name', 'id');   // Get list of all groups and their ids for the form
+		$member = Member::findOrFail($id);              // Find member
+        $groups = Group::lists('name', 'id');           // Get list of all groups and their ids for the form
+        $perifereies = Perifereia::lists('name', 'id'); // Get list of all perifereies
 
-        return view('members.edit', compact('member', 'groups'));
+        return view('members.edit', compact('member', 'groups', 'perifereies'));
 	}
 
     /**
@@ -168,6 +171,7 @@ class MembersController extends Controller {
         $member->first_name = $request->input('first_name');
         $member->last_name = $request->input('last_name');
         $member->order = Member::all()->count() + 1;    // new members are added at the end of the list
+        $member->perifereia = $request->input('perifereia');
         $member->save();
 
         // Get selected members and save them (if there are any)

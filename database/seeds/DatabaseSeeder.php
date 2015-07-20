@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $this->call('PerifereiesTableSeeder');
         $this->call('GroupTableSeeder');
         $this->call('MemberTableSeeder');
         $this->call('VoteObjectiveTableSeeder');

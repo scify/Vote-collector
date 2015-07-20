@@ -12,13 +12,23 @@ class CreateTables extends Migration
      */
     public function up()
     {
+        // Perifereies
+        Schema::create('perifereies', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+        });
+
         // Members table
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
             $table->integer('order');
+            $table->integer('perifereia')->unsigned();
             $table->timestamps();
+
+            $table->foreign('perifereia')->references('id')->on('perifereies')->onDelete('cascade');
         });
 
         // Groups table
@@ -121,6 +131,7 @@ class CreateTables extends Migration
         Schema::drop('group_member');
         Schema::drop('groups');
         Schema::drop('members');
+        Schema::drop('perifereies');
 
     }
 }

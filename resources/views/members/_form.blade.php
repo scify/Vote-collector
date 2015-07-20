@@ -1,8 +1,10 @@
+<!-- Name -->
 <div class="form-group">
     {!! Form::label('first_name', 'Όνομα') !!}
     {!! Form::text('first_name', Input::old('first_name'), array('class' => 'form-control')) !!}
 </div>
 
+<!-- Surname -->
 <div class="form-group">
     {!! Form::label('last_name', 'Επώνυμο') !!}
     {!! Form::text('last_name', Input::old('last_name'), array('class' => 'form-control')) !!}
@@ -10,8 +12,19 @@
 
 <!-- Group selection -->
 <div class="form-group">
-    {!! Form::label('group_list', 'Κοινοβουλευτικές Ομάδες:') !!}
+    {!! Form::label('group_list', 'Κοινοβουλευτικές Ομάδες') !!}
     {!! Form::select('group_list[]', $groups, null, ['class' => 'form-control', 'multiple']) !!}
+</div>
+
+<!-- Perifereia selection -->
+<div class="form-group">
+    {!! Form::label('perifereia', 'Περιφέρεια') !!}
+    {{-- If user is editing a member, the select must be disabled (perifereia does not change) --}}
+    @if(isset($edit))
+        {!! Form::select('perifereia', $perifereies, null, ['class' => 'form-control', 'disabled']) !!}
+    @else
+        {!! Form::select('perifereia', $perifereies, null, ['class' => 'form-control']) !!}
+    @endif
 </div>
 
 
