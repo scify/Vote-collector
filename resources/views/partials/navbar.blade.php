@@ -14,10 +14,10 @@
             <ul class="nav navbar-nav">
                 @include('partials.navbarlink', ['link' => 'groups', 'linkText' => 'Κοιν. Ομάδες'])
                 @include('partials.navbarlink', ['link' => 'members', 'linkText' => 'Βουλευτές'])
+                @include('partials.navbarlink', ['link' => 'votings', 'linkText' => 'Ψηφοφορίες'])
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Διαχείριση <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        @include('partials.navbarlink', ['link' => 'votings', 'linkText' => 'Ψηφοφορίες'])
                         @include('partials.navbarlink', ['link' => 'votetypes', 'linkText' => 'Τύποι ψηφοφορίας'])
                         @include('partials.navbarlink', ['link' => 'voteobjectives', 'linkText' => 'Αντικείμενα ψηφοφορίας'])
                     </ul>
