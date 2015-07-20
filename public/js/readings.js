@@ -36,8 +36,9 @@ function addCurrentStatus(member) {
     $(member).append(getMemberButtons());
 
     // Add event listeners to the buttons
-    $('#nextBtn').click({btn: 'next'}, nextMember);
+    $('#prevBtn').click(prevMember);
     $('#absentBtn').click({btn: 'absent'}, nextMember);
+    $('#nextBtn').click({btn: 'next'}, nextMember);
 }
 
 /**
@@ -63,22 +64,42 @@ function removeCurrentStatus(member) {
  * @returns string
  */
 function getMemberButtons() {
-    var buttons =   '<div id="currentMemberButtons" class="btn-toolbar col-sm-4">' +
+    var buttons =   '<div id="currentMemberButtons" class="btn-group">' +
+                        '<a id="prevBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-chevron-up"></span> Πίσω</a>' +
+                        '<a id="absentBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>' +
                         '<a id="nextBtn" class="btn btn-primary" href="#"><span class="glyphicon glyphicon-chevron-down"></span> Επόμενος</a>' +
-                        '<a id="absentBtn" class="btn btn-warning" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>' +
                     '</div>';
 
     return buttons;
 }
 
 /**
- * todo: write comment
+ * Goes to the previous member in the list
+ *
+ * @return false
+ */
+function prevMember() {
+    // Check if it is the first member or not
+    if (currentMember > 0) {
+        removeCurrentStatus(memberDivs[currentMember]);
+
+        // Go to previous member
+        currentMember--;
+
+        addCurrentStatus(memberDivs[currentMember]);
+    }
+
+    return false;
+}
+
+/**
+ * Goes to next member in the list.
+ *
+ * @return false
  */
 function nextMember(event) {
     // Get which button was pressed
     var btn = event.data.btn;
-
-    //console.log($(memberDivs[currentMember]).data('status')); <- this prints the status
 
     // If it was the next button, the member voted so change the status attribute
     if (btn == 'next') {
@@ -92,7 +113,7 @@ function nextMember(event) {
 
         addCurrentStatus(memberDivs[currentMember]);    // and add current status to them
     } else {
-        // switch to second reading???????
+        // Check if we should switch to second reading
         if (reading == 1) {
             // switch to second reading
             startSecondReading();
@@ -106,7 +127,7 @@ function nextMember(event) {
 }
 
 /**
- * Switches from the first to the second readingΠροσθ
+ * Switches from the first to the second reading
  */
 function startSecondReading() {
 
