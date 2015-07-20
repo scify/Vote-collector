@@ -98,11 +98,8 @@ function prevMember() {
  * @return false
  */
 function nextMember(event) {
-    // Get which button was pressed
-    var btn = event.data.btn;
-
-    // If it was the next button, the member voted so change the status attribute
-    if (btn == 'next') {
+    // If the next button was pressed, the member voted so change the status attribute
+    if (event.data.btn == 'next') {
         $(memberDivs[currentMember]).data('status', 'voted');
     }
 
@@ -110,7 +107,7 @@ function nextMember(event) {
 
     if (currentMember < memberDivs.length - 1) {        // If this wasn't the last member in the list
         currentMember++;                                // go to the next member
-
+                                                        //todo: go to the next NOT VOTED member
         addCurrentStatus(memberDivs[currentMember]);    // and add current status to them
     } else {
         // Check if we should switch to second reading
@@ -130,5 +127,27 @@ function nextMember(event) {
  * Switches from the first to the second reading
  */
 function startSecondReading() {
+    reading = 2;                            // Set reading variable
+
+    $('#title').text('Δεύτερη ανάγνωση');   // Change title
+
+    var votes = [];
+
+    // Save the votes of members who voted and remove them from the form
+    $(memberDivs).each(function(index, memberDiv) {
+        if ($(memberDiv).data('status') == 'voted') {   // Member voted
+            var vote = {
+                member_id: $(memberDiv).data('id'),
+                answer_id: $(memberDiv).find('.selectpicker')[0].value
+            };
+
+            votes.push(vote);       // Add member's vote to votes array
+
+            $(memberDiv).remove();  // Remove member's form field
+        }
+    });
+    //todo: dont send votes to server yet, wait until the second reading is over and send them all at once
+
+    //todo: memberDivs might be outdated after deleting fields so maybe update it
 
 }

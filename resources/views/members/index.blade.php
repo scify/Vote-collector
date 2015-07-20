@@ -20,7 +20,7 @@
                         </thead>
                         <tbody>
                             @foreach($district->members()->orderBy('order')->get() as $member)
-                                <tr class="member" data-id="{{$member->id}}">
+                                <tr class="member" data-id="{{ $member->id }}">
                                     <td class="priority">
                                         {{ $member->order }}
                                     </td>
