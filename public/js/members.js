@@ -91,6 +91,6 @@ function collectMembersByOrder() {
 
         newOrdering.push(order);
     });
-    
+
     return newOrdering;
 }

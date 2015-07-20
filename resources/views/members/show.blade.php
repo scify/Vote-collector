@@ -14,11 +14,12 @@
                 <h2>{{ $member->first_name }} {{ $member->last_name }}</h2>
 
                 <p>
-                    <strong>Μέλος σε:</strong> {{ $groups->count() }} κοιν. ομάδ{{ ($groups->count() == 1)?'α':'ες' }}.
-                </p>
-                <p>
                     <strong>Περιφέρεια:</strong> {{ $member->district->name }}
                 </p>
+                <p>
+                    <strong>Μέλος σε:</strong> {{ $groups->count() }} κοιν. ομάδ{{ ($groups->count() == 1)?'α':'ες' }}.
+                </p>
+
             </div>
         </div>
         <div id="groups" class="tab-pane fade">
@@ -37,8 +38,7 @@
                                     <td>
                                         {{ $group->name }}
                                     </td>
-                                    <td>
-                                        <!-- Info button -->
+                                    <td> {{-- Info button --}}
                                         <a href="/groups/{{ $group->id }}" class="btn btn-default btn-xs">
                                             <span class="glyphicon glyphicon-info-sign"></span>
                                         </a>

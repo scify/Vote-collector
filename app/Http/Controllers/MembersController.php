@@ -145,7 +145,7 @@ class MembersController extends Controller {
      * @return mixed
      */
     public function changeOrder()
-    {   //todo: fix it for perifereies!!!!!
+    {
         // Get id/order pairs
         $newOrders = Input::get('data');
 
