@@ -6,7 +6,7 @@
     @include('errors.list')
 
     {!! Form::open(['action' => 'MembersController@store']) !!}
-        @include('members._form', ['submitButtonText' => 'Δημιουργία'])
+        @include('members.partials.form', ['submitButtonText' => 'Δημιουργία'])
     {!! Form::close() !!}
 @stop
 

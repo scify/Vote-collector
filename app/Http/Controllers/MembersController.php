@@ -22,9 +22,9 @@ class MembersController extends Controller {
 	 */
 	public function index()
 	{
-        $members = Member::orderBy('order', 'ASC')->get();  // get members for the list (sorted based on order)
+        $districts = District::all();   // Get list of all districts
 
-        return view('members.index', compact('members'));
+        return view('members.index', compact('members', 'districts'));
 	}
 
 	/**

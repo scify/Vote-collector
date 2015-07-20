@@ -14,10 +14,10 @@
                 <h2>{{ $member->first_name }} {{ $member->last_name }}</h2>
 
                 <p>
-                    Μέλος σε {{ $groups->count() }} κοιν. ομάδ{{ ($groups->count() == 1)?'α':'ες' }}.
+                    <strong>Μέλος σε:</strong> {{ $groups->count() }} κοιν. ομάδ{{ ($groups->count() == 1)?'α':'ες' }}.
                 </p>
                 <p>
-                    Περιφέρεια: {{ $member->district->name }}
+                    <strong>Περιφέρεια:</strong> {{ $member->district->name }}
                 </p>
             </div>
         </div>
