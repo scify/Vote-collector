@@ -7,6 +7,6 @@ class Perifereia extends Model
     protected $table = 'perifereies';
 
     public function members() {
-        return $this->hasMany('App\Member');
+        return $this->hasMany('App\Member', 'perifereia');
     }
 }

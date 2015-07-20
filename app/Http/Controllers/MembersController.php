@@ -123,8 +123,9 @@ class MembersController extends Controller {
         // Find member
         $member = Member::findOrFail($id);
 
-        // Find members with order bigger than this member's and fix them
-        $membersToFix = Member::where('order', '>', $member->order)->get();
+        // Find members of the same perifereia with order bigger than this member's and fix them
+        $membersToFix = Member::where('perifereia', '=', $member->perifereia)
+                            ->where('order', '>', $member->order)->get();
         foreach($membersToFix as $m) {
             $m->order = $m->order - 1;
             $m->save();
@@ -144,7 +145,7 @@ class MembersController extends Controller {
      * @return mixed
      */
     public function changeOrder()
-    {
+    {   //todo: fix it for perifereies!!!!!
         // Get id/order pairs
         $newOrders = Input::get('data');
 
@@ -166,12 +167,17 @@ class MembersController extends Controller {
      */
     private function createMember(MemberRequest $request)
     {
+        // Find order of the new member based on perifereia (to add the member at the end of their perifereia)
+        $perifereia = Perifereia::findOrFail($request->input('perifereia'));
+        $order = $perifereia->members->count() + 1;
+
+
         // Make a new member and save it
         $member = new Member;
         $member->first_name = $request->input('first_name');
         $member->last_name = $request->input('last_name');
-        $member->order = Member::all()->count() + 1;    // new members are added at the end of the list
         $member->perifereia = $request->input('perifereia');
+        $member->order = $order;
         $member->save();
 
         // Get selected members and save them (if there are any)
