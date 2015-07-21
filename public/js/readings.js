@@ -135,24 +135,18 @@ function nextMember(event) {
  * Switches from the first to the second reading
  */
 function startSecondReading() {
-    reading = 2;                            // Set reading variable
-
-    $('#title').text('Δεύτερη ανάγνωση');   // Change title
-
     saveVotes(memberDivs, votes);           // Save the votes of members who voted
-
     memberDivs = $('.member');              // Update memberDivs
 
     // If all members voted, no need for second reading
     if (memberDivs.length == 0) {
         submitVotes(votes);
-
-        return;
+    } else {
+        reading = 2;                                    // Set reading variable
+        currentMember = 0;                              // Current member is the first one again
+        $('#title').text('Δεύτερη ανάγνωση');           // Change title
+        addCurrentStatus(memberDivs[currentMember]);    // Add curr. status to current member
     }
-
-    // Add current status to the first member on the list
-    currentMember = 0;
-    addCurrentStatus(memberDivs[currentMember]);
 }
 
 /**
@@ -199,11 +193,37 @@ function submitVotes(votes) {
         },
         dataType: 'json',
         success: function(data) {
-            //todo: go to votings page
-            console.log("Server returned SUCCESS");
+            votingComplete(true);
         },
         error: function(data) {
-            console.log("Server returned ERROR!!!");
+            votingComplete(false);
         }
     });
+}
+
+/**
+ * Changes the page to show a success or error message
+ *
+ * @param success
+ */
+function votingComplete(success) {
+    $('#title').remove();   // Remove title
+
+    //todo: an kapoios den psifisei oute sth 2h tote menei ekei
+
+    var alertDiv;
+
+    if (success) {
+        alertDiv =  '<div class="alert alert-success">' +
+                        '<strong>Η ψηφοφορία ολοκληρώθηκε με επιτυχία!</strong>' +
+                        (reading == 1 ? ' Όλοι οι βουλευτές ψήφισαν στην πρώτη ανάγνωση.' : '') +
+                        ' Δείτε τα αποτελέσματα <a href="/votings/' + voting_id + '">εδώ</a>.' +
+                    '</div>';
+    } else {
+        alertDiv =  '<div class="alert alert-danger">' +
+                        '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι ψήφοι.' +
+                    '</div>';
+    }
+
+    $($('.container')[0]).prepend(alertDiv);
 }

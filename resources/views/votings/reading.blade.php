@@ -20,7 +20,7 @@
         @endforeach
 
         {{--{!! Form::submit('Αποθήκευση', ['class' => 'btn btn-primary']) !!}--}}
-        <a href="/votings" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Άκυρο</a>
+        <a href="/votings" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
     {!! Form::close() !!}
 @stop
 
