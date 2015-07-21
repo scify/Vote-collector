@@ -6,9 +6,8 @@
 
 @section('content')
     <h1 id="title">Πρώτη ανάγνωση</h1>
-    <!--todo: order is wrong-->
-    {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal']) !!}
 
+    {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal', 'id' => 'votesform', 'data-votingid' => $voting->id]) !!}
         @foreach($members as $member)
             <fieldset>
                 <div class="form-group member" data-status="not_voted" data-id="{{ $member->id }}">
@@ -20,8 +19,8 @@
             </fieldset>
         @endforeach
 
-        {!! Form::submit('Αποθήκευση', ['class' => 'btn btn-primary']) !!}
-        <a href="/votings" class="btn btn-default">Άκυρο</a>
+        {{--{!! Form::submit('Αποθήκευση', ['class' => 'btn btn-primary']) !!}--}}
+        <a href="/votings" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Άκυρο</a>
     {!! Form::close() !!}
 @stop
 

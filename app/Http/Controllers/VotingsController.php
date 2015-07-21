@@ -14,6 +14,8 @@ use App\GroupVote;
 use App\Member;
 use \Session;
 use \Redirect;
+use \Response;
+use \Input;
 use Illuminate\Http\Request;
 
 class VotingsController extends Controller {
@@ -72,6 +74,7 @@ class VotingsController extends Controller {
         $type = VoteType::findOrFail($voting->voting_type);         // Get the type of the voting
         $objective = VoteObjective::findOrFail($voting->objective); // Get objective of voting
 
+        //todo: show members in correct order!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // Get each group member's vote (if there are any) and put them in an array
         $memberVotes = [];
         if ($voting->votes->count() > 0) {
@@ -112,7 +115,8 @@ class VotingsController extends Controller {
      * @param $id   The id of the voting to add answers to
      * @return \Illuminate\View\View
      */
-    public function defaultAnswers($id) {
+    public function defaultAnswers($id)
+    {
         $voting = Voting::findOrFail($id);
         $groups = Group::all();
 
@@ -125,7 +129,8 @@ class VotingsController extends Controller {
      * @param Request $request
      * @return mixed
      */
-    public function saveDefaultAnswers(Request $request) {
+    public function saveDefaultAnswers(Request $request)
+    {
         $voting = Voting::findOrFail($request->get('voting_id'));   // Find the voting to store answers for
 
         // Delete this voting's default answers if there are any
@@ -160,7 +165,8 @@ class VotingsController extends Controller {
      * @param $id   The id of the voting that the reading is for
      * @return \Illuminate\View\View
      */
-    public function reading($id) {
+    public function reading($id)
+    {
         $voting = Voting::findOrFail($id);  // Get the voting to start the reading for
 
         if ($voting->defaultVotesSet()) {   // Check if the voting has default votes for each group
@@ -177,11 +183,27 @@ class VotingsController extends Controller {
     /**
      * Saves the answers of a reading to the database
      *
-     * @param Request $request
-     * @return null
+     * @return mixed
      */
-    public function saveAnswers(Request $request) {
-        return null;
+    public function saveAnswers()
+    {
+        // Get voting id (doesn't check if a voting with that id exists because if it doesn't, vote creation will fail)
+        $v_id = Input::get('voting');
+
+        // Get member/vote pairs
+        $votes = Input::get('data');
+
+        // Save votes to the database
+        foreach($votes as $vote) {
+            Vote::create([
+                'voting_id' => $v_id,
+                'member_id' => $vote['member_id'],
+                'answer_id' => $vote['answer_id']
+            ]);
+        }
+
+        // Return success json
+        return Response::json('success', 200);
     }
 
     /**
@@ -189,7 +211,8 @@ class VotingsController extends Controller {
      *
      * @param VotingRequest $request
      */
-    private function createVoting(VotingRequest $request) {
+    private function createVoting(VotingRequest $request)
+    {
         // Make a voting and save it
         Voting::create([
             'title' => $request->input('title'),

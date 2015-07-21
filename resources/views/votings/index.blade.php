@@ -33,7 +33,11 @@
                                 </a>
                             </td>
                             <td>
-                                @if( $voting->defaultVotesSet() )
+                                @if( $voting->votes->count() > 0 )
+                                    <span class="label label-info">
+                                        Η ψηφοφορία ολοκληρώθηκε
+                                    </span>
+                                @elseif( $voting->defaultVotesSet() )
                                     <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
                                         <span class="glyphicon glyphicon-book"></span> Εκκίνηση
                                     </a>
@@ -42,7 +46,9 @@
                                         <span class="glyphicon glyphicon-file"></span> Επιλογή απαντήσεων
                                     </a>
                                 @else
-                                    <span class="label label-warning">Δεν υπάρχουν απαντήσεις!</span>
+                                    <span class="label label-warning">
+                                        Δεν υπάρχουν απαντήσεις!
+                                    </span>
                                 @endif
                             </td>
                             <td>

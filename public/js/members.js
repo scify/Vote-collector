@@ -19,7 +19,11 @@ $(document).ready(function() {
     }).disableSelection();
 });
 
-// Renumber table rows
+/**
+ * Renumber table rows
+ *
+ * @param tableID   The id of the table to renumber rows for
+ */
 function renumber_table(tableID) {
     // Check if it's the first time that the order changes, to show the save button
     if (!orderChanged) {
@@ -35,7 +39,9 @@ function renumber_table(tableID) {
     });
 }
 
-// Adds the save order button to the page
+/**
+ * Adds the save order button to the page
+ */
 function showSaveOrderButton() {
     // Create the button
     var btn = document.createElement('button');
@@ -48,10 +54,10 @@ function showSaveOrderButton() {
     document.getElementsByClassName('container')[0].appendChild(btn);
 }
 
-// Save the current order of members to the database
+/**
+ * Save the current order of members to the database
+ */
 function saveOrder() {
-    console.log('Save order button');
-
     var members = collectMembersByOrder();
 
     // Setup CSRF token for middleware
@@ -73,13 +79,17 @@ function saveOrder() {
             $('#saveOrderBtn').remove();
         },
         error: function(data) {
-            console.log('FAILLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL');
+            console.log('ERROR: FAILED TO SAVE ORDER!!!');
             //todo: maybe show error to the user instead of logging to console
         }
     });
 }
 
-// Collects each member's id and new order and returns an array of them
+/**
+ * Collects each member's id and new order and returns an array of them
+ *
+ * @returns {Array} Order of members
+ */
 function collectMembersByOrder() {
     var newOrdering = [];
 
