@@ -12,6 +12,11 @@
         <p>
             Αντικείμενο: {{ $objective->title }}
         </p>
+        @if(count($memberVotes) > 0)
+            <p>
+                <a class="btn btn-primary btn-lg" href="#" role="button"><span class="glyphicon glyphicon-cloud-download"></span> Κατέβασμα αποτελεσμάτων</a>
+            </p>
+        @endif
     </div>
 
 
