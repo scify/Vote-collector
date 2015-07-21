@@ -77,6 +77,7 @@ class VotingsController extends Controller {
 
         // Get each member's vote (if there are any for this voting) and put them in an array
         $memberVotes = [];
+
         if ($voting->votes->count() > 0) {
             $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
 
@@ -96,17 +97,6 @@ class VotingsController extends Controller {
                 }
             }
         }
-
-
-        /*foreach($voting->votes as $vote) {
-            $member = Member::findOrFail($vote->member_id);         // Get the member
-            $answer = VoteTypeAnswer::findOrFail($vote->answer_id); // Get the answer
-
-            $memberVotes[] = [                                      // Put member and answer to array
-                'member' => $member->first_name . ' ' . $member->last_name,
-                'answer' => $answer->answer
-            ];
-        }*/
 
         return view('votings.show', compact('voting', 'type', 'objective', 'memberVotes'));
 	}

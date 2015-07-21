@@ -21,7 +21,7 @@
             <table class="table">
                 <thead>
                     <th>Ονοματεπώνυμο</th>
-                    <th>Επιλογή</th>
+                    <th>Ψήφος</th>
                 </thead>
                 <tbody>
                     @foreach($memberVotes as $mv)
