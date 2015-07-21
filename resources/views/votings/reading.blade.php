@@ -6,7 +6,7 @@
 
 @section('content')
     <h1 id="title">Πρώτη ανάγνωση</h1>
-
+    <!--todo: order is wrong-->
     {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal']) !!}
 
         @foreach($members as $member)
