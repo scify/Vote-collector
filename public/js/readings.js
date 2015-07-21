@@ -116,6 +116,10 @@ function nextMember(event) {
     // If the next button was pressed, the member voted so change the status attribute
     if (event.data.btn == 'next') {
         $(memberDivs[currentMember]).data('status', 'voted');
+        $(memberDivs[currentMember]).removeClass('text-muted');
+    } else {
+        $(memberDivs[currentMember]).addClass('text-muted');
+        $(memberDivs[currentMember]).data('status', 'not_voted');
     }
 
     removeCurrentStatus(memberDivs[currentMember]);     // Remove current status from the current member
@@ -153,6 +157,11 @@ function startSecondReading() {
         currentMember = 0;                              // Current member is the first one again
         $('#title').text('Δεύτερη ανάγνωση');           // Change title
         addCurrentStatus(memberDivs[currentMember]);    // Add curr. status to current member
+
+        // Remove muted text from remaining members
+        $(memberDivs).each(function(index, div) {
+            $(div).removeClass('text-muted');
+        });
     }
 }
 

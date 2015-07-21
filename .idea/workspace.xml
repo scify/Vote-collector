@@ -61,11 +61,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/readings.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8729097" vertical-offset="2070" max-vertical-offset="4080">
+              <caret line="162" column="45" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.72" vertical-offset="1030" max-vertical-offset="3824">
-              <caret line="78" column="26" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+            <state vertical-scroll-proportion="-4.88" vertical-offset="1030" max-vertical-offset="3824">
+              <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
               <folding>
                 <element signature="e#39#56#0#PHP" expanded="true" />
               </folding>
@@ -73,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
+      <file leaf-file-name="reading.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5085324" vertical-offset="102" max-vertical-offset="800">
-              <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+            <state vertical-scroll-proportion="-5.12" vertical-offset="0" max-vertical-offset="544">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -141,9 +151,9 @@
         <option value="$PROJECT_DIR$/resources/views/votings/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/navbar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
-        <option value="$PROJECT_DIR$/public/js/readings.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/show.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/readings.js" />
       </list>
     </option>
   </component>
@@ -580,7 +590,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="743" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -946,22 +956,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.12" vertical-offset="0" max-vertical-offset="544">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/readings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46488294" vertical-offset="554" max-vertical-offset="3936">
-          <caret line="52" column="55" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Vote.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27303755" vertical-offset="0" max-vertical-offset="586">
@@ -980,10 +974,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/members/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19112629" vertical-offset="0" max-vertical-offset="1056">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31740615" vertical-offset="102" max-vertical-offset="800">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.72" vertical-offset="1030" max-vertical-offset="3824">
-          <caret line="78" column="26" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+        <state vertical-scroll-proportion="-4.88" vertical-offset="1030" max-vertical-offset="3824">
+          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
           <folding>
             <element signature="e#39#56#0#PHP" expanded="true" />
           </folding>
@@ -998,18 +1008,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/members/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19112629" vertical-offset="0" max-vertical-offset="1056">
-          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+        <state vertical-scroll-proportion="-5.12" vertical-offset="0" max-vertical-offset="544">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/js/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5085324" vertical-offset="102" max-vertical-offset="800">
-          <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.8729097" vertical-offset="2070" max-vertical-offset="4080">
+          <caret line="162" column="45" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
           <folding />
         </state>
       </provider>
