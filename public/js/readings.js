@@ -7,11 +7,16 @@ var voting_id;
 $(function(){
     memberDivs = $('.member');  // Get all member divs
 
-    // the page just loaded so show the save/absent buttons next to the first member
+    // The page just loaded so show the save/absent buttons next to the first member
     setCurrentMember(0);
 
-    // set the voting_id variable (needed for when the form is saved)
+    // Set the voting_id variable (needed for when the form is saved)
     voting_id = $('#votesform').data('votingid');
+
+    //
+    $(window).bind('beforeunload', function() {
+        return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
+    })
 });
 
 /**
@@ -209,7 +214,12 @@ function submitVotes(votes) {
 function votingComplete(success) {
     $('#title').remove();   // Remove title
 
-    //todo: an kapoios den psifisei oute sth 2h tote menei ekei
+    $(window).off('beforeunload');
+
+    // Remove any fields remaining
+    $(memberDivs).each(function(index, div) {
+        $(div).remove();
+    });
 
     var alertDiv;
 
