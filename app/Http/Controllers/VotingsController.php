@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\District;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -74,20 +75,38 @@ class VotingsController extends Controller {
         $type = VoteType::findOrFail($voting->voting_type);         // Get the type of the voting
         $objective = VoteObjective::findOrFail($voting->objective); // Get objective of voting
 
-        //todo: show members in correct order!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // Get each group member's vote (if there are any) and put them in an array
+        // Get each member's vote (if there are any for this voting) and put them in an array
         $memberVotes = [];
         if ($voting->votes->count() > 0) {
-            foreach($voting->votes as $vote) {
-                $member = Member::findOrFail($vote->member_id);         // Get the member
-                $answer = VoteTypeAnswer::findOrFail($vote->answer_id); // Get the answer
+            $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
 
-                $memberVotes[] = [                                      // Put member and answer to array
-                    'member' => $member->first_name . ' ' . $member->last_name,
-                    'answer' => $answer->answer
-                ];
+            foreach($members as $member) {
+                $vote = Vote::where([
+                    'member_id' => $member->id,
+                    'voting_id' => $voting->id
+                ])->first();                        // Not get(), because a member can only vote once in a voting
+
+                if (count($vote) > 0) {             // If member has voted put member and answer to array
+                    $answer = VoteTypeAnswer::findOrFail($vote->answer_id);
+
+                    $memberVotes[] = [
+                        'member' => $member->first_name . ' ' . $member->last_name,
+                        'answer' => $answer->answer
+                    ];
+                }
             }
         }
+
+
+        /*foreach($voting->votes as $vote) {
+            $member = Member::findOrFail($vote->member_id);         // Get the member
+            $answer = VoteTypeAnswer::findOrFail($vote->answer_id); // Get the answer
+
+            $memberVotes[] = [                                      // Put member and answer to array
+                'member' => $member->first_name . ' ' . $member->last_name,
+                'answer' => $answer->answer
+            ];
+        }*/
 
         return view('votings.show', compact('voting', 'type', 'objective', 'memberVotes'));
 	}

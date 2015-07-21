@@ -45,6 +45,9 @@ function addCurrentStatus(member) {
     // Put the buttons next to the member
     $(member).append(getMemberButtons());
 
+    // Make name blue
+    $($(member).find('.control-label')[0]).addClass('text-primary');
+
     // Add event listeners to the buttons
     $('#prevBtn').click(prevMember);
     $('#absentBtn').click({btn: 'absent'}, nextMember);
@@ -64,6 +67,9 @@ function removeCurrentStatus(member) {
             btns.remove();
         });
     }
+
+    // Make name not blue
+    $($(member).find('.control-label')[0]).removeClass('text-primary');
 }
 
 /**
@@ -86,7 +92,7 @@ function getMemberButtons() {
 /**
  * Goes to the previous member in the list
  *
- * @return false    To prevent the page from scrolling to the top when a button is clicked
+ * @return boolean  To prevent the page from scrolling to the top when a button is clicked
  */
 function prevMember() {
     // Check if it is the first member or not
@@ -104,7 +110,7 @@ function prevMember() {
 /**
  * Goes to next member in the list.
  *
- * @return false    To prevent the page from scrolling to the top when a button is clicked
+ * @return boolean  To prevent the page from scrolling to the top when a button is clicked
  */
 function nextMember(event) {
     // If the next button was pressed, the member voted so change the status attribute
@@ -121,15 +127,11 @@ function nextMember(event) {
     } else {
         // Check if we should switch to second reading or the voting ended
         if (reading == 1) {
-            // switch to second reading
-            startSecondReading();
+            startSecondReading();           // Switch to second reading
         } else {
-            console.log("VOTING ENDEDDDDDDDD");
-            // Voting ended, save the votes
-            saveVotes(memberDivs, votes);
+            saveVotes(memberDivs, votes);   // Voting ended, save the votes
 
-            // And submit them to the server
-            submitVotes(votes);
+            submitVotes(votes);             // And submit them to the server
         }
     }
 
