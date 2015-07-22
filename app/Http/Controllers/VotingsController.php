@@ -149,7 +149,7 @@ class VotingsController extends Controller {
         }
 
         // Save the new default answers
-        $groups = Group::all();                                     // Get all groups
+        $groups = Group::all();
 
         foreach($groups as $group) {
             // Check if there is an answer for this group
@@ -166,6 +166,23 @@ class VotingsController extends Controller {
         // Redirect
         Session::flash('message', 'Οι προεπιλεγμένες απαντήσεις της ψηφοφορίας αποθηκεύτηκαν με επιτυχία!');
         return Redirect::to('votings');
+    }
+
+    /**
+     * Show the form to edit the default answers of a voting
+     *
+     * @param $id
+     * @return \Illuminate\View\View
+     */
+    public function editAnswers($id) {
+        $voting = Voting::findOrFail($id);
+        $groups = Group::all();
+
+        return view('votings.editAnswers', compact('voting', 'groups'));
+    }
+
+    public function updateDefaultAnswers(Request $request) {
+        dd($request->all());
     }
 
     /**

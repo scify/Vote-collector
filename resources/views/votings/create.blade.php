@@ -6,6 +6,6 @@
     @include('errors.list')
 
     {!! Form::open(['action' => 'VotingsController@store']) !!}
-        @include('votings._form', ['submitButtonText' => 'Δημιουργία'])
+        @include('votings.partials.form', ['submitButtonText' => 'Δημιουργία'])
     {!! Form::close() !!}
 @stop
