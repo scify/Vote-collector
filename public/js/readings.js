@@ -47,7 +47,6 @@ function addCurrentStatus(member) {
 
     // Make name blue
     $($(member).find('.control-label')[0]).addClass('text-primary');
-    $($(member).find('.control-label')[0]).addClass('currentMember');
 
     // Add event listeners to the buttons
     $('#prevBtn').click(prevMember);
@@ -71,7 +70,6 @@ function removeCurrentStatus(member) {
 
     // Make name not blue
     $($(member).find('.control-label')[0]).removeClass('text-primary');
-    $($(member).find('.control-label')[0]).removeClass('currentMember');
 }
 
 /**
