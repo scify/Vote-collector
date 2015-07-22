@@ -17,30 +17,35 @@
                 <tbody>
                     @foreach($votings as $voting)
                         <tr>
-                            <td>
+                            <td class="col-lg-3">
                                 {{ $voting->title }}
                             </td>
-                            <td>
+                            <td class="col-lg-2">
                                 {{ $types[$voting->voting_type] }}
                             </td>
-                            <td>
+                            <td class="col-lg-2">
                                 {{ $objectives[$voting->objective] }}
                             </td>
-                            <td>
+                            <td class="col-lg-1">
                                 <!-- Info button -->
                                 <a href="votings/{{ $voting->id }}" class="btn btn-default btn-xs">
                                     <span class="glyphicon glyphicon-info-sign"></span>
                                 </a>
                             </td>
-                            <td>
+                            <td class="col-lg-3">
                                 @if( $voting->votes->count() > 0 )
                                     <span class="label label-info">
                                         Η ψηφοφορία ολοκληρώθηκε
                                     </span>
                                 @elseif( $voting->defaultVotesSet() )
-                                    <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
-                                        <span class="glyphicon glyphicon-book"></span> Εκκίνηση
-                                    </a>
+                                    <div class="btn-toolbar">
+                                        <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
+                                            <span class="glyphicon glyphicon-book"></span> Εκκίνηση
+                                        </a>
+                                        <a href="#" class="btn btn-primary btn-xs">
+                                            <span class="glyphicon glyphicon-pencil"></span> Αλλαγή απαντήσεων
+                                        </a>
+                                    </div>
                                 @elseif ($voting->type->answers->count() > 0)
                                     <a href="votings/answers/{{ $voting->id }}" class="btn btn-primary btn-xs">
                                         <span class="glyphicon glyphicon-file"></span> Επιλογή απαντήσεων
@@ -51,7 +56,7 @@
                                     </span>
                                 @endif
                             </td>
-                            <td>
+                            <td class="col-lg-1">
                                 @include('partials.deleteBtn', ['url' => 'votings', 'id' => $voting->id])
                             </td>
                         </tr>

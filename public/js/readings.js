@@ -238,7 +238,7 @@ function votingComplete(success) {
         alertDiv =  '<div class="alert alert-success">' +
                         '<strong>Η ψηφοφορία ολοκληρώθηκε με επιτυχία!</strong>' +
                         (reading == 1 ? ' Όλοι οι βουλευτές ψήφισαν στην πρώτη ανάγνωση.' : '') +
-                        ' Δείτε τα αποτελέσματα <a href="/votings/' + voting_id + '">εδώ</a>.' +
+                        ' Δείτε τα αποτελέσματα <a href="/votings/' + voting_id + '" class="alert-link">εδώ</a>.' +
                     '</div>';
     } else {
         alertDiv =  '<div class="alert alert-danger">' +

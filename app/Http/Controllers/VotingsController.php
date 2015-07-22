@@ -178,8 +178,8 @@ class VotingsController extends Controller {
     {
         $voting = Voting::findOrFail($id);  // Get the voting to start the reading for
 
-        if ($voting->defaultVotesSet()) {   // Check if the voting has default votes for each group
-            $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
+        if ($voting->defaultVotesSet() && $voting->votes->count() == 0) {       // Check if the voting has default votes for each group
+            $members = Member::orderBy('district_id')->orderBy('order')->get(); // get members sorted based on their district, then order
             $gvotes = GroupVote::where('voting_id', '=', $voting->id)->get();
             $answers = VoteTypeAnswer::where('type', '=', $voting->type->id)->get();
 
