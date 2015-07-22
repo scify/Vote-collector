@@ -216,6 +216,29 @@ class VotingsController extends Controller {
     }
 
     /**
+     * Returns the votes of the specified voting as json
+     *
+     * @param $id   The id of the voting
+     * @return json
+     */
+    public function download($id) {
+        $reply = [];
+
+        $votes = Vote::where('voting_id', '=', $id)->get();
+        foreach($votes as $vote) {
+            $m = $vote->member;
+            $tmp = [
+                'member' => $m->first_name . ' ' . $m->last_name,
+                'vote' => $vote->answer->answer
+            ];
+
+            $reply[] = $tmp;
+        }
+
+        return response()->json($reply);
+    }
+
+    /**
      * Save a new voting to the database
      *
      * @param VotingRequest $request

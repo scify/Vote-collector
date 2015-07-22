@@ -27,4 +27,6 @@ Route::post('votings/answers', 'VotingsController@saveDefaultAnswers'); // For s
 Route::get('votings/reading/{id}', 'VotingsController@reading');        // Page for the first & second reading
 Route::post('votings/reading', 'VotingsController@saveAnswers');        // Page for the first & second reading
 
+Route::get('votings/{id}/download', 'VotingsController@download');      // Download the votes of a voting
+
 Route::post('membersorder', 'MembersController@changeOrder');           // For saving new members order

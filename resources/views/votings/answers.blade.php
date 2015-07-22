@@ -3,7 +3,6 @@
 @section('content')
     <h1>{{ $voting->title }}</h1>
 
-    <!--todo: errors list might never be needed here-->
     @include('errors.list')
 
     <h2>Προεπιλεγμένες απαντήσεις</h2>
