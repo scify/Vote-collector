@@ -143,10 +143,7 @@ class VotingsController extends Controller {
         $voting = Voting::findOrFail($request->get('voting_id'));   // Find the voting to store answers for
 
         // Delete this voting's default answers if there are any
-        $prevVotes = GroupVote::where('voting_id', '=', $voting->id)->get();
-        foreach($prevVotes as $gv) {
-            $gv->delete();
-        }
+        $this->deleteGroupVotes($voting->id);
 
         // Save the new default answers
         $groups = Group::all();
@@ -181,8 +178,16 @@ class VotingsController extends Controller {
         return view('votings.editAnswers', compact('voting', 'groups'));
     }
 
-    public function updateDefaultAnswers(Request $request) {
-        dd($request->all());
+    /**
+     * Deletes a voting's default answers
+     *
+     * @param $id   The id of the voting to delete answers for
+     */
+    private function deleteGroupVotes($id) {
+        $prevVotes = GroupVote::where('voting_id', '=', $id)->get();
+        foreach($prevVotes as $gv) {
+            $gv->delete();
+        }
     }
 
     /**

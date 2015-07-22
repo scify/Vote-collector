@@ -7,7 +7,7 @@
 
     <h2>Επεξεργασία προεπιλεγμένων απαντήσεων</h2>
 
-    {!! Form::open(['url' => 'votings/answers/update', 'method' => 'PUT']) !!}
+    {!! Form::open(['url' => 'votings/answers']) !!}
         @include('votings.partials.answersform', ['edit' => 'true'])
     {!! Form::close() !!}
 
