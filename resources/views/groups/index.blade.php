@@ -18,19 +18,13 @@
                             <td>
                                 {{ $group->name }}
                             </td>
-                            <td>
-                                <!-- Info button -->
-                                <a href="groups/{{ $group->id }}" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                </a>
+                            <td> {{-- Info button --}}
+                                @include('partials.infoBtn', ['url' => 'groups/' . $group->id])
                             </td>
-                            <td>
-                                <!-- Edit button -->
-                                <a href="groups/{{ $group->id }}/edit" class="btn btn-primary btn-xs">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
+                            <td> {{-- Edit button --}}
+                                @include('partials.editBtn', ['url' => 'groups/' . $group->id . '/edit'])
                             </td>
-                            <td>
+                            <td> {{-- Delete button --}}
                                 @include('partials.deleteBtn', ['url' => 'groups', 'id' => $group->id])
                             </td>
                         </tr>

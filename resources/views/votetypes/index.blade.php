@@ -16,19 +16,13 @@
                             <td>
                                 {{ $vt->title }}
                             </td>
-                            <td>
-                                <!-- Info button -->
-                                <a href="votetypes/{{ $vt->id }}" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                </a>
+                            <td> {{-- Info button --}}
+                                @include('partials.infoBtn', ['url' => 'votetypes/' . $vt->id])
                             </td>
-                            <td>
-                                <!-- Edit button -->
-                                <a href="votetypes/{{ $vt->id }}/edit" class="btn btn-primary btn-xs">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
+                            <td> {{-- Edit button --}}
+                                @include('partials.editBtn', ['url' => 'votetypes/' . $vt->id . '/edit'])
                             </td>
-                            <td>
+                            <td> {{-- Delete button --}}
                                 @include('partials.deleteBtn', ['url' => 'votetypes', 'id' => $vt->id])
                             </td>
                         </tr>

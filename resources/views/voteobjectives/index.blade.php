@@ -22,19 +22,13 @@
                                     {{ substr($vo->description, 0, 25) }}{{ (strlen($vo->description) > 25)?'...':'' }}
                                 </p>
                             </td>
-                            <td>
-                                <!-- Info button -->
-                                <a href="voteobjectives/{{ $vo->id }}" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                </a>
+                            <td> {{-- Info button --}}
+                                @include('partials.infoBtn', ['url' => 'voteobjectives/' . $vo->id])
                             </td>
-                            <td>
-                                <!-- Edit button -->
-                                <a href="voteobjectives/{{ $vo->id }}/edit" class="btn btn-primary btn-xs">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
+                            <td> {{-- Edit button --}}
+                                @include('partials.editBtn', ['url' => 'voteobjectives/' . $vo->id . '/edit'])
                             </td>
-                            <td>
+                            <td> {{-- Delete button --}}
                                 @include('partials.deleteBtn', ['url' => 'voteobjectives', 'id' => $vo->id])
                             </td>
                         </tr>

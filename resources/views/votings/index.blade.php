@@ -26,11 +26,8 @@
                             <td class="col-lg-2">
                                 {{ $objectives[$voting->objective] }}
                             </td>
-                            <td class="col-lg-1">
-                                <!-- Info button -->
-                                <a href="votings/{{ $voting->id }}" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                </a>
+                            <td class="col-lg-1"> {{-- Info button --}}
+                                @include('partials.infoBtn', ['url' => 'votings/' . $voting->id])
                             </td>
                             <td class="col-lg-3">
                                 @if( $voting->votes->count() > 0 )

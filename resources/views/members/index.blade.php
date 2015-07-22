@@ -31,16 +31,12 @@
                                         {{ $member->last_name }}
                                     </td>
                                     <td> {{-- Info button --}}
-                                        <a href="members/{{ $member->id }}" class="btn btn-default btn-xs">
-                                            <span class="glyphicon glyphicon-info-sign"></span>
-                                        </a>
+                                        @include('partials.infoBtn', ['url' => 'members/' . $member->id])
                                     </td>
                                     <td> {{-- Edit button --}}
-                                        <a href="members/{{ $member->id }}/edit" class="btn btn-primary btn-xs">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </a>
+                                        @include('partials.editBtn', ['url' => 'members/' . $member->id . '/edit'])
                                     </td>
-                                    <td>
+                                    <td> {{-- Delete button --}}
                                         @include('partials.deleteBtn', ['url' => 'members', 'id' => $member->id])
                                     </td>
                                 </tr>
