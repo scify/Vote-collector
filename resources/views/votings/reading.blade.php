@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('head')
-    <link rel="stylesheet" src="{{ URL::asset('css/readings.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/readings.css') }}">
 @stop
 
 @section('content')
@@ -9,14 +9,14 @@
 
     {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal', 'id' => 'votesform', 'data-votingid' => $voting->id]) !!}
         @foreach($members as $member)
-            <fieldset>
-                <div class="form-group member" data-status="not_voted" data-id="{{ $member->id }}">
-                    {!! Form::label('answer_' . $member->id, $member->first_name . ' ' . $member->last_name, ['class' => 'control-label col-sm-2']) !!}
-                    <div class="col-sm-3">
-                        {!! Form::select('answer_' . $member->id, $voting->type->answers->lists('answer', 'id'), $member->groupAnswer($voting->id), ['class' => 'form-control selectpicker']) !!}
-                    </div>
+            <div class="form-group member" data-status="voted" data-id="{{ $member->id }}">
+                {!! Form::label('answer_' . $member->id, $member->first_name . ' ' . $member->last_name, ['class' => 'control-label col-sm-2']) !!}
+                <div class="radios col-sm-3">
+                    @foreach($voting->type->answers as $answer)
+                        {!! Form::radio('answer_' . $member->id, $answer->id, ($member->groupAnswer($voting->id) == $answer->id)) !!} {{ $answer->answer }} <br/>
+                    @endforeach
                 </div>
-            </fieldset>
+            </div>
         @endforeach
 
         {{--{!! Form::submit('Αποθήκευση', ['class' => 'btn btn-primary']) !!}--}}

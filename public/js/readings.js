@@ -17,7 +17,32 @@ $(function(){
     /*$(window).bind('beforeunload', function() {
         return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
     });*/   //todo: uncomment this
+
+    $('body').click(clickHandler);
 });
+
+/**
+ *
+ * @param e
+ * @returns {boolean}
+ */
+function clickHandler(e) {  //todo: when you click a label the input changes to the 1st value ;_;
+    var target = e.target;
+
+    if (target.nodeName == 'LABEL') {
+        if ($(target).is('.control-label')) {
+            // Remove current status from old div
+            removeCurrentStatus(memberDivs[currentMember]);
+
+            // Get new div and change currentMember variable
+            var memberDiv = $(target).parent();
+            currentMember = $(memberDivs).index(memberDiv);
+
+            // Add current status to new div
+            addCurrentStatus(memberDiv);
+        }
+    }
+}
 
 /**
  * Sets the member with the specified index as the current one in the reading,
@@ -45,13 +70,14 @@ function addCurrentStatus(member) {
     // Put the buttons next to the member
     $(member).append(getMemberButtons());
 
-    // Make name blue
-    $($(member).find('.control-label')[0]).addClass('text-primary');
+    // Apply css class
+    $($(member).find('.control-label')[0]).addClass('currentMember');
+
+    // Unhide buttons
+    //$($(member).find('.radios')).removeClass('hidden');
 
     // Add event listeners to the buttons
-    $('#prevBtn').click(prevMember);
-    $('#absentBtn').click({btn: 'absent'}, nextMember);
-    $('#nextBtn').click({btn: 'next'}, nextMember);
+    $('#absentBtn').click(nextMember);
 }
 
 /**
@@ -60,67 +86,49 @@ function addCurrentStatus(member) {
  * @param member    The form-control div of the member
  */
 function removeCurrentStatus(member) {
-    // Check if member has the buttons div as a child
-    if ($(member).children('#currentMemberButtons').length > 0) {
+    // Check if member has the absent button as a child
+    if ($(member).children('#absentBtn').length > 0) {
         // And remove it
-        $(member).children('#currentMemberButtons').each(function(index, btns) {
-            btns.remove();
+        $(member).children('#absentBtn').each(function(index, btn) {
+            btn.remove();
         });
     }
 
-    // Make name not blue
-    $($(member).find('.control-label')[0]).removeClass('text-primary');
+    // Remove applied css class
+    $($(member).find('.control-label')[0]).removeClass('currentMember');
+
+    // Hide buttons with css
+    //$($(member).find('.radios')).addClass('hidden');    // use "invisible" or "hidden"
 }
 
 /**
- * Creates and returns the "next member" & "absent" buttons
- * used to go to the next member or mark them as absent
- * for this reading
+ * Creates and returns the absent member button
  *
- * @returns string
+ * @returns {string}
  */
 function getMemberButtons() {
-    var buttons =   '<div id="currentMemberButtons" class="btn-group">' +
-                        '<a id="prevBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-chevron-up"></span> Πίσω</a>' +
-                        '<a id="absentBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>' +
-                        '<a id="nextBtn" class="btn btn-primary" href="#"><span class="glyphicon glyphicon-chevron-down"></span> Επόμενος</a>' +
-                    '</div>';
-
-    return buttons;
+    return '<a id="absentBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>';
 }
 
 /**
- * Goes to the previous member in the list
+ * Creates and returns the absent member label
  *
- * @return boolean  To prevent the page from scrolling to the top when a button is clicked
+ * @returns {string}
  */
-function prevMember() {
-    // Check if it is the first member or not
-    if (currentMember > 0) {
-        removeCurrentStatus(memberDivs[currentMember]);
-
-        // Go to previous member
-        currentMember--;
-        addCurrentStatus(memberDivs[currentMember]);
-    }
-
-    return false;
+function absentLabel() {
+    return '<span class="label label-default largeLabel pull-left"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</span>';
 }
 
 /**
- * Goes to next member in the list.
+ * Marks a member as absent and goes to the next member in the list
  *
  * @return boolean  To prevent the page from scrolling to the top when a button is clicked
  */
-function nextMember(event) {
+function nextMember() {
     // If the next button was pressed, the member voted so change the status attribute
-    if (event.data.btn == 'next') {
-        $(memberDivs[currentMember]).data('status', 'voted');
-        $(memberDivs[currentMember]).removeClass('text-muted');
-    } else {
-        $(memberDivs[currentMember]).addClass('text-muted');
-        $(memberDivs[currentMember]).data('status', 'not_voted');
-    }
+    $(memberDivs[currentMember]).addClass('text-muted');
+    $(memberDivs[currentMember]).data('status', 'not_voted');
+    $(memberDivs[currentMember]).prepend(absentLabel());
 
     removeCurrentStatus(memberDivs[currentMember]);     // Remove current status from the current member
 
@@ -173,10 +181,12 @@ function startSecondReading() {
  */
 function saveVotes(memberDivs, votes) {
     $(memberDivs).each(function(index, memberDiv) {
-        if ($(memberDiv).data('status') == 'voted') {   // Member voted
+        if ($(memberDiv).data('status') == 'voted') {
+            var id = $(memberDiv).data('id');   // Get member id
+
             var vote = {
-                member_id: $(memberDiv).data('id'),
-                answer_id: $(memberDiv).find('.selectpicker')[0].value
+                member_id: id,
+                answer_id: $(memberDiv).find('input[type="radio"][name="answer_' + id + '"]:checked')   //todo: does it work??
             };
 
             votes.push(vote);       // Add member's vote to votes array

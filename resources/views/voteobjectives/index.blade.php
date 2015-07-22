@@ -18,9 +18,7 @@
                                 {{ $vo->title }}
                             </td>
                             <td>
-                                <p>
-                                    {{ substr($vo->description, 0, 25) }}{{ (strlen($vo->description) > 25)?'...':'' }}
-                                </p>
+                                {{ substr($vo->description, 0, 25) }}{{ (strlen($vo->description) > 25)?'...':'' }}
                             </td>
                             <td class="col-sm-1"> {{-- Info button --}}
                                 @include('partials.infoBtn', ['url' => 'voteobjectives/' . $vo->id])

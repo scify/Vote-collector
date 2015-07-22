@@ -1,4 +1,9 @@
 .currentMember {
     text-transform: uppercase;
-    font-family: "Georgia", Times, serif;
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.largeLabel {
+    /*font-size: 100%;*/
 }
