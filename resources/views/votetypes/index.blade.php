@@ -16,13 +16,13 @@
                             <td>
                                 {{ $vt->title }}
                             </td>
-                            <td> {{-- Info button --}}
+                            <td class="col-sm-1"> {{-- Info button --}}
                                 @include('partials.infoBtn', ['url' => 'votetypes/' . $vt->id])
                             </td>
-                            <td> {{-- Edit button --}}
+                            <td class="col-sm-1"> {{-- Edit button --}}
                                 @include('partials.editBtn', ['url' => 'votetypes/' . $vt->id . '/edit'])
                             </td>
-                            <td> {{-- Delete button --}}
+                            <td class="col-sm-2"> {{-- Delete button --}}
                                 @include('partials.deleteBtn', ['url' => 'votetypes', 'id' => $vt->id])
                             </td>
                         </tr>

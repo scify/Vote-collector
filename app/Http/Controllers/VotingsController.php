@@ -171,7 +171,8 @@ class VotingsController extends Controller {
      * @param $id
      * @return \Illuminate\View\View
      */
-    public function editAnswers($id) {
+    public function editAnswers($id)
+    {
         $voting = Voting::findOrFail($id);
         $groups = Group::all();
 
@@ -183,7 +184,8 @@ class VotingsController extends Controller {
      *
      * @param $id   The id of the voting to delete answers for
      */
-    private function deleteGroupVotes($id) {
+    private function deleteGroupVotes($id)
+    {
         $prevVotes = GroupVote::where('voting_id', '=', $id)->get();
         foreach($prevVotes as $gv) {
             $gv->delete();
@@ -243,7 +245,8 @@ class VotingsController extends Controller {
      * @param $id   The id of the voting
      * @return json
      */
-    public function download($id) {
+    public function download($id)
+    {
         $reply = [];
 
         $votes = Vote::where('voting_id', '=', $id)->get();

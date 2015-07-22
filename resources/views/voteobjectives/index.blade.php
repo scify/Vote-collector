@@ -22,13 +22,13 @@
                                     {{ substr($vo->description, 0, 25) }}{{ (strlen($vo->description) > 25)?'...':'' }}
                                 </p>
                             </td>
-                            <td> {{-- Info button --}}
+                            <td class="col-sm-1"> {{-- Info button --}}
                                 @include('partials.infoBtn', ['url' => 'voteobjectives/' . $vo->id])
                             </td>
-                            <td> {{-- Edit button --}}
+                            <td class="col-sm-1"> {{-- Edit button --}}
                                 @include('partials.editBtn', ['url' => 'voteobjectives/' . $vo->id . '/edit'])
                             </td>
-                            <td> {{-- Delete button --}}
+                            <td class="col-sm-2"> {{-- Delete button --}}
                                 @include('partials.deleteBtn', ['url' => 'voteobjectives', 'id' => $vo->id])
                             </td>
                         </tr>

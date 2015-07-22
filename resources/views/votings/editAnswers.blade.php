@@ -10,5 +10,4 @@
     {!! Form::open(['url' => 'votings/answers']) !!}
         @include('votings.partials.answersform', ['edit' => 'true'])
     {!! Form::close() !!}
-
 @stop

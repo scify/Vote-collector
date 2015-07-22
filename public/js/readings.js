@@ -13,10 +13,10 @@ $(function(){
     // Set the voting_id variable (needed for when the form is saved)
     voting_id = $('#votesform').data('votingid');
 
-    //
-    $(window).bind('beforeunload', function() {
+    // Add confirmation before leaving the page so no data is lost by a misclick
+    /*$(window).bind('beforeunload', function() {
         return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
-    })
+    });*/   //todo: uncomment this
 });
 
 /**
@@ -47,6 +47,7 @@ function addCurrentStatus(member) {
 
     // Make name blue
     $($(member).find('.control-label')[0]).addClass('text-primary');
+    $($(member).find('.control-label')[0]).addClass('currentMember');
 
     // Add event listeners to the buttons
     $('#prevBtn').click(prevMember);
@@ -70,6 +71,7 @@ function removeCurrentStatus(member) {
 
     // Make name not blue
     $($(member).find('.control-label')[0]).removeClass('text-primary');
+    $($(member).find('.control-label')[0]).removeClass('currentMember');
 }
 
 /**

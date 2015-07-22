@@ -19,7 +19,6 @@ class Group extends Model
         return $this->members->lists('id');
     }
 
-
     /**
      * Returns this group's default answer id for
      * the specified voting

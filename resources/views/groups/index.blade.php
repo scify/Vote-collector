@@ -18,13 +18,13 @@
                             <td>
                                 {{ $group->name }}
                             </td>
-                            <td> {{-- Info button --}}
+                            <td class="col-sm-1"> {{-- Info button --}}
                                 @include('partials.infoBtn', ['url' => 'groups/' . $group->id])
                             </td>
-                            <td> {{-- Edit button --}}
+                            <td class="col-sm-1"> {{-- Edit button --}}
                                 @include('partials.editBtn', ['url' => 'groups/' . $group->id . '/edit'])
                             </td>
-                            <td> {{-- Delete button --}}
+                            <td class="col-sm-2"> {{-- Delete button --}}
                                 @include('partials.deleteBtn', ['url' => 'groups', 'id' => $group->id])
                             </td>
                         </tr>
