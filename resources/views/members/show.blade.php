@@ -39,9 +39,7 @@
                                         {{ $group->name }}
                                     </td>
                                     <td> {{-- Info button --}}
-                                        <a href="/groups/{{ $group->id }}" class="btn btn-default btn-xs">
-                                            <span class="glyphicon glyphicon-info-sign"></span>
-                                        </a>
+                                        @include('partials.infoBtn', ['url' => '/groups/' . $group->id])
                                     </td>
                                 </tr>
                             @endforeach

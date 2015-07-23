@@ -20,11 +20,8 @@
                         <tr>
                             <td>{{ $member->first_name }}</td>
                             <td>{{ $member->last_name }}</td>
-                            <td>
-                                <!-- Info button -->
-                                <a href="/members/{{ $member->id }}" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                </a>
+                            <td> {{-- Info button --}}
+                                @include('partials.infoBtn', ['url' => '/members/' . $member->id])
                             </td>
                         </tr>
                     @endforeach
