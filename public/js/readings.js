@@ -233,15 +233,15 @@ function startSecondReading() {
     if (memberDivs.length == 0) {
         submitVotes(votes);
     } else {
-        reading = 2;                                    // Set reading variable
-        currentMember = 0;                              // Current member is the first one again
-        $('#title').text('Δεύτερη ανάγνωση');           // Change title
-        addCurrentStatus(memberDivs[currentMember]);    // Add curr. status to current member
-
         // Make all remaining members not absent
         $(memberDivs).each(function(index, div) {
             makeNotAbsent(div);
         });
+
+        reading = 2;                                    // Set reading variable
+        currentMember = 0;                              // Current member is the first one again
+        $('#title').text('Δεύτερη ανάγνωση');           // Change title
+        addCurrentStatus(memberDivs[currentMember]);    // Add curr. status to current member
 
         // Change the next phase button to say "end voting"
         $('#nextPhaseBtn').text('Τέλος ψηφοφορίας');
