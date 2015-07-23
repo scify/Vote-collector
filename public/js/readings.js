@@ -7,7 +7,7 @@ var voting_id;
 $(function(){
     memberDivs = $('.member');  // Get all member divs
 
-    // The page just loaded so show the save/absent buttons next to the first member
+    // The page just loaded so make the first member in the list the current one
     addCurrentStatus(memberDivs[0]);
 
     // Set the voting_id variable (needed for when the form is saved)
