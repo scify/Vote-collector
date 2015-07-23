@@ -7,10 +7,6 @@ var voting_id;
 $(function(){
     memberDivs = $('.member');  // Get all member divs
 
-    $(memberDivs).each(function(index, div) {
-        removeCurrentStatus(div);
-    });
-
     // The page just loaded so show the save/absent buttons next to the first member
     addCurrentStatus(memberDivs[0]);
 

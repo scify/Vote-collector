@@ -13,7 +13,7 @@
                 <span class="memberName pull-left col-sm-3">
                     {{ $member->first_name . ' ' . $member->last_name }}
                 </span>
-                <div class="radios col-sm-3">
+                <div class="radios col-sm-3 hidden">
                     @foreach($voting->type->answers as $answer)
                         @if ($member->groups->count() > 0)  {{-- If member is in a group, will select the group's answer by default --}}
                             {!! Form::radio('answer_' . $member->id, $answer->id, ($member->groupAnswer($voting->id) == $answer->id)) !!}
