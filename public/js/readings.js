@@ -127,7 +127,7 @@ function removeCurrentStatus(member) {
  * @returns {string}
  */
 function getAbsentButton() {
-    return '<a id="absentBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>';
+    return '<a id="absentBtn" class="btn btn-warning" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>';
 }
 
 /**
@@ -136,7 +136,7 @@ function getAbsentButton() {
  * @returns {string}
  */
 function getNotAbsentButton() {
-    return '<a id="absentBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-ok-sign"></span> Δεν απουσιάζει</a>';
+    return '<a id="absentBtn" class="btn btn-success" href="#"><span class="glyphicon glyphicon-ok-sign"></span> Δεν απουσιάζει</a>';
 }
 
 /**
