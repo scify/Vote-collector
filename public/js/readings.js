@@ -14,23 +14,26 @@ $(function(){
     voting_id = $('#votesform').data('votingid');
 
     // Add confirmation before leaving the page so no data is lost by a misclick
-    /*$(window).bind('beforeunload', function() {
+    $(window).bind('beforeunload', function() {
         return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
-    });*/   //todo: uncomment this
+    });
 
-    $('body').click(clickHandler);
+    $('body').click(clickHandler);                  // Used to change between members by clicking on their names
+
+    $('#nextPhaseBtn').click(nextPhaseBtnHandler);   // Second voting/end voting button
 });
 
 /**
+ * Checks if the user clicked a member name, and makes that
+ * member the current member
  *
  * @param e
- * @returns {boolean}
  */
-function clickHandler(e) {  //todo: when you click a label the input changes to the 1st value ;_;
+function clickHandler(e) {
     var target = e.target;
 
-    if (target.nodeName == 'LABEL') {
-        if ($(target).is('.control-label')) {
+    if (target.nodeName == 'SPAN') {
+        if ($(target).is('.memberName') && !$(target).is('.currentMember')) {
             // Remove current status from old div
             removeCurrentStatus(memberDivs[currentMember]);
 
@@ -41,6 +44,19 @@ function clickHandler(e) {  //todo: when you click a label the input changes to 
             // Add current status to new div
             addCurrentStatus(memberDiv);
         }
+    }
+}
+
+/**
+ * Handles clicks of the next phase button.
+ * If it's the first reading, it switches to the second reading.
+ * If it's the second reading, it ends the voting
+ */
+function nextPhaseBtnHandler() {
+    if (reading == 1) {
+        startSecondReading();
+    } else {
+        endVoting();
     }
 }
 
@@ -67,17 +83,23 @@ function setCurrentMember(index) {
  * @param member    The form-control div of the member
  */
 function addCurrentStatus(member) {
-    // Put the buttons next to the member
-    $(member).append(getMemberButtons());
+    // Put the appropriate button next to the member
+    if (isAbsent(member)) {
+        $(member).append(getNotAbsentButton());
+    } else {
+        $(member).append(getAbsentButton());
+    }
+
+    $('#absentBtn').click(nextMember);      // Event listener for the button
 
     // Apply css class
-    $($(member).find('.control-label')[0]).addClass('currentMember');
+    $(member).find('.memberName').addClass('currentMember');
 
-    // Unhide buttons
-    //$($(member).find('.radios')).removeClass('hidden');
+    // Unhide radio buttons
+    $(member).find('.radios').removeClass('hidden');
 
-    // Add event listeners to the buttons
-    $('#absentBtn').click(nextMember);
+    // If member is marked as absent, hide the absent label temporarily
+    $(member).find('.absentLabel').addClass('hidden');
 }
 
 /**
@@ -86,19 +108,17 @@ function addCurrentStatus(member) {
  * @param member    The form-control div of the member
  */
 function removeCurrentStatus(member) {
-    // Check if member has the absent button as a child
-    if ($(member).children('#absentBtn').length > 0) {
-        // And remove it
-        $(member).children('#absentBtn').each(function(index, btn) {
-            btn.remove();
-        });
-    }
+    // Check if member has the absent button as a child and remove it
+    $(member).children('#absentBtn').remove();
 
     // Remove applied css class
-    $($(member).find('.control-label')[0]).removeClass('currentMember');
+    $(member).find('.memberName').removeClass('currentMember');
 
     // Hide buttons with css
-    //$($(member).find('.radios')).addClass('hidden');    // use "invisible" or "hidden"
+    $(member).find('.radios').addClass('hidden');
+
+    // If member is marked as absent, unhide the absent label
+    $(member).find('.absentLabel').removeClass('hidden');
 }
 
 /**
@@ -106,8 +126,17 @@ function removeCurrentStatus(member) {
  *
  * @returns {string}
  */
-function getMemberButtons() {
+function getAbsentButton() {
     return '<a id="absentBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>';
+}
+
+/**
+ * Creates and returns the NOT absent member button
+ *
+ * @returns {string}
+ */
+function getNotAbsentButton() {
+    return '<a id="absentBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-ok-sign"></span> Δεν απουσιάζει</a>';
 }
 
 /**
@@ -116,7 +145,39 @@ function getMemberButtons() {
  * @returns {string}
  */
 function absentLabel() {
-    return '<span class="label label-default largeLabel pull-left"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</span>';
+    return '<span class="label label-default absentLabel "><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</span>';
+}
+
+/**
+ * Checks if a member is marked as absent (using the text-muted class)
+ *
+ * @param member        The div of the member to check
+ * @returns {boolean}
+ */
+function isAbsent(member) {
+    return $(member).hasClass('text-muted');
+}
+
+/**
+ * Makes a member div absent
+ *
+ * @param member
+ */
+function makeAbsent(member) {
+    $(member).addClass('text-muted');
+    $(member).data('status', 'not_voted');
+    $(member).prepend(absentLabel());
+}
+
+/**
+ * Makes a member div NOT absent
+ *
+ * @param member
+ */
+function makeNotAbsent(member) {
+    $(member).removeClass('text-muted');
+    $(member).data('status', 'voted');
+    $(member).find('.absentLabel').remove();
 }
 
 /**
@@ -125,12 +186,15 @@ function absentLabel() {
  * @return boolean  To prevent the page from scrolling to the top when a button is clicked
  */
 function nextMember() {
-    // If the next button was pressed, the member voted so change the status attribute
-    $(memberDivs[currentMember]).addClass('text-muted');
-    $(memberDivs[currentMember]).data('status', 'not_voted');
-    $(memberDivs[currentMember]).prepend(absentLabel());
+    var member = memberDivs[currentMember];
 
-    removeCurrentStatus(memberDivs[currentMember]);     // Remove current status from the current member
+    if (!isAbsent(member)) {
+        makeAbsent(member);
+    } else {
+        makeNotAbsent(member);
+    }
+
+    removeCurrentStatus(member);            // Remove current status from the current member
 
     if (currentMember < memberDivs.length - 1) {        // If this wasn't the last member in the list
         currentMember++;                                // go to the next member
@@ -139,11 +203,9 @@ function nextMember() {
     } else {
         // Check if we should switch to second reading or the voting ended
         if (reading == 1) {
-            startSecondReading();           // Switch to second reading
+            startSecondReading();
         } else {
-            saveVotes(memberDivs, votes);   // Voting ended, save the votes
-
-            submitVotes(votes);             // And submit them to the server
+            endVoting();
         }
     }
 
@@ -151,11 +213,21 @@ function nextMember() {
 }
 
 /**
+ * Calls the functions needed to end the voting
+ * (to save the votes, and submit them to the server)
+ */
+function endVoting() {
+    saveVotes(memberDivs, votes);
+
+    submitVotes(votes);
+}
+
+/**
  * Switches from the first to the second reading
  */
 function startSecondReading() {
-    saveVotes(memberDivs, votes);           // Save the votes of members who voted
-    memberDivs = $('.member');              // Update memberDivs
+    saveVotes(memberDivs, votes);   // Save the votes of members who voted
+    memberDivs = $('.member');      // Update memberDivs
 
     // If all members voted, no need for second reading
     if (memberDivs.length == 0) {
@@ -166,10 +238,13 @@ function startSecondReading() {
         $('#title').text('Δεύτερη ανάγνωση');           // Change title
         addCurrentStatus(memberDivs[currentMember]);    // Add curr. status to current member
 
-        // Remove muted text from remaining members
+        // Make all remaining members not absent
         $(memberDivs).each(function(index, div) {
-            $(div).removeClass('text-muted');
+            makeNotAbsent(div);
         });
+
+        // Change the next phase button to say "end voting"
+        $('#nextPhaseBtn').text('Τέλος ψηφοφορίας');
     }
 }
 
@@ -186,7 +261,7 @@ function saveVotes(memberDivs, votes) {
 
             var vote = {
                 member_id: id,
-                answer_id: $(memberDiv).find('input[type="radio"][name="answer_' + id + '"]:checked')   //todo: does it work??
+                answer_id: $(memberDiv).find('input[type="radio"][name="answer_' + id + '"]:checked').val()
             };
 
             votes.push(vote);       // Add member's vote to votes array
@@ -201,7 +276,6 @@ function saveVotes(memberDivs, votes) {
  * them to the database
  */
 function submitVotes(votes) {
-    console.log("submit to server");
     // Setup CSRF token for middleware
     $.ajaxSetup({
         headers: {
@@ -241,6 +315,9 @@ function votingComplete(success) {
     $(memberDivs).each(function(index, div) {
         $(div).remove();
     });
+
+    // Remove the next phase button
+    $('#nextPhaseBtn').remove();
 
     var alertDiv;
 

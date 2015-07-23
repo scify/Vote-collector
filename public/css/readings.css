@@ -1,9 +1,12 @@
+.memberName {
+    font-size: 125%;
+    font-weight: bold;
+    text-align: right;
+    word-wrap: break-word;
+}
+
 .currentMember {
     text-transform: uppercase;
     font-size: 200%;
-    font-weight: bold;
 }
 
-.largeLabel {
-    /*font-size: 100%;*/
-}
