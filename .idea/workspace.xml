@@ -44,8 +44,8 @@
       <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/readings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46317512" vertical-offset="3077" max-vertical-offset="5072">
-              <caret line="235" column="8" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.58101475" vertical-offset="2493" max-vertical-offset="4992">
+              <caret line="203" column="128" selection-start-line="203" selection-start-column="128" selection-end-line="203" selection-end-column="128" />
               <folding>
                 <element signature="n#!!doc;n#getAbsentButton#0" expanded="false" />
                 <element signature="n#!!doc;n#getNotAbsentButton#0" expanded="false" />
@@ -907,8 +907,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46317512" vertical-offset="3077" max-vertical-offset="5072">
-          <caret line="235" column="8" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.58101475" vertical-offset="2493" max-vertical-offset="4992">
+          <caret line="203" column="128" selection-start-line="203" selection-start-column="128" selection-end-line="203" selection-end-column="128" />
           <folding>
             <element signature="n#!!doc;n#getAbsentButton#0" expanded="false" />
             <element signature="n#!!doc;n#getNotAbsentButton#0" expanded="false" />

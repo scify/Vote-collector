@@ -201,12 +201,7 @@ function nextMember() {
 
         addCurrentStatus(memberDivs[currentMember]);    // and add current status to them
     } else {
-        // Check if we should switch to second reading or the voting ended
-        if (reading == 1) {
-            startSecondReading();
-        } else {
-            endVoting();
-        }
+        addCurrentStatus(member);           // Add current status to the last member again so the button updates and label hides
     }
 
     return false;
