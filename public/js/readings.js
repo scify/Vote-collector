@@ -119,7 +119,7 @@ function addCurrentStatus(member) {
     if ($(memberDivs).index(member) == memberDivs.length - 1) {
         $(member).find('#nextBtn').remove();
     } else {
-        $('#nextBtn').click(nextButtonHandler);         // Event listener for the next button
+        $('#nextBtn').click(nextButtonHandler);
     }
 
     // Apply css class
@@ -130,6 +130,9 @@ function addCurrentStatus(member) {
 
     // If member is marked as absent, hide the absent label temporarily
     $(member).find('.absentLabel').addClass('hidden');
+
+    // Add background class
+    $(member).addClass('currentMemberBackground');
 }
 
 /**
@@ -149,6 +152,9 @@ function removeCurrentStatus(member) {
 
     // If member is marked as absent, unhide the absent label
     $(member).find('.absentLabel').removeClass('hidden');
+
+    // Remove background class
+    $(member).removeClass('currentMemberBackground');
 }
 
 /**
