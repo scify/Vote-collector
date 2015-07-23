@@ -61,6 +61,46 @@ function nextPhaseBtnHandler() {
 }
 
 /**
+ * Goes to the next member in the list
+ *
+ * @return {boolean}    To prevent page from scrolling to the top
+ */
+function nextButtonHandler() {
+    if (currentMember < memberDivs.length - 1) {
+        removeCurrentStatus(memberDivs[currentMember]);
+        currentMember++;
+        addCurrentStatus(memberDivs[currentMember]);
+    }
+}
+
+/**
+ * Marks a member as absent and goes to the next member in the list
+ *
+ * @return {boolean}    To prevent the page from scrolling to the top when a button is clicked
+ */
+function absentButtonHandler() {
+    var member = memberDivs[currentMember];
+
+    if (!isAbsent(member)) {
+        makeAbsent(member);
+    } else {
+        makeNotAbsent(member);
+    }
+
+    removeCurrentStatus(member);            // Remove current status from the current member
+
+    if (currentMember < memberDivs.length - 1) {        // If this wasn't the last member in the list
+        currentMember++;                                // go to the next member
+
+        addCurrentStatus(memberDivs[currentMember]);    // and add current status to them
+    } else {
+        addCurrentStatus(member);           // Add current status to the last member again so the button updates and label hides
+    }
+
+    return false;
+}
+
+/**
  * Adds current status to a member (currently shown by the buttons next to them only)
  *
  * @param member    The form-control div of the member
@@ -73,7 +113,14 @@ function addCurrentStatus(member) {
         $(member).append(getAbsentButton());
     }
 
-    $('#absentBtn').click(nextMember);      // Event listener for the button
+    $('#absentBtn').click(absentButtonHandler);     // Event listener for the absent button
+
+    // Remove the next button if it's the last member in the list, or add event listener to it if it's not
+    if ($(memberDivs).index(member) == memberDivs.length - 1) {
+        $(member).find('#nextBtn').remove();
+    } else {
+        $('#nextBtn').click(nextButtonHandler);         // Event listener for the next button
+    }
 
     // Apply css class
     $(member).find('.memberName').addClass('currentMember');
@@ -92,7 +139,7 @@ function addCurrentStatus(member) {
  */
 function removeCurrentStatus(member) {
     // Check if member has the absent button as a child and remove it
-    $(member).children('#absentBtn').remove();
+    $(member).children('#sideButtons').remove();
 
     // Remove applied css class
     $(member).find('.memberName').removeClass('currentMember');
@@ -102,33 +149,6 @@ function removeCurrentStatus(member) {
 
     // If member is marked as absent, unhide the absent label
     $(member).find('.absentLabel').removeClass('hidden');
-}
-
-/**
- * Creates and returns the absent member button
- *
- * @returns {string}
- */
-function getAbsentButton() {
-    return '<a id="absentBtn" class="btn btn-warning" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>';
-}
-
-/**
- * Creates and returns the NOT absent member button
- *
- * @returns {string}
- */
-function getNotAbsentButton() {
-    return '<a id="absentBtn" class="btn btn-success" href="#"><span class="glyphicon glyphicon-ok-sign"></span> Δεν απουσιάζει</a>';
-}
-
-/**
- * Creates and returns the absent member label
- *
- * @returns {string}
- */
-function absentLabel() {
-    return '<span class="label label-default absentLabel "><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</span>';
 }
 
 /**
@@ -161,33 +181,6 @@ function makeNotAbsent(member) {
     $(member).removeClass('text-muted');
     $(member).data('status', 'voted');
     $(member).find('.absentLabel').remove();
-}
-
-/**
- * Marks a member as absent and goes to the next member in the list
- *
- * @return boolean  To prevent the page from scrolling to the top when a button is clicked
- */
-function nextMember() {
-    var member = memberDivs[currentMember];
-
-    if (!isAbsent(member)) {
-        makeAbsent(member);
-    } else {
-        makeNotAbsent(member);
-    }
-
-    removeCurrentStatus(member);            // Remove current status from the current member
-
-    if (currentMember < memberDivs.length - 1) {        // If this wasn't the last member in the list
-        currentMember++;                                // go to the next member
-
-        addCurrentStatus(memberDivs[currentMember]);    // and add current status to them
-    } else {
-        addCurrentStatus(member);           // Add current status to the last member again so the button updates and label hides
-    }
-
-    return false;
 }
 
 /**
@@ -313,4 +306,48 @@ function votingComplete(success) {
     }
 
     $($('.container')[0]).prepend(alertDiv);
+}
+
+/**
+ * Creates and returns the absent member button
+ * along with a next member button
+ *
+ * @returns {string}
+ */
+function getAbsentButton() {
+    return  '<div id="sideButtons" class="btn-group">' +
+                getNextButton() +
+                '<a id="absentBtn" class="btn btn-warning" href="#"><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</a>' +
+            '</div>';
+}
+
+/**
+ * Creates and returns the NOT absent member button
+ * along with a next member button
+ *
+ * @returns {string}
+ */
+function getNotAbsentButton() {
+    return  '<div id="sideButtons" class="btn-group">' +
+                getNextButton() +
+                '<a id="absentBtn" class="btn btn-success" href="#"><span class="glyphicon glyphicon-ok-sign"></span> Δεν απουσιάζει</a>' +
+            '</div>';
+}
+
+/**
+ * Creates and returns a next button
+ *
+ * @returns {string}
+ */
+function getNextButton() {
+    return '<a id="nextBtn" class="btn btn-primary" href="#"><span class="glyphicon glyphicon-chevron-down"></span> Επόμενος</a>'
+}
+
+/**
+ * Creates and returns the absent member label
+ *
+ * @returns {string}
+ */
+function absentLabel() {
+    return '<span class="label label-default absentLabel "><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</span>';
 }

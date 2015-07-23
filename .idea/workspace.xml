@@ -25,26 +25,6 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.33507854" vertical-offset="176" max-vertical-offset="880">
-                    <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Vouliwatch" />
@@ -64,16 +44,9 @@
       <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/readings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6743044" vertical-offset="564" max-vertical-offset="4736">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc;n#getAbsentButton#0" expanded="false" />
-                <element signature="n#!!doc;n#getNotAbsentButton#0" expanded="false" />
-                <element signature="n#!!doc;n#absentLabel#0" expanded="false" />
-                <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
-                <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
-                <element signature="n#!!doc;n#makeNotAbsent#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.6841244" vertical-offset="1486" max-vertical-offset="5728">
+              <caret line="119" column="44" selection-start-line="119" selection-start-column="44" selection-end-line="119" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,8 +64,8 @@
       <file leaf-file-name="readings.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/readings.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="256">
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -152,13 +125,13 @@
         <option value="$PROJECT_DIR$/resources/views/members/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/groups/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/voteobjectives/index.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/readings.css" />
         <option value="$PROJECT_DIR$/resources/views/groups/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/members/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
-        <option value="$PROJECT_DIR$/public/js/readings.js" />
         <option value="$PROJECT_DIR$/resources/views/votetypes/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/votetypes/index.blade.php" />
+        <option value="$PROJECT_DIR$/public/css/readings.css" />
+        <option value="$PROJECT_DIR$/public/js/readings.js" />
       </list>
     </option>
   </component>
@@ -562,13 +535,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/monolog/monolog/src/Monolog/Handler/WhatFailureGroupHandler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21843003" vertical-offset="0" max-vertical-offset="896">
-          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/votetypes/partials/form.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15358362" vertical-offset="22" max-vertical-offset="608">
@@ -899,14 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33507854" vertical-offset="176" max-vertical-offset="880">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/votetypes/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.57337886" vertical-offset="0" max-vertical-offset="586">
@@ -923,26 +881,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/block.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33224222" vertical-offset="3397" max-vertical-offset="4048">
+          <caret line="225" column="16" selection-start-line="225" selection-start-column="16" selection-end-line="225" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/readings.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="256">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19546248" vertical-offset="272" max-vertical-offset="880">
+          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6743044" vertical-offset="564" max-vertical-offset="4736">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc;n#getAbsentButton#0" expanded="false" />
-            <element signature="n#!!doc;n#getNotAbsentButton#0" expanded="false" />
-            <element signature="n#!!doc;n#absentLabel#0" expanded="false" />
-            <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
-            <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
-            <element signature="n#!!doc;n#makeNotAbsent#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.6841244" vertical-offset="1486" max-vertical-offset="5728">
+          <caret line="119" column="44" selection-start-line="119" selection-start-column="44" selection-end-line="119" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
