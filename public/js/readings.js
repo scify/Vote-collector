@@ -8,7 +8,7 @@ $(function(){
     memberDivs = $('.member');  // Get all member divs
 
     // The page just loaded so show the save/absent buttons next to the first member
-    setCurrentMember(0);
+    addCurrentStatus(memberDivs[0]);
 
     // Set the voting_id variable (needed for when the form is saved)
     voting_id = $('#votesform').data('votingid');
@@ -58,23 +58,6 @@ function nextPhaseBtnHandler() {
     } else {
         endVoting();
     }
-}
-
-/**
- * Sets the member with the specified index as the current one in the reading,
- * which means their name becomes bigger to show they are the current member
- * and shows buttons next to them
- *
- * @param index
- */
-function setCurrentMember(index) {  //todo: wtf?
-    // Remove current status from all other members
-    $(memberDivs).each(function(index, member) {
-        removeCurrentStatus(member);
-    });
-
-    // Add current status to the specified member
-    addCurrentStatus(memberDivs[index]);
 }
 
 /**
@@ -221,8 +204,7 @@ function endVoting() {
  * Switches from the first to the second reading
  */
 function startSecondReading() {
-    // Remove current status from current member
-    removeCurrentStatus(memberDivs[currentMember]);
+    removeCurrentStatus(memberDivs[currentMember]);     // Remove current status from current member
 
     saveVotes(memberDivs, votes);   // Save the votes of members who voted
     memberDivs = $('.member');      // Update memberDivs
@@ -241,8 +223,7 @@ function startSecondReading() {
         $('#title').text('Δεύτερη ανάγνωση');           // Change title
         addCurrentStatus(memberDivs[currentMember]);    // Add curr. status to current member
 
-        // Change the next phase button to say "end voting"
-        $('#nextPhaseBtn').text('Τέλος ψηφοφορίας');
+        $('#nextPhaseBtn').text('Τέλος ψηφοφορίας');    // Change the next phase button to say "end voting"
     }
 }
 
