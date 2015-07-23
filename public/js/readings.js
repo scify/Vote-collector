@@ -132,7 +132,7 @@ function addCurrentStatus(member) {
     $(member).find('.absentLabel').addClass('hidden');
 
     // Add background class
-    $(member).addClass('currentMemberBackground');
+    $(member).addClass('currentMemberDiv');
 }
 
 /**
@@ -154,7 +154,7 @@ function removeCurrentStatus(member) {
     $(member).find('.absentLabel').removeClass('hidden');
 
     // Remove background class
-    $(member).removeClass('currentMemberBackground');
+    $(member).removeClass('currentMemberDiv');
 }
 
 /**
