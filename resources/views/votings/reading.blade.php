@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h1 id="title">Πρώτη ανάγνωση</h1>
+    <h1 id="title" class="page-header">Πρώτη ανάγνωση</h1>
 
     {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal', 'id' => 'votesform', 'data-votingid' => $voting->id]) !!}
         @foreach($members as $member)

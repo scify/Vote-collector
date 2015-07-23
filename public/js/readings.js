@@ -67,7 +67,7 @@ function nextPhaseBtnHandler() {
  *
  * @param index
  */
-function setCurrentMember(index) {
+function setCurrentMember(index) {  //todo: wtf?
     // Remove current status from all other members
     $(memberDivs).each(function(index, member) {
         removeCurrentStatus(member);
@@ -221,6 +221,9 @@ function endVoting() {
  * Switches from the first to the second reading
  */
 function startSecondReading() {
+    // Remove current status from current member
+    removeCurrentStatus(memberDivs[currentMember]);
+
     saveVotes(memberDivs, votes);   // Save the votes of members who voted
     memberDivs = $('.member');      // Update memberDivs
 
