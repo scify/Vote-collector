@@ -14,18 +14,18 @@ class DistrictTableSeeder extends Seeder
     {
         DB::table('districts')->delete();
 
-        App\District::create(['name' => 'Α Αθηνών']);
-        App\District::create(['name' => 'Α Θεσσαλονίκης']);
-        App\District::create(['name' => 'Α Πειραιά']);
+        App\District::create(['name' => 'Α\' Αθηνών']);
+        App\District::create(['name' => 'Α\' Θεσσαλονίκης']);
+        App\District::create(['name' => 'Α\' Πειραιά']);
         App\District::create(['name' => 'Αιτωλίας και Ακαρνανίας']);
         App\District::create(['name' => 'Αργολίδος']);
         App\District::create(['name' => 'Αρκαδίας']);
         App\District::create(['name' => 'Άρτης']);
         App\District::create(['name' => 'Αττικής']);
         App\District::create(['name' => 'Αχαΐας']);
-        App\District::create(['name' => 'Β Αθηνών']);
-        App\District::create(['name' => 'Β Θεσσαλονίκης']);
-        App\District::create(['name' => 'Β Πειραιά']);
+        App\District::create(['name' => 'Β\' Αθηνών']);
+        App\District::create(['name' => 'Β\' Θεσσαλονίκης']);
+        App\District::create(['name' => 'Β\' Πειραιά']);
         App\District::create(['name' => 'Βοιωτίας']);
         App\District::create(['name' => 'Γρεβενών']);
         App\District::create(['name' => 'Δράμας']);
