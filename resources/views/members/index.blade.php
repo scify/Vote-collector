@@ -21,13 +21,13 @@
                         <tbody>
                             @foreach($district->members()->orderBy('order')->get() as $member)
                                 <tr class="member" data-id="{{ $member->id }}">
-                                    <td class="priority">
+                                    <td class="priority col-sm-1">
                                         {{ $member->order }}
                                     </td>
-                                    <td>
+                                    <td class="col-sm-3">
                                         {{ $member->first_name }}
                                     </td>
-                                    <td>
+                                    <td class="col-sm-3">
                                         {{ $member->last_name }}
                                     </td>
                                     <td class="col-sm-1"> {{-- Info button --}}
