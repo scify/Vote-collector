@@ -71,6 +71,8 @@ function nextButtonHandler() {
         currentMember++;
         addCurrentStatus(memberDivs[currentMember]);
     }
+
+    return false;
 }
 
 /**

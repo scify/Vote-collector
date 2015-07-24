@@ -6,7 +6,7 @@
 }
 
 .currentMember {
-    text-transform: uppercase;
+    /*text-transform: uppercase; <- not good for greek names */
     font-size: 200%;
 }
 
