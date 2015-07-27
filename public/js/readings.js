@@ -308,8 +308,6 @@ function saveMember(memberDiv, goToNext) {
  * @param goToNext  Set to true if you want to go to the next member after saving or false if you want to do nothing
  */
 function submitVotes(votes, goToNext) {
-    var oldCurrMember = currentMember;
-
     // Setup CSRF token for middleware
     $.ajaxSetup({
         headers: {
@@ -371,7 +369,7 @@ function votingComplete(success) {
                     '</div>';
     }
 
-    $($('.container')[0]).prepend(alertDiv);
+    $('.container').prepend(alertDiv);
 }
 
 /**

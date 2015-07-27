@@ -4,7 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/public/js/readings.js" line="337" mnemonic="0" />
+    <bookmark url="file://$PROJECT_DIR$/public/js/readings.js" line="335" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cbcbad9-a1aa-486a-8c86-04ff6d8fcf2e" name="Default" comment="" />
@@ -33,7 +33,7 @@
             <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/public/js/readings.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.7553846" vertical-offset="3573" max-vertical-offset="6496">
+                  <state vertical-scroll-proportion="0.7553846" vertical-offset="3573" max-vertical-offset="6464">
                     <caret line="254" column="12" selection-start-line="254" selection-start-column="12" selection-end-line="254" selection-end-column="12" />
                     <folding>
                       <element signature="n#!!doc;n#getAbsentButton#0" expanded="false" />
@@ -59,13 +59,17 @@
       <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/readings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.7217676" vertical-offset="5641" max-vertical-offset="6496">
-              <caret line="325" column="29" selection-start-line="325" selection-start-column="29" selection-end-line="325" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.68576103" vertical-offset="4893" max-vertical-offset="6240">
+              <caret line="332" column="25" selection-start-line="332" selection-start-column="25" selection-end-line="332" selection-end-column="25" />
               <folding>
                 <element signature="n#!!doc;n#getAbsentButton#0" expanded="false" />
+                <element signature="n#!!block;n#getAbsentButton#0" expanded="false" />
                 <element signature="n#!!doc;n#getNotAbsentButton#0" expanded="false" />
+                <element signature="n#!!block;n#getNotAbsentButton#0" expanded="false" />
                 <element signature="n#!!doc;n#getNextButton#0" expanded="false" />
+                <element signature="n#!!block;n#getNextButton#0" expanded="false" />
                 <element signature="n#!!doc;n#absentLabel#0" expanded="false" />
+                <element signature="n#!!block;n#absentLabel#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -906,6 +910,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.96" vertical-offset="0" max-vertical-offset="768">
+          <caret line="14" column="73" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.8" vertical-offset="3421" max-vertical-offset="4256">
@@ -916,23 +928,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.96" vertical-offset="0" max-vertical-offset="768">
-          <caret line="14" column="73" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7553846" vertical-offset="3573" max-vertical-offset="6496">
-          <caret line="254" column="12" selection-start-line="254" selection-start-column="12" selection-end-line="254" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.68576103" vertical-offset="4893" max-vertical-offset="6240">
+          <caret line="332" column="25" selection-start-line="332" selection-start-column="25" selection-end-line="332" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc;n#getAbsentButton#0" expanded="false" />
+            <element signature="n#!!block;n#getAbsentButton#0" expanded="false" />
             <element signature="n#!!doc;n#getNotAbsentButton#0" expanded="false" />
+            <element signature="n#!!block;n#getNotAbsentButton#0" expanded="false" />
             <element signature="n#!!doc;n#getNextButton#0" expanded="false" />
+            <element signature="n#!!block;n#getNextButton#0" expanded="false" />
             <element signature="n#!!doc;n#absentLabel#0" expanded="false" />
+            <element signature="n#!!block;n#absentLabel#0" expanded="false" />
           </folding>
         </state>
       </provider>
