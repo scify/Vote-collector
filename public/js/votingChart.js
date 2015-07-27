@@ -1,5 +1,9 @@
 google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
+
+//todo: make it check if container exists before doing stuff so the error does not show
+// (and does not need to not include the script at all which will query the database)
+
 function drawChart() {
     // Get <td>s from the table
     var answerTds = [];

@@ -3,6 +3,7 @@ var currentMember = 0;  // current member in the reading
 var memberDivs;         // Keeps divs of members
 var votes = [];         // Keeps member's votes
 var voting_id;
+var success;            // Used for checking whether a save operation was successful todo: does it have to be a global variable?
 
 $(function(){
     memberDivs = $('.member');  // Get all member divs
@@ -66,13 +67,30 @@ function nextPhaseBtnHandler() {
  * @return {boolean}    To prevent page from scrolling to the top
  */
 function nextButtonHandler() {
+    //todo: if member is absent, do not save vote
+    //todo: if member has voted already, change the vote to the new one
+
+    // Save current member's vote
+    console.log('saving the vote!');
+    saveMember(memberDivs[currentMember], true);
+
+    return false;
+}
+
+/**
+ * Saves the current member's vote, and goes to the next member in the list
+ */
+function nextMember() {
     if (currentMember < memberDivs.length - 1) {
+        // Mark member as voted
+        $(memberDivs[currentMember]).data('saved', 'true');
+
+        // Go to next member
+        console.log("Going to next member");
         removeCurrentStatus(memberDivs[currentMember]);
         currentMember++;
         addCurrentStatus(memberDivs[currentMember]);
     }
-
-    return false;
 }
 
 /**
@@ -81,6 +99,9 @@ function nextButtonHandler() {
  * @return {boolean}    To prevent the page from scrolling to the top when a button is clicked
  */
 function absentButtonHandler() {
+    //todo: (not absent) -> (absent): if member has voted, delete his vote
+    //todo: (absent) -> (not absent): save the member's vote because it means they voted (CONFIRM??)
+
     var member = memberDivs[currentMember];
 
     if (!isAbsent(member)) {
@@ -192,13 +213,15 @@ function makeNotAbsent(member) {
 }
 
 /**
- * Calls the functions needed to end the voting
+ * Does the actions needed to end the voting completely
  * (to save the votes, and submit them to the server)
  */
 function endVoting() {
-    saveVotes(memberDivs, votes);
-
-    submitVotes(votes);
+    votes = [];                     // Reset votes array
+    saveVotes(memberDivs, votes);   // Saves votes from remaining members to the array
+    console.log(votes);
+    submitVotes(votes, false);      // Submit the votes
+    votingComplete(true);           // Complete the voting
 }
 
 /**
@@ -207,12 +230,28 @@ function endVoting() {
 function startSecondReading() {
     removeCurrentStatus(memberDivs[currentMember]);     // Remove current status from current member
 
-    saveVotes(memberDivs, votes);   // Save the votes of members who voted
-    memberDivs = $('.member');      // Update memberDivs
+    // Save the votes of members who voted
+    var membersToSave = [];
+    $('.member').each(function(index, div) {
+        if (!isAbsent(div) && $(div).data('saved') == false) {
+            membersToSave.push(div);
+        }
+    });
+    saveVotes(membersToSave, votes);
+    submitVotes(votes, false);
+
+    // Remove members that are not absent and members that have been saved from the form
+    $('.member').each(function(index, div) {
+        if (!isAbsent(div) || $(div).data('saved') == true) {
+            div.remove();
+        }
+    });
+
+    memberDivs = $('.member');          // Update memberDivs
 
     // If all members voted, no need for second reading
     if (memberDivs.length == 0) {
-        submitVotes(votes);
+        votingComplete(true);
     } else {
         // Make all remaining members not absent
         $(memberDivs).each(function(index, div) {
@@ -229,14 +268,14 @@ function startSecondReading() {
 }
 
 /**
- * Saves the votes of members who voted and removes them from the form
+ * Saves the votes of members who voted to the votes array and removes them from the form
  *
  * @param memberDivs    The divs of the members
  * @param votes         The array to save the votes to
  */
 function saveVotes(memberDivs, votes) {
     $(memberDivs).each(function(index, memberDiv) {
-        if ($(memberDiv).data('status') == 'voted') {
+        if ($(memberDiv).data('status') == 'voted' && $(memberDiv).data('saved') == false) {
             var id = $(memberDiv).data('id');   // Get member id
 
             var vote = {
@@ -245,17 +284,32 @@ function saveVotes(memberDivs, votes) {
             };
 
             votes.push(vote);       // Add member's vote to votes array
-
-            $(memberDiv).remove();  // Remove member's form field
         }
     });
 }
 
 /**
+ * Saves the given member to the database using the existing saveVotes() and submitVotes() functions
+ *
+ * @param memberDiv     Div of member with vote to save
+ * @param goToNext      Set to true if you want to go to next member after saving this one
+ */
+function saveMember(memberDiv, goToNext) {
+    var tmpvote = [];
+    saveVotes([memberDiv], tmpvote);
+    submitVotes(tmpvote, goToNext);
+}
+
+/**
  * Submits the votes to the server which will save
  * them to the database
+ *
+ * @param votes     Array with the votes to save
+ * @param goToNext  Set to true if you want to go to the next member after saving or false if you want to do nothing
  */
-function submitVotes(votes) {
+function submitVotes(votes, goToNext) {
+    var oldCurrMember = currentMember;
+
     // Setup CSRF token for middleware
     $.ajaxSetup({
         headers: {
@@ -273,10 +327,14 @@ function submitVotes(votes) {
         },
         dataType: 'json',
         success: function(data) {
-            votingComplete(true);
+            if (goToNext) {
+                nextMember();
+            }
         },
         error: function(data) {
-            votingComplete(false);
+            // Show error
+            // todo: show error to user
+            console.log("Error saving! Switched to member with index " + currentMember);
         }
     });
 }
