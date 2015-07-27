@@ -24,11 +24,12 @@
         @endif
     </div>
 
-    {{-- Google Chart --}}
-    <div id="piechart" style="width: 900px; height: 500px; display: block; margin: 0 auto;"></div>
-
     {{-- Check if the voting has any votes, and show them --}}
     @if(count($memberVotes) > 0)
+        {{-- Google Chart --}}
+        <div id="piechart" style="width: 900px; height: 500px; display: block; margin: 0 auto;"></div>
+
+        {{-- Table with all the votes --}}
         <div class="panel panel-default">
             <div class="panel-heading">Αποτελέσματα</div>
 
