@@ -3,7 +3,6 @@ var currentMember = 0;  // current member in the reading
 var memberDivs;         // Keeps divs of members
 var votes = [];         // Keeps member's votes
 var voting_id;
-var success;            // Used for checking whether a save operation was successful todo: does it have to be a global variable?
 
 $(function(){
     memberDivs = $('.member');  // Get all member divs
@@ -67,23 +66,32 @@ function nextPhaseBtnHandler() {
  * @return {boolean}    To prevent page from scrolling to the top
  */
 function nextButtonHandler() {
-    //todo: if member is absent, do not save vote
-    //todo: if member has voted already, change the vote to the new one
+    //todo: an exei allaksei epilogh kai pathsei telos psifoforias h paei sto 2o reading de tha apothikeytei
+    //todo: an kapoios psifisei kai apothikeytei to vote alla meta mpei absent, de diagrafetai to vote tou
 
-    // Save current member's vote
-    console.log('saving the vote!');
-    saveMember(memberDivs[currentMember], true);
+    // Save current member's vote if they are not absent
+    var member = memberDivs[currentMember];
+    if (!isAbsent(member)) {
+        console.log('saving the vote!');
+        saveMember(member, true);
+    } else {
+        nextMember(false);
+    }
 
     return false;
 }
 
 /**
  * Saves the current member's vote, and goes to the next member in the list
+ *
+ * @param voted Set to true if you want to mark the current member as "voted" before going to the next one
  */
-function nextMember() {
+function nextMember(voted) {
     if (currentMember < memberDivs.length - 1) {
-        // Mark member as voted
-        $(memberDivs[currentMember]).data('saved', 'true');
+        if (voted) {
+            // Mark member as voted
+            $(memberDivs[currentMember]).data('saved', 'true');
+        }
 
         // Go to next member
         console.log("Going to next member");
@@ -99,15 +107,14 @@ function nextMember() {
  * @return {boolean}    To prevent the page from scrolling to the top when a button is clicked
  */
 function absentButtonHandler() {
-    //todo: (not absent) -> (absent): if member has voted, delete his vote
-    //todo: (absent) -> (not absent): save the member's vote because it means they voted (CONFIRM??)
-
     var member = memberDivs[currentMember];
 
     if (!isAbsent(member)) {
         makeAbsent(member);
+        //todo: (not absent) -> (absent): if member has voted, delete his vote
     } else {
         makeNotAbsent(member);
+        //todo: (absent) -> (not absent): save the member's vote because it means they voted (CONFIRM??)
     }
 
     removeCurrentStatus(member);            // Remove current status from the current member
@@ -217,11 +224,10 @@ function makeNotAbsent(member) {
  * (to save the votes, and submit them to the server)
  */
 function endVoting() {
-    votes = [];                     // Reset votes array
-    saveVotes(memberDivs, votes);   // Saves votes from remaining members to the array
-    console.log(votes);
-    submitVotes(votes, false);      // Submit the votes
-    votingComplete(true);           // Complete the voting
+    votes = [];                             // Reset votes array
+    saveVotes(memberDivs, votes, false);    // Saves votes from remaining members to the array
+    submitVotes(votes, false);              // Submit the votes
+    votingComplete(true);                   // Complete the voting
 }
 
 /**
@@ -237,7 +243,7 @@ function startSecondReading() {
             membersToSave.push(div);
         }
     });
-    saveVotes(membersToSave, votes);
+    saveVotes(membersToSave, votes, false);
     submitVotes(votes, false);
 
     // Remove members that are not absent and members that have been saved from the form
@@ -272,10 +278,16 @@ function startSecondReading() {
  *
  * @param memberDivs    The divs of the members
  * @param votes         The array to save the votes to
+ * @param updating      Set true if updating members. Then it will ignore the data-saved attribute.
  */
-function saveVotes(memberDivs, votes) {
+function saveVotes(memberDivs, votes, updating) {
     $(memberDivs).each(function(index, memberDiv) {
-        if ($(memberDiv).data('status') == 'voted' && $(memberDiv).data('saved') == false) {
+        var updatingCheck = true;
+        if (!updating) {
+            updatingCheck = ($(memberDiv).data('saved') == false);
+        }
+
+        if ($(memberDiv).data('status') == 'voted' && updatingCheck) {
             var id = $(memberDiv).data('id');   // Get member id
 
             var vote = {
@@ -296,7 +308,7 @@ function saveVotes(memberDivs, votes) {
  */
 function saveMember(memberDiv, goToNext) {
     var tmpvote = [];
-    saveVotes([memberDiv], tmpvote);
+    saveVotes([memberDiv], tmpvote, true);
     submitVotes(tmpvote, goToNext);
 }
 
@@ -326,12 +338,16 @@ function submitVotes(votes, goToNext) {
         dataType: 'json',
         success: function(data) {
             if (goToNext) {
-                nextMember();
+                nextMember(true);
             }
         },
         error: function(data) {
             // Show error
             // todo: show error to user
+            /*
+             * (Possibly check if the success message from the end of the voting is shown and remove it
+             * and then prepend an error)
+             */
             console.log("Error saving! Switched to member with index " + currentMember);
         }
     });

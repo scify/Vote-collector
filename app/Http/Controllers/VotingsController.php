@@ -228,6 +228,17 @@ class VotingsController extends Controller {
 
         // Save votes to the database
         foreach($votes as $vote) {
+            // Check if a vote already exists (which means the user is changing the vote from the form) and delete it
+            $tmp = Vote::where([
+                'voting_id' => $v_id,
+                'member_id' => $vote['member_id']
+            ])->get();
+
+            if ($tmp->count() > 0) {
+                $tmp->first()->delete();
+            }
+
+            // Create the new vote
             Vote::create([
                 'voting_id' => $v_id,
                 'member_id' => $vote['member_id'],
