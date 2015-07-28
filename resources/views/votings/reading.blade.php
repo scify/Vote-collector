@@ -19,14 +19,12 @@
                 <div class="radios col-sm-3 hidden">
                     @foreach($voting->type->answers as $answer)
                         @if ($member->groups->count() > 0)  {{-- If member is in a group, will select the group's answer by default --}}
-                            {!! Form::radio('answer_' . $member->id, $answer->id, ($member->groupAnswer($voting->id) == $answer->id)) !!}
+                            {!! Form::radio('answer_' . $member->id, $answer->id, ($member->groupAnswer($voting->id) == $answer->id), ['id' => 'rd' . $member->id . $answer->id]) !!}
                         @else
-                            {!! Form::radio('answer_' . $member->id, $answer->id, $voting->type->answers->first() == $answer) !!}
+                            {!! Form::radio('answer_' . $member->id, $answer->id, $voting->type->answers->first() == $answer, ['id' => 'rd' . $member->id . $answer->id]) !!}
                         @endif
 
-                        <!-- todo: put different ids on each answer so user can click the radio label to select the radio!! -->
-
-                        {!! Form::label('answer_' . $member->id, $answer->answer, ['class' => 'control-label']) !!}
+                        {!! Form::label('rd' . $member->id . $answer->id, $answer->answer, ['class' => 'control-label']) !!}
                         <br/>
                     @endforeach
                 </div>
