@@ -9,7 +9,7 @@
 
     {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal', 'id' => 'votesform', 'data-votingid' => $votingid]) !!}
         @foreach($myMembers as $member)
-            <div class="form-group member col-sm-12" data-saved="false" data-changed="false" data-id="{{ $member['id'] }}">
+            <div class="form-group member col-sm-12" data-saved="false" data-id="{{ $member['id'] }}">
                 <span class="memberName pull-left col-sm-3">
                     {{ $member['full_name'] }}
                 </span>

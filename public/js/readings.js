@@ -2,6 +2,7 @@ var reading = 1;        // Shows if this is the first, or second reading
 var currentMember = 0;  // current member in the reading
 var memberDivs;         // Keeps divs of members
 var voting_id;
+var savedVotes = {};    // Keeps the votes of the saved members, to check for changes
 
 $(function(){
     memberDivs = $('.member');  // Get all member divs
@@ -13,13 +14,13 @@ $(function(){
     voting_id = $('#votesform').data('votingid');
 
     // Add confirmation before leaving the page so no data is lost by a misclick
-    //$(window).bind('beforeunload', function() {
-    //    return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
-    //});
+    $(window).bind('beforeunload', function() {
+        return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
+    });
 
     $('body').click(clickHandler);                  // Used to change between members by clicking on their names
 
-    $('#nextPhaseBtn').click(nextPhaseBtnHandler);   // Second voting/end voting button
+    $('#nextPhaseBtn').click(nextPhaseBtnHandler);  // Second voting/end voting button
 });
 
 /**
@@ -52,6 +53,27 @@ function clickHandler(e) {
  * If it's the second reading, it ends the voting
  */
 function nextPhaseBtnHandler() {
+    // Check if any member's answer is different (so it needs updating)
+    var changedMembers = [];
+    $(memberDivs).each(function(index, member) {
+        if (isSaved(member)) {
+            var memberId = $(member).data('id');        // Get id
+            var answerId = getSelectedAnswer(member);   // Get selected answer
+
+            if (savedVotes[memberId] != answerId) {     // If selected answer is different from saved one, add it to the array
+                changedMembers.push(member);
+            }
+        }
+    });
+
+    // Update any members that have selected different answers from the saved ones
+    if (changedMembers.length > 0) {
+        var tmpvotes = [];
+        saveVotes(changedMembers, tmpvotes, true);
+        submitVotes(tmpvotes);
+    }
+
+    // Go to next phase of voting
     if (reading == 1) {
         startSecondReading();
     } else {
@@ -65,13 +87,12 @@ function nextPhaseBtnHandler() {
  * @return {boolean}    To prevent page from scrolling to the top
  */
 function nextButtonHandler() {
-    //todo: an exei allaksei epilogh kai pathsei telos psifoforias h paei sto 2o reading de tha apothikeytei h allagh
+    //todo: an exei allaksei epilogh kai pathsei telos psifoforias h 2o reading de tha apothikeytei h allagh
     //todo: an kapoios psifisei kai apothikeytei to vote alla meta mpei absent, de diagrafetai to vote tou
 
     // Save current member's vote if they are not absent
     var member = memberDivs[currentMember];
     if (!isAbsent(member)) {
-        console.log('saving the vote!');
         saveMember(member, true);
     } else {
         nextMember(false);
@@ -108,7 +129,7 @@ function absentButtonHandler() {
     var member = memberDivs[currentMember];
 
     if (!isAbsent(member)) {
-        if ($(member).data('saved') == true) {
+        if (isSaved(member)) {
             console.log('Gotta delete the vote of this member FAST!');
 
             //todo: delete the vote
@@ -203,6 +224,16 @@ function isAbsent(member) {
 }
 
 /**
+ * Checks if a member is marked as saved (using the data-saved attribute)
+ *
+ * @param member        Member to check
+ * @returns {boolean}
+ */
+function isSaved(member) {
+    return ( $(member).data('saved') == 'true' );
+}
+
+/**
  * Makes a member div absent
  *
  * @param member
@@ -243,7 +274,7 @@ function startSecondReading() {
     var membersToSave = [];
     var votes = [];
     $('.member').each(function(index, div) {
-        if (!isAbsent(div) && $(div).data('saved') == false) {
+        if (!isAbsent(div) && !isSaved(div)) {
             membersToSave.push(div);
         }
     });
@@ -252,7 +283,7 @@ function startSecondReading() {
 
     // Remove members that are not absent and members that have been saved from the form
     $('.member').each(function(index, div) {
-        if (!isAbsent(div) || $(div).data('saved') == true) {
+        if (!isAbsent(div) || isSaved(div)) {
             div.remove();
         }
     });
@@ -282,26 +313,34 @@ function startSecondReading() {
  *
  * @param memberDivs    The divs of the members
  * @param votes         The array to save the votes to
- * @param updating      Set true if updating members. Then it will ignore the data-saved attribute.
+ * @param updating      Set true if updating members, so it will ignore the data-saved attribute.
  */
 function saveVotes(memberDivs, votes, updating) {
     $(memberDivs).each(function(index, member) {
         var updatingCheck = true;
         if (!updating) {
-            updatingCheck = ($(member).data('saved') == false);
+            updatingCheck = !isSaved(member);
         }
 
         if (!isAbsent(member) && updatingCheck) {
-            var id = $(member).data('id');   // Get member id
-
             var vote = {
-                member_id: id,
-                answer_id: $(member).find('input[type="radio"][name="answer_' + id + '"]:checked').val()
+                member_id: $(member).data('id'),
+                answer_id: getSelectedAnswer(member)
             };
 
-            votes.push(vote);       // Add member's vote to votes array
+            votes.push(vote);   // Add member's vote to votes array
         }
     });
+}
+
+/**
+ * Returns the id of the selected answer of a member
+ *
+ * @param member        The div of the member to get answer from
+ * @returns {*|jQuery}
+ */
+function getSelectedAnswer(member) {
+    return $(member).find('input[type="radio"][name="answer_' + $(member).data('id') + '"]:checked').val();
 }
 
 /**
@@ -328,6 +367,18 @@ function submitVotes(votes, goToNext) {
     if (votes.length == 0) {
         return;
     }
+
+    // Before submitting votes save them to the array used to check for changes
+    $(votes).each(function(index, vote) {
+        var memberId = vote['member_id'];
+        var answerId = vote['answer_id'];
+
+        savedVotes[memberId] = answerId;
+    });
+
+    console.log('saved votes:');
+    console.log(savedVotes);
+    //console.log(savedVotes[545]);  => undefined
 
     // Setup CSRF token for middleware
     $.ajaxSetup({
