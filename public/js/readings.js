@@ -1,7 +1,6 @@
 var reading = 1;        // Shows if this is the first, or second reading
 var currentMember = 0;  // current member in the reading
 var memberDivs;         // Keeps divs of members
-var votes = [];         // Keeps member's votes
 var voting_id;
 
 $(function(){
@@ -66,7 +65,7 @@ function nextPhaseBtnHandler() {
  * @return {boolean}    To prevent page from scrolling to the top
  */
 function nextButtonHandler() {
-    //todo: an exei allaksei epilogh kai pathsei telos psifoforias h paei sto 2o reading de tha apothikeytei
+    //todo: an exei allaksei epilogh kai pathsei telos psifoforias h paei sto 2o reading de tha apothikeytei h allagh
     //todo: an kapoios psifisei kai apothikeytei to vote alla meta mpei absent, de diagrafetai to vote tou
 
     // Save current member's vote if they are not absent
@@ -228,7 +227,7 @@ function makeNotAbsent(member) {
  * (to save the votes, and submit them to the server)
  */
 function endVoting() {
-    votes = [];                             // Reset votes array
+    var votes = [];                         // Reset votes array
     saveVotes(memberDivs, votes, false);    // Saves votes from remaining members to the array
     submitVotes(votes, false);              // Submit the votes
     votingComplete(true);                   // Complete the voting
@@ -242,6 +241,7 @@ function startSecondReading() {
 
     // Save the votes of members who voted
     var membersToSave = [];
+    var votes = [];
     $('.member').each(function(index, div) {
         if (!isAbsent(div) && $(div).data('saved') == false) {
             membersToSave.push(div);

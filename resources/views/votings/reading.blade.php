@@ -9,9 +9,6 @@
 
     {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal', 'id' => 'votesform', 'data-votingid' => $votingid]) !!}
         @foreach($myMembers as $member)
-
-                <!--todo: data-changed is useless, use it to save data if needed when switching current members by clicking their names-->
-
             <div class="form-group member col-sm-12" data-saved="false" data-changed="false" data-id="{{ $member['id'] }}">
                 <span class="memberName pull-left col-sm-3">
                     {{ $member['full_name'] }}

@@ -202,8 +202,8 @@ class VotingsController extends Controller {
     {
         $voting = Voting::findOrFail($id);  // Get the voting to start the reading for
 
-        if ($voting->defaultVotesSet() && $voting->votes->count() == 0) {       // Check if the voting has default votes for each group
-            $members = Member::orderBy('district_id')->orderBy('order')->get(); // get members sorted based on their district, then order
+        if ($voting->defaultVotesSet() && $voting->votes->count() == 0) {               // Check if the voting has default votes for each group
+            $members = Member::orderBy('district_id')->orderBy('order')->get();         // Get members sorted based on their district, then order
             $answers = VoteTypeAnswer::where('type', '=', $voting->type->id)->get();
 
             // Gather info the view needs about the answers
@@ -212,6 +212,7 @@ class VotingsController extends Controller {
                 $a = [];
                 $a['id'] = $answer->id;
                 $a['answer'] = $answer->answer;
+
                 $myAnswers[] = $a;
             }
 
@@ -227,6 +228,7 @@ class VotingsController extends Controller {
                 if ($m['groupAnswerId'] == null) {
                     $m['groupAnswerId'] = $myAnswers[0]['id'];    // if member is not in any group, the first answer will be selected by default
                 }
+
                 $myMembers[] = $m;
             }
 
