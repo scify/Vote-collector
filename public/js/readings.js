@@ -84,13 +84,12 @@ function nextButtonHandler() {
 /**
  * Saves the current member's vote, and goes to the next member in the list
  *
- * @param voted Set to true if you want to mark the current member as "voted" before going to the next one
+ * @param markAsVoted   Set to true if you want to mark the current member as "voted" before going to the next one
  */
-function nextMember(voted) {
+function nextMember(markAsVoted) {
     if (currentMember < memberDivs.length - 1) {
-        if (voted) {
-            // Mark member as voted
-            $(memberDivs[currentMember]).data('saved', 'true');
+        if (markAsVoted) {
+            $(memberDivs[currentMember]).data('saved', 'true'); // Mark member as voted
         }
 
         // Go to next member
@@ -110,21 +109,28 @@ function absentButtonHandler() {
     var member = memberDivs[currentMember];
 
     if (!isAbsent(member)) {
+        if ($(member).data('saved') == true) {
+            console.log('Gotta delete the vote of this member FAST!');
+
+            //todo: delete the vote
+        }
+
         makeAbsent(member);
-        //todo: (not absent) -> (absent): if member has voted, delete his vote
+
+        // Go to next member
+        removeCurrentStatus(member);            // Remove current status from the current member
+
+        if (currentMember < memberDivs.length - 1) {        // If this wasn't the last member in the list
+            currentMember++;                                // go to the next member
+
+            addCurrentStatus(memberDivs[currentMember]);    // and add current status to them
+        } else {
+            addCurrentStatus(member);           // Add current status to the last member again so the button updates and label hides
+        }
     } else {
+        removeCurrentStatus(member);
         makeNotAbsent(member);
-        //todo: (absent) -> (not absent): save the member's vote because it means they voted (CONFIRM??)
-    }
-
-    removeCurrentStatus(member);            // Remove current status from the current member
-
-    if (currentMember < memberDivs.length - 1) {        // If this wasn't the last member in the list
-        currentMember++;                                // go to the next member
-
-        addCurrentStatus(memberDivs[currentMember]);    // and add current status to them
-    } else {
-        addCurrentStatus(member);           // Add current status to the last member again so the button updates and label hides
+        addCurrentStatus(member);
     }
 
     return false;
@@ -204,7 +210,6 @@ function isAbsent(member) {
  */
 function makeAbsent(member) {
     $(member).addClass('text-muted');
-    $(member).data('status', 'not_voted');
     $(member).prepend(absentLabel());
 }
 
@@ -215,7 +220,6 @@ function makeAbsent(member) {
  */
 function makeNotAbsent(member) {
     $(member).removeClass('text-muted');
-    $(member).data('status', 'voted');
     $(member).find('.absentLabel').remove();
 }
 
@@ -281,18 +285,18 @@ function startSecondReading() {
  * @param updating      Set true if updating members. Then it will ignore the data-saved attribute.
  */
 function saveVotes(memberDivs, votes, updating) {
-    $(memberDivs).each(function(index, memberDiv) {
+    $(memberDivs).each(function(index, member) {
         var updatingCheck = true;
         if (!updating) {
-            updatingCheck = ($(memberDiv).data('saved') == false);
+            updatingCheck = ($(member).data('saved') == false);
         }
 
-        if ($(memberDiv).data('status') == 'voted' && updatingCheck) {
-            var id = $(memberDiv).data('id');   // Get member id
+        if (!isAbsent(member) && updatingCheck) {
+            var id = $(member).data('id');   // Get member id
 
             var vote = {
                 member_id: id,
-                answer_id: $(memberDiv).find('input[type="radio"][name="answer_' + id + '"]:checked').val()
+                answer_id: $(member).find('input[type="radio"][name="answer_' + id + '"]:checked').val()
             };
 
             votes.push(vote);       // Add member's vote to votes array
@@ -320,6 +324,11 @@ function saveMember(memberDiv, goToNext) {
  * @param goToNext  Set to true if you want to go to the next member after saving or false if you want to do nothing
  */
 function submitVotes(votes, goToNext) {
+    // If there are no votes, do nothing
+    if (votes.length == 0) {
+        return;
+    }
+
     // Setup CSRF token for middleware
     $.ajaxSetup({
         headers: {

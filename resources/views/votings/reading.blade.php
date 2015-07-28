@@ -12,7 +12,7 @@
 
                 <!--todo: data-changed is useless, use it to save data if needed when switching current members by clicking their names-->
 
-            <div class="form-group member col-sm-12" data-status="voted" data-saved="false" data-changed="false" data-id="{{ $member->id }}">
+            <div class="form-group member col-sm-12" data-saved="false" data-changed="false" data-id="{{ $member->id }}">
                 <span class="memberName pull-left col-sm-3">
                     {{ $member->first_name . ' ' . $member->last_name }}
                 </span>
