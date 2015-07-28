@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,6 +16,7 @@ Route::post('votings/answers', 'VotingsController@saveDefaultAnswers');         
 
 Route::get('votings/reading/{id}', 'VotingsController@reading');        // Page for the first & second reading
 Route::post('votings/reading', 'VotingsController@saveAnswers');        // For saving votes from 1st & 2nd reading
+Route::post('votings/reading/dv', 'VotingsController@deleteVote');      // For deleting a vote (needs voting & member id)
 
 Route::get('votings/{id}/download', 'VotingsController@download');      // Download the votes of a voting
 

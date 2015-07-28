@@ -1,8 +1,8 @@
 var reading = 1;        // Shows if this is the first, or second reading
 var currentMember = 0;  // current member in the reading
 var memberDivs;         // Keeps divs of members
-var voting_id;
 var savedVotes = {};    // Keeps the votes of the saved members, to check for changes
+var voting_id;
 
 $(function(){
     memberDivs = $('.member');  // Get all member divs
@@ -14,9 +14,9 @@ $(function(){
     voting_id = $('#votesform').data('votingid');
 
     // Add confirmation before leaving the page so no data is lost by a misclick
-    $(window).bind('beforeunload', function() {
-        return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
-    });
+    //$(window).bind('beforeunload', function() {
+    //    return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
+    //});
 
     $('body').click(clickHandler);                  // Used to change between members by clicking on their names
 
@@ -87,9 +87,6 @@ function nextPhaseBtnHandler() {
  * @return {boolean}    To prevent page from scrolling to the top
  */
 function nextButtonHandler() {
-    //todo: an exei allaksei epilogh kai pathsei telos psifoforias h 2o reading de tha apothikeytei h allagh
-    //todo: an kapoios psifisei kai apothikeytei to vote alla meta mpei absent, de diagrafetai to vote tou
-
     // Save current member's vote if they are not absent
     var member = memberDivs[currentMember];
     if (!isAbsent(member)) {
@@ -130,7 +127,7 @@ function absentButtonHandler() {
 
     if (!isAbsent(member)) {
         if (isSaved(member)) {
-            console.log('Gotta delete the vote of this member FAST!');
+            console.log('This member\'s vote should be deleted!');
 
             //todo: delete the vote
         }
@@ -378,7 +375,6 @@ function submitVotes(votes, goToNext) {
 
     console.log('saved votes:');
     console.log(savedVotes);
-    //console.log(savedVotes[545]);  => undefined
 
     // Setup CSRF token for middleware
     $.ajaxSetup({

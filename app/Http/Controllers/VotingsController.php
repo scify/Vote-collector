@@ -260,7 +260,7 @@ class VotingsController extends Controller {
             ])->get();
 
             if ($tmp->count() > 0) {
-                $tmp->first()->delete();
+                $tmp->first()->delete();    // First because there is only one vote for each member & voting
             }
 
             // Create the new vote
@@ -269,6 +269,31 @@ class VotingsController extends Controller {
                 'member_id' => $vote['member_id'],
                 'answer_id' => $vote['answer_id']
             ]);
+        }
+
+        // Return success json
+        return Response::json('success', 200);
+    }
+
+    /**
+     * Deletes a vote from the database based on a given voting id & member id.
+     * Used for deleting votes of members who were saved by pressing the next button
+     * but were marked as absent afterwards.
+     *
+     * @return mixed
+     */
+    public function deleteVote()
+    {
+        $voting_id = Input::get('v_id');
+        $member_id = Input::get('m_id');
+
+        $v = Vote::where([
+            'voting_id' => $voting_id,
+            'member_id' => $member_id
+        ])->get();
+
+        if ($v->count() > 0) {
+            $v->first()->delete();
         }
 
         // Return success json
