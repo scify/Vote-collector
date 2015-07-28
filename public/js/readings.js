@@ -14,9 +14,16 @@ $(function(){
     voting_id = $('#votesform').data('votingid');
 
     // Add confirmation before leaving the page so no data is lost by a misclick
-    //$(window).bind('beforeunload', function() {
-    //    return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
-    //});
+    $(window).bind('beforeunload', function() {
+        return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
+    });
+
+    // Setup CSRF token for middleware
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     $('body').click(clickHandler);                  // Used to change between members by clicking on their names
 
@@ -110,7 +117,6 @@ function nextMember(markAsVoted) {
         }
 
         // Go to next member
-        console.log("Going to next member");
         removeCurrentStatus(memberDivs[currentMember]);
         currentMember++;
         addCurrentStatus(memberDivs[currentMember]);
@@ -127,9 +133,7 @@ function absentButtonHandler() {
 
     if (!isAbsent(member)) {
         if (isSaved(member)) {
-            console.log('This member\'s vote should be deleted!');
-
-            //todo: delete the vote
+            deleteVote(member); // delete the vote is here!
         }
 
         makeAbsent(member);
@@ -151,6 +155,34 @@ function absentButtonHandler() {
     }
 
     return false;
+}
+
+/**
+ * Deletes the vote of the given member from the database
+ *
+ * @param member    The member to delete the vote of
+ */
+function deleteVote(member) {
+    var m_id = $(member).data('id');    // member id
+
+    // Send ajax request to server
+    $.ajax({
+        url: '/votings/reading/dv',
+        type: 'POST',
+        data: {
+            m_id: m_id,
+            v_id: voting_id
+        },
+        dataType: 'json',
+        success: function(data) {
+            console.log('WWWWWWWIIIIIIIINNNNNNNN: member deletedddd');
+        },
+        error: function(data) {
+            // Show error
+            // todo: show error to user
+            console.log('EEEEEEEERRRRRRRROOOOOOOORRRRRRRRRRRRRRRRRRRRRRRRRRRRR: member could not be deleted');
+        }
+    });
 }
 
 /**
@@ -238,6 +270,7 @@ function isSaved(member) {
 function makeAbsent(member) {
     $(member).addClass('text-muted');
     $(member).prepend(absentLabel());
+    $(member).data('saved', 'false');
 }
 
 /**
@@ -365,22 +398,12 @@ function submitVotes(votes, goToNext) {
         return;
     }
 
-    // Before submitting votes save them to the array used to check for changes
+    // Before submitting votes, save them to the array used to check for changes
     $(votes).each(function(index, vote) {
         var memberId = vote['member_id'];
         var answerId = vote['answer_id'];
 
         savedVotes[memberId] = answerId;
-    });
-
-    console.log('saved votes:');
-    console.log(savedVotes);
-
-    // Setup CSRF token for middleware
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
     });
 
     // Send ajax request to server
@@ -404,7 +427,6 @@ function submitVotes(votes, goToNext) {
              * (Possibly check if the success message from the end of the voting is shown and remove it
              * and then prepend an error)
              */
-            console.log("Error saving! Switched to member with index " + currentMember);
         }
     });
 }
