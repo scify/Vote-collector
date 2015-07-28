@@ -204,10 +204,33 @@ class VotingsController extends Controller {
 
         if ($voting->defaultVotesSet() && $voting->votes->count() == 0) {       // Check if the voting has default votes for each group
             $members = Member::orderBy('district_id')->orderBy('order')->get(); // get members sorted based on their district, then order
-            $gvotes = GroupVote::where('voting_id', '=', $voting->id)->get();
             $answers = VoteTypeAnswer::where('type', '=', $voting->type->id)->get();
 
-            return view('votings.reading', compact('voting', 'members', 'gvotes', 'answers'));
+            // Gather info the view needs about the answers
+            $myAnswers = [];
+            foreach($answers as $answer) {
+                $a = [];
+                $a['id'] = $answer->id;
+                $a['answer'] = $answer->answer;
+                $myAnswers[] = $a;
+            }
+
+            // Gather info the view needs about the members
+            $votingid = $voting->id;
+
+            $myMembers = [];
+            foreach($members as $member) {
+                $m = [];
+                $m['id'] = $member->id;
+                $m['full_name'] = $member->first_name . ' ' . $member->last_name;
+                $m['groupAnswerId'] = $member->groupAnswer($votingid);
+                if ($m['groupAnswerId'] == null) {
+                    $m['groupAnswerId'] = $myAnswers[0]['id'];    // if member is not in any group, the first answer will be selected by default
+                }
+                $myMembers[] = $m;
+            }
+
+            return view('votings.reading', compact('votingid', 'myMembers', 'myAnswers'));
         }
 
         return 'ERROR';

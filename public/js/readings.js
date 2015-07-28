@@ -14,9 +14,9 @@ $(function(){
     voting_id = $('#votesform').data('votingid');
 
     // Add confirmation before leaving the page so no data is lost by a misclick
-    $(window).bind('beforeunload', function() {
-        return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
-    });
+    //$(window).bind('beforeunload', function() {
+    //    return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
+    //});
 
     $('body').click(clickHandler);                  // Used to change between members by clicking on their names
 
