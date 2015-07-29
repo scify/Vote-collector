@@ -269,10 +269,16 @@ class VotingsController extends Controller {
             }
 
             // Create the new vote
+            if ($vote['answer_id'] == '') {
+                $answer = null;
+            } else {
+                $answer = $vote['answer_id'];
+            }
+
             Vote::create([
                 'voting_id' => $v_id,
                 'member_id' => $vote['member_id'],
-                'answer_id' => $vote['answer_id']
+                'answer_id' => $answer
             ]);
         }
 

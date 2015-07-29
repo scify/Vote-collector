@@ -287,18 +287,15 @@ function makeNotAbsent(member) {
  * (to save the votes, and submit them to the server)
  */
 function endVoting() {
+    console.log('END VOTING');
     // Save votes of not absent members
     var votes = getVotes(memberDivs, false);
     submitVotes(votes, false);                  // Submit the votes
 
     // Save votes of absent members
-    votes = [];
-    $('.member').each(function(index, member) {
-        if (isAbsent(member)) {
-            //votes.push
-        }
-    });
-
+    votes = getAbsentMemberVotes();
+    console.log(votes);
+    submitVotes(votes, false);
 
     votingComplete(true);                   // Clear page and show voting complete message
 }
@@ -351,7 +348,7 @@ function startSecondReading() {
  *
  * @param members       The divs of the members
  * @param forceUpdate   Set true if updating members, so it will ignore the data-saved attribute.
- * @return Array        Array with votes in the format that submitVotes expects
+ * @return {Array}      Array with votes in the format that submitVotes expects
  */
 function getVotes(members, forceUpdate) {
     var votes = [];
@@ -375,10 +372,28 @@ function getVotes(members, forceUpdate) {
 function getMemberVote(member) {
     var vote = {
         member_id: $(member).data('id'),
-        answer_id: getSelectedAnswer(member)
+        answer_id: isAbsent(member) ? null : getSelectedAnswer(member)
     };
 
     return vote;
+}
+
+/**
+ * Returns an array with the votes (null) of all absent members in the form
+ *
+ * @returns {Array}
+ */
+function getAbsentMemberVotes() {
+    var absentVotes = [];
+
+    $('.member').each(function(index, member) {
+        if (isAbsent(member)) {
+            console.log(index + ' is absent!!!');
+            absentVotes.push(getMemberVote(member));
+        }
+    });
+
+    return absentVotes;
 }
 
 /**
