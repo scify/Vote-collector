@@ -183,13 +183,11 @@ function deleteVote(member) {
             v_id: voting_id
         },
         dataType: 'json',
-        success: function(data) {
-            console.log('WWWWWWWIIIIIIIINNNNNNNN: member deletedddd');
-        },
         error: function(data) {
             // Show error
-            // todo: show error to user
-            console.log('EEEEEEEERRRRRRRROOOOOOOORRRRRRRRRRRRRRRRRRRRRRRRRRRRR: member could not be deleted');
+            $('#memberDeleteFailAlert').remove();
+            var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να διαγραφεί η απάντηση του/ης βουλευτή αφού επισημάνθηκε ως απών!';
+            $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
         }
     });
 }

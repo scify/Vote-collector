@@ -4,7 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/public/js/readings.js" line="471" mnemonic="0" />
+    <bookmark url="file://$PROJECT_DIR$/public/js/readings.js" line="469" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cbcbad9-a1aa-486a-8c86-04ff6d8fcf2e" name="Default" comment="" />
@@ -33,8 +33,8 @@
             <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/public/js/readings.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.1402715" vertical-offset="7635" max-vertical-offset="8944">
-                    <caret line="496" column="74" selection-start-line="496" selection-start-column="74" selection-end-line="496" selection-end-column="74" />
+                  <state vertical-scroll-proportion="0.1402715" vertical-offset="7603" max-vertical-offset="8912">
+                    <caret line="494" column="74" selection-start-line="494" selection-start-column="74" selection-end-line="494" selection-end-column="74" />
                     <folding>
                       <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
                       <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
@@ -55,11 +55,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="readings.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/readings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="6291" max-vertical-offset="8944">
-              <caret line="385" column="6" selection-start-line="385" selection-start-column="6" selection-end-line="385" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.5237316" vertical-offset="2672" max-vertical-offset="8912">
+              <caret line="187" column="40" selection-start-line="187" selection-start-column="40" selection-end-line="187" selection-end-column="40" />
               <folding>
                 <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
                 <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
@@ -69,21 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="members.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/js/members.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3666121" vertical-offset="0" max-vertical-offset="1824">
-              <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.8" vertical-offset="3654" max-vertical-offset="5392">
-              <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
+            <state vertical-scroll-proportion="-0.4" vertical-offset="3654" max-vertical-offset="5392">
+              <caret line="251" column="5" selection-start-line="251" selection-start-column="5" selection-end-line="251" selection-end-column="5" />
               <folding>
                 <element signature="e#6019#6179#0#PHP" expanded="false" />
               </folding>
@@ -150,8 +140,8 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_07_06_121640_create_tables.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
-        <option value="$PROJECT_DIR$/public/js/readings.js" />
         <option value="$PROJECT_DIR$/public/js/members.js" />
+        <option value="$PROJECT_DIR$/public/js/readings.js" />
       </list>
     </option>
   </component>
@@ -521,7 +511,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1740" y="233" width="904" height="488" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1699" y="259" width="904" height="488" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.24963397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="1376" y="128" width="305" height="640" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17203514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -902,10 +892,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/members.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.81669396" vertical-offset="1213" max-vertical-offset="1824">
+          <caret line="107" column="23" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.8" vertical-offset="3654" max-vertical-offset="5392">
-          <caret line="261" column="32" selection-start-line="261" selection-start-column="32" selection-end-line="261" selection-end-column="32" />
+        <state vertical-scroll-proportion="-0.4" vertical-offset="3654" max-vertical-offset="5392">
+          <caret line="251" column="5" selection-start-line="251" selection-start-column="5" selection-end-line="251" selection-end-column="5" />
           <folding>
             <element signature="e#6019#6179#0#PHP" expanded="false" />
           </folding>
@@ -914,21 +912,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6291" max-vertical-offset="8944">
-          <caret line="385" column="6" selection-start-line="385" selection-start-column="6" selection-end-line="385" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.5237316" vertical-offset="2672" max-vertical-offset="8912">
+          <caret line="187" column="40" selection-start-line="187" selection-start-column="40" selection-end-line="187" selection-end-column="40" />
           <folding>
             <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
             <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
             <element signature="n#!!doc;n#makeNotAbsent#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/members.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3666121" vertical-offset="0" max-vertical-offset="1824">
-          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
