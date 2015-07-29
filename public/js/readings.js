@@ -224,6 +224,9 @@ function addCurrentStatus(member) {
     // Unhide radio buttons
     $(member).find('.radios').removeClass('hidden');
 
+    // Hide the selected answer label
+    $('#selAnswerLabel' + memberId(member)).text('');
+
     // If member is marked as absent, hide the absent label temporarily
     $(member).find('.absentLabel').addClass('hidden');
 
@@ -238,13 +241,19 @@ function addCurrentStatus(member) {
  */
 function removeCurrentStatus(member) {
     // Check if member has the absent button as a child and remove it
-    $(member).children('#sideButtons').remove();
+    $('#sideButtons').remove();
 
     // Remove applied css class
     $(member).find('.memberName').removeClass('currentMember');
 
     // Hide buttons with css
     $(member).find('.radios').addClass('hidden');
+
+    // Show the selected answer label
+    if (!isAbsent(member)) {
+        var answerText = $(member).find('label[for=rd' + memberId(member) + '' + getSelectedAnswer(member) + ']').text();
+        $('#selAnswerLabel' + memberId(member)).text(answerText);
+    }
 
     // If member is marked as absent, unhide the absent label
     $(member).find('.absentLabel').removeClass('hidden');
@@ -264,6 +273,16 @@ function isAbsent(member) {
 }
 
 /**
+ * Returns the id of a member using the data-id property
+ *
+ * @param member        The div of the member
+ * @returns {*|jQuery}  The id of the given member
+ */
+function memberId(member) {
+    return $(member).data('id');
+}
+
+/**
  * Checks if a member is marked as saved (using the data-saved attribute)
  *
  * @param member        Member to check
@@ -280,7 +299,7 @@ function isSaved(member) {
  */
 function makeAbsent(member) {
     $(member).addClass('text-muted');
-    $(member).prepend(absentLabel());
+    $(member).append(absentLabel());
 }
 
 /**

@@ -13,6 +13,7 @@
                 <span class="memberName pull-left col-sm-3">
                     {{ $member['full_name'] }}
                 </span>
+
                 <div class="radios col-sm-3 hidden">
                     @foreach($myAnswers as $answer)
                         {!! Form::radio('answer_' . $member['id'], $answer['id'], $member['groupAnswerId'] == $answer['id'], ['id' => 'rd' . $member['id'] . $answer['id']]) !!}
@@ -20,6 +21,8 @@
                         <br/>
                     @endforeach
                 </div>
+
+                <span id="selAnswerLabel{{ $member['id'] }}" class="label label-primary pull-left"></span>
             </div>
         @endforeach
 
