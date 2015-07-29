@@ -14,9 +14,9 @@ $(function(){
     voting_id = $('#votesform').data('votingid');
 
     // Add confirmation before leaving the page so no data is lost by a misclick
-    $(window).bind('beforeunload', function() {
-        return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
-    });
+    //$(window).bind('beforeunload', function() {
+    //    return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
+    //});
 
     // Setup CSRF token for middleware
     $.ajaxSetup({
@@ -60,7 +60,7 @@ function clickHandler(e) {
  * If it's the second reading, it ends the voting
  */
 function nextPhaseBtnHandler() {
-    // Check if any member's answer is different (so it needs updating)
+    // Check if any saved member's answer is different (so it needs updating)
     var changedMembers = [];
     $(memberDivs).each(function(index, member) {
         if (isSaved(member)) {
@@ -75,9 +75,8 @@ function nextPhaseBtnHandler() {
 
     // Update any members that have selected different answers from the saved ones
     if (changedMembers.length > 0) {
-        var tmpvotes = [];
-        saveVotes(changedMembers, tmpvotes, true);
-        submitVotes(tmpvotes);
+        var votes = getVotes(changedMembers, true);
+        submitVotes(votes);
     }
 
     // Go to next phase of voting
@@ -288,10 +287,20 @@ function makeNotAbsent(member) {
  * (to save the votes, and submit them to the server)
  */
 function endVoting() {
-    var votes = [];                         // Reset votes array
-    saveVotes(memberDivs, votes, false);    // Saves votes from remaining members to the array
-    submitVotes(votes, false);              // Submit the votes
-    votingComplete(true);                   // Complete the voting
+    // Save votes of not absent members
+    var votes = getVotes(memberDivs, false);
+    submitVotes(votes, false);                  // Submit the votes
+
+    // Save votes of absent members
+    votes = [];
+    $('.member').each(function(index, member) {
+        if (isAbsent(member)) {
+            //votes.push
+        }
+    });
+
+
+    votingComplete(true);                   // Clear page and show voting complete message
 }
 
 /**
@@ -302,13 +311,12 @@ function startSecondReading() {
 
     // Save the votes of members who voted
     var membersToSave = [];
-    var votes = [];
     $('.member').each(function(index, div) {
         if (!isAbsent(div) && !isSaved(div)) {
             membersToSave.push(div);
         }
     });
-    saveVotes(membersToSave, votes, false);
+    var votes = getVotes(membersToSave, false);
     submitVotes(votes, false);
 
     // Remove members that are not absent and members that have been saved from the form
@@ -339,28 +347,38 @@ function startSecondReading() {
 }
 
 /**
- * Saves the votes of members who voted to the votes array and removes them from the form
+ * Saves the votes of members who voted to the votes array
  *
- * @param memberDivs    The divs of the members
- * @param votes         The array to save the votes to
+ * @param members       The divs of the members
  * @param forceUpdate   Set true if updating members, so it will ignore the data-saved attribute.
+ * @return Array        Array with votes in the format that submitVotes expects
  */
-function saveVotes(memberDivs, votes, forceUpdate) {   // force update
-    $(memberDivs).each(function(index, member) {
-        var updateCheck = true;
-        if (!forceUpdate) {
-            updateCheck = !isSaved(member);
-        }
+function getVotes(members, forceUpdate) {
+    var votes = [];
 
-        if (!isAbsent(member) && updateCheck) {
-            var vote = {
-                member_id: $(member).data('id'),
-                answer_id: getSelectedAnswer(member)
-            };
-
-            votes.push(vote);   // Add member's vote to votes array
+    $(members).each(function(index, member) {
+        if (!isAbsent(member) && (forceUpdate || !isSaved(member))) {
+            votes.push(getMemberVote(member));   // Add member's vote to votes array
         }
     });
+
+    return votes;
+}
+
+/**
+ * Returns a single member's vote in the format needed by the other functions
+ * that save votes
+ *
+ * @param member    The member who's vote to return
+ * @returns Object  Object with member_id and answer_id properties
+ */
+function getMemberVote(member) {
+    var vote = {
+        member_id: $(member).data('id'),
+        answer_id: getSelectedAnswer(member)
+    };
+
+    return vote;
 }
 
 /**
@@ -374,14 +392,13 @@ function getSelectedAnswer(member) {
 }
 
 /**
- * Saves the given member to the database using the existing saveVotes() and submitVotes() functions
+ * Saves the given member to the database using the existing getVotes() and submitVotes() functions
  *
  * @param memberDiv     Div of member with vote to save
  * @param goToNext      Set to true if you want to go to next member after saving this one
  */
 function saveMember(memberDiv, goToNext) {
-    var tmpvote = [];
-    saveVotes([memberDiv], tmpvote, true);
+    var tmpvote = getVotes([memberDiv], true);
     submitVotes(tmpvote, goToNext);
 }
 
@@ -438,9 +455,9 @@ function submitVotes(votes, goToNext) {
  * @param success
  */
 function votingComplete(success) {
-    $('#title').remove();   // Remove title
+    $('#title').remove();           // Remove title
 
-    $(window).off('beforeunload');
+    $(window).off('beforeunload');  // Turn off message that warns before leaving page
 
     // Remove any fields remaining
     $(memberDivs).each(function(index, div) {
