@@ -79,8 +79,11 @@ function saveOrder() {
             $('#saveOrderBtn').remove();
         },
         error: function(data) {
-            console.log('ERROR: FAILED TO SAVE ORDER!!!');
-            //todo: maybe show error to the user instead of logging to console
+            // If fail, show error
+            $('#orderAlert').remove();
+            $('.container').prepend('<div class="alert alert-danger" id="orderAlert">' +
+                                        '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτεί η σειρά των βουλευτών!' +
+                                    '</div>');
         }
     });
 }
