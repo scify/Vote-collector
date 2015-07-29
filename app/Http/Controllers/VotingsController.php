@@ -323,10 +323,20 @@ class VotingsController extends Controller {
 
         $votes = Vote::where('voting_id', '=', $id)->get();
         foreach($votes as $vote) {
+            // Get full name
             $m = $vote->member;
+            $fullname = $m->first_name . ' ' . $m->last_name;
+
+            // Get answer
+            if ($vote->answer == null) {
+                $answer = 'Απών';
+            } else {
+                $answer = $vote->answer->answer;
+            }
+
             $tmp = [
-                'member' => $m->first_name . ' ' . $m->last_name,
-                'vote' => $vote->answer->answer
+                'member' => $fullname,
+                'vote' => $answer
             ];
 
             $reply[] = $tmp;

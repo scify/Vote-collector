@@ -33,8 +33,8 @@
             <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/public/js/readings.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.33227345" vertical-offset="1151" max-vertical-offset="9040">
-                    <caret line="85" column="39" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="39" />
+                  <state vertical-scroll-proportion="0.3182504" vertical-offset="1117" max-vertical-offset="9040">
+                    <caret line="83" column="66" selection-start-line="83" selection-start-column="66" selection-end-line="83" selection-end-column="66" />
                     <folding>
                       <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
                       <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
@@ -55,11 +55,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="readings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/readings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63175124" vertical-offset="1678" max-vertical-offset="9008">
-              <caret line="129" column="42" selection-start-line="129" selection-start-column="42" selection-end-line="129" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1678" max-vertical-offset="9008">
+              <caret line="114" column="56" selection-start-line="114" selection-start-column="56" selection-end-line="114" selection-end-column="56" />
               <folding>
                 <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
                 <element signature="n#!!block;n#makeAbsent#0" expanded="false" />
@@ -80,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.4" vertical-offset="3654" max-vertical-offset="5392">
-              <caret line="251" column="5" selection-start-line="251" selection-start-column="5" selection-end-line="251" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.6450512" vertical-offset="4646" max-vertical-offset="5552">
+              <caret line="336" column="20" selection-start-line="336" selection-start-column="20" selection-end-line="336" selection-end-column="20" />
               <folding>
                 <element signature="e#6019#6179#0#PHP" expanded="false" />
               </folding>
@@ -152,10 +152,10 @@
         <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_07_06_121640_create_tables.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
         <option value="$PROJECT_DIR$/public/js/members.js" />
         <option value="$PROJECT_DIR$/public/js/votingChart.js" />
         <option value="$PROJECT_DIR$/public/js/readings.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
       </list>
     </option>
   </component>
@@ -891,16 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.4" vertical-offset="3654" max-vertical-offset="5392">
-          <caret line="251" column="5" selection-start-line="251" selection-start-column="5" selection-end-line="251" selection-end-column="5" />
-          <folding>
-            <element signature="e#6019#6179#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/votingChart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.07855974" vertical-offset="0" max-vertical-offset="944">
@@ -927,13 +917,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63175124" vertical-offset="1678" max-vertical-offset="9008">
-          <caret line="129" column="42" selection-start-line="129" selection-start-column="42" selection-end-line="129" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1678" max-vertical-offset="9008">
+          <caret line="114" column="56" selection-start-line="114" selection-start-column="56" selection-end-line="114" selection-end-column="56" />
           <folding>
             <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
             <element signature="n#!!block;n#makeAbsent#0" expanded="false" />
             <element signature="n#!!doc;n#makeNotAbsent#0" expanded="false" />
             <element signature="n#!!block;n#makeNotAbsent#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6450512" vertical-offset="4646" max-vertical-offset="5552">
+          <caret line="336" column="20" selection-start-line="336" selection-start-column="20" selection-end-line="336" selection-end-column="20" />
+          <folding>
+            <element signature="e#6019#6179#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
