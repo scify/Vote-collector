@@ -60,31 +60,41 @@ function clickHandler(e) {
  * If it's the second reading, it ends the voting
  */
 function nextPhaseBtnHandler() {
-    // Check if any saved member's answer is different (so it needs updating)
-    var changedMembers = [];
-    $(memberDivs).each(function(index, member) {
-        if (isSaved(member)) {
-            var memberId = $(member).data('id');        // Get id
-            var answerId = getSelectedAnswer(member);   // Get selected answer
-
-            if (savedVotes[memberId] != answerId) {     // If selected answer is different from saved one, add it to the array
-                changedMembers.push(member);
-            }
-        }
-    });
-
-    // Update any members that have selected different answers from the saved ones
-    if (changedMembers.length > 0) {
-        var votes = getVotes(changedMembers, true);
-        submitVotes(votes);
-    }
-
-    // Go to next phase of voting
+    // Confirm the action before doing anything
+    var msg = 'Σίγουρα θέλετε να ολοκληρώσετε την ψηφοφορία;';
     if (reading == 1) {
-        startSecondReading();
-    } else {
-        endVoting();
+        msg = 'Σίγουρα θέλετε να προχωρήσετε στη 2η ανάγνωση;';
     }
+
+    if (confirm(msg)) {
+        // Check if any saved member's answer is different (so it needs updating)
+        var changedMembers = [];
+        $(memberDivs).each(function (index, member) {
+            if (isSaved(member)) {
+                var memberId = $(member).data('id');        // Get id
+                var answerId = getSelectedAnswer(member);   // Get selected answer
+
+                if (savedVotes[memberId] != answerId) {     // If selected answer is different from saved one, add it to the array
+                    changedMembers.push(member);
+                }
+            }
+        });
+
+        // Update any members that have selected different answers from the saved ones
+        if (changedMembers.length > 0) {
+            var votes = getVotes(changedMembers, true);
+            submitVotes(votes);
+        }
+
+        // Go to next phase of voting
+        if (reading == 1) {
+            startSecondReading();
+        } else {
+            endVoting();
+        }
+    }
+
+    return false;
 }
 
 /**
