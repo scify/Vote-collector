@@ -464,9 +464,8 @@ function submitVotes(votes, goToNext) {
         },
         error: function(data) {
             // Show error
-            var errorDiv =  '<div class="alert alert-danger">' +
-                                '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι φήφοι!' +
-                            '</div>';
+            $('#couldNotSaveAlert').remove();
+            var errorDiv =  getAlertDiv(false, 'couldNotSaveAlert', '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι φήφοι!');
 
             $('#votingCompleteAlert').remove();
             $('.container').prepend(errorDiv);
@@ -493,18 +492,15 @@ function votingComplete(success) {
     $('#nextPhaseBtn').remove();
 
     var alertDiv;
-
+    var msg;
     if (success) {
-        alertDiv =  '<div class="alert alert-success" id="votingCompleteAlert">' +
-                        '<strong>Η ψηφοφορία ολοκληρώθηκε με επιτυχία!</strong>' +
-                        (reading == 1 ? ' Όλοι οι βουλευτές ψήφισαν στην πρώτη ανάγνωση.' : '') +
-                        ' Δείτε τα αποτελέσματα <a href="/votings/' + voting_id + '" class="alert-link">εδώ</a>.' +
-                    '</div>';
+        msg =   '<strong>Η ψηφοφορία ολοκληρώθηκε με επιτυχία!</strong>' +
+                (reading == 1 ? ' Όλοι οι βουλευτές ψήφισαν στην πρώτη ανάγνωση.' : '') +
+                ' Δείτε τα αποτελέσματα <a href="/votings/' + voting_id + '" class="alert-link">εδώ</a>.';
     } else {
-        alertDiv =  '<div class="alert alert-danger" id="votingCompleteAlert">' +
-                        '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι ψήφοι.' +
-                    '</div>';
+        msg =   '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι ψήφοι.';
     }
+    alertDiv = getAlertDiv(success, 'votingCompleteAlert', msg);
 
     $('.container').prepend(alertDiv);
 }
@@ -551,4 +547,21 @@ function getNextButton() {
  */
 function absentLabel() {
     return '<span class="label label-default absentLabel "><span class="glyphicon glyphicon-question-sign"></span> Απουσιάζει</span>';
+}
+
+/**
+ * Returns a bootstrap alert div, with the danger or success class
+ * and the specified message
+ *
+ * @param success       Set true if you want the message to be green, false for red
+ * @param id            The id that the div should have
+ * @param msg           The message that should be displayed in the div
+ * @returns {string}    The div with bootstrap classes etc.
+ */
+function getAlertDiv(success, id, msg) {
+    var alert = '<div class="alert alert-' + (success?'success':'danger') + '" ' + ((id.length > 0) ? 'id="' + id + '"' : '') + '>' +
+                msg +
+                '</div>';
+
+    return alert;
 }
