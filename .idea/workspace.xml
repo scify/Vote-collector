@@ -4,7 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/public/js/readings.js" line="429" mnemonic="0" />
+    <bookmark url="file://$PROJECT_DIR$/public/js/readings.js" line="430" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cbcbad9-a1aa-486a-8c86-04ff6d8fcf2e" name="Default" comment="" />
@@ -25,62 +25,17 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DockManager">
-    <window id="4">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/public/js/readings.js">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.25974026" vertical-offset="5968" max-vertical-offset="7968">
-                    <caret line="401" column="18" selection-start-line="401" selection-start-column="18" selection-end-line="401" selection-end-column="18" />
-                    <folding>
-                      <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
-                      <element signature="n#!!doc;n#isSaved#0" expanded="false" />
-                      <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
-                      <element signature="n#!!doc;n#makeNotAbsent#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="-11.52" vertical-offset="0" max-vertical-offset="448">
-                    <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="31" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="reading.blade.php" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="-7.04" vertical-offset="0" max-vertical-offset="608">
-                    <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Vouliwatch" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="readings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/readings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44367418" vertical-offset="2416" max-vertical-offset="8048">
-              <caret line="167" column="34" selection-start-line="167" selection-start-column="34" selection-end-line="167" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5605" max-vertical-offset="8064">
+              <caret line="379" column="40" selection-start-line="379" selection-start-column="40" selection-end-line="379" selection-end-column="40" />
               <folding>
                 <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
                 <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
@@ -90,10 +45,30 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="2015_07_06_121640_create_tables.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2015_07_06_121640_create_tables.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6279864" vertical-offset="1104" max-vertical-offset="2256">
+              <caret line="93" column="65" selection-start-line="93" selection-start-column="65" selection-end-line="93" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="members.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/members.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="821" max-vertical-offset="1776">
+              <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.36" vertical-offset="4006" max-vertical-offset="5216">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4006" max-vertical-offset="5216">
               <caret line="287" column="37" selection-start-line="287" selection-start-column="33" selection-end-line="287" selection-end-column="37" />
               <folding>
                 <element signature="e#5798#5958#0#PHP" expanded="false" />
@@ -127,7 +102,6 @@
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
         <option value="$PROJECT_DIR$/resources/views/members/_form.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2015_07_06_121640_create_tables.php" />
         <option value="$PROJECT_DIR$/app/Member.php" />
         <option value="$PROJECT_DIR$/resources/views/members/partials/form.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MembersController.php" />
@@ -163,6 +137,7 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
         <option value="$PROJECT_DIR$/public/js/readings.js" />
+        <option value="$PROJECT_DIR$/database/migrations/2015_07_06_121640_create_tables.php" />
       </list>
     </option>
   </component>
@@ -211,6 +186,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -403,7 +379,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -455,15 +430,15 @@
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-env-vars>false</pass-parent-env-vars>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <configuration default="false" name="Vouliwatch" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="Unnamed" start_url="http://vouliwatch/">
@@ -521,29 +496,29 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="743" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5171875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1768" y="200" width="904" height="488" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1802" y="190" width="904" height="488" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.24963397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="1369" y="128" width="302" height="640" />
+      <window_info id="Structure" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.24963397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="1369" y="128" width="302" height="640" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17203514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="99" y="100" width="1168" height="543" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5171875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -570,13 +545,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35494882" vertical-offset="0" max-vertical-offset="586">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/phrase.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33224222" vertical-offset="1317" max-vertical-offset="6416">
@@ -835,7 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10702341" vertical-offset="0" max-vertical-offset="598">
           <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -864,7 +831,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05972696" vertical-offset="1261" max-vertical-offset="1872">
           <caret line="93" column="56" selection-start-line="93" selection-start-column="56" selection-end-line="93" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,7 +838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34641638" vertical-offset="1893" max-vertical-offset="3520">
           <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,15 +845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33224222" vertical-offset="181" max-vertical-offset="1008">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/members.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33224222" vertical-offset="1109" max-vertical-offset="1776">
-          <caret line="82" column="78" selection-start-line="82" selection-start-column="78" selection-end-line="82" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -896,7 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05972696" vertical-offset="381" max-vertical-offset="992">
           <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -904,7 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2405892" vertical-offset="77" max-vertical-offset="944">
           <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -912,13 +866,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.52" vertical-offset="0" max-vertical-offset="448">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.36" vertical-offset="4006" max-vertical-offset="5216">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4006" max-vertical-offset="5216">
           <caret line="287" column="37" selection-start-line="287" selection-start-column="33" selection-end-line="287" selection-end-column="37" />
           <folding>
             <element signature="e#5798#5958#0#PHP" expanded="false" />
@@ -926,24 +879,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/members.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="821" max-vertical-offset="1776">
+          <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.04" vertical-offset="0" max-vertical-offset="608">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding />
+        <state vertical-scroll-proportion="0.2816" vertical-offset="0" max-vertical-offset="625">
+          <caret line="11" column="55" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25974026" vertical-offset="5968" max-vertical-offset="7968">
-          <caret line="401" column="18" selection-start-line="401" selection-start-column="18" selection-end-line="401" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="5605" max-vertical-offset="8064">
+          <caret line="379" column="40" selection-start-line="379" selection-start-column="40" selection-end-line="379" selection-end-column="40" />
           <folding>
             <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
-            <element signature="n#!!doc;n#isSaved#0" expanded="false" />
             <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
             <element signature="n#!!doc;n#makeNotAbsent#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_07_06_121640_create_tables.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6279864" vertical-offset="1104" max-vertical-offset="2256">
+          <caret line="93" column="65" selection-start-line="93" selection-start-column="65" selection-end-line="93" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>

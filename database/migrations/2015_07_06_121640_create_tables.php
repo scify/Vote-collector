@@ -91,7 +91,7 @@ class CreateTables extends Migration
             $table->increments('id');
             $table->integer('voting_id')->unsigned();
             $table->integer('member_id')->unsigned();
-            $table->integer('answer_id')->unsigned();
+            $table->integer('answer_id')->unsigned()->nullable();
 
             $table->foreign('voting_id')->references('id')->on('votings')->onDelete('cascade');
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');

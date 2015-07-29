@@ -133,7 +133,7 @@ function absentButtonHandler() {
 
     if (!isAbsent(member)) {
         if (isSaved(member)) {
-            deleteVote(member); // delete the vote is here!
+            deleteVote(member);
         }
 
         makeAbsent(member);
@@ -343,16 +343,16 @@ function startSecondReading() {
  *
  * @param memberDivs    The divs of the members
  * @param votes         The array to save the votes to
- * @param updating      Set true if updating members, so it will ignore the data-saved attribute.
+ * @param forceUpdate   Set true if updating members, so it will ignore the data-saved attribute.
  */
-function saveVotes(memberDivs, votes, updating) {
+function saveVotes(memberDivs, votes, forceUpdate) {   // force update
     $(memberDivs).each(function(index, member) {
-        var updatingCheck = true;
-        if (!updating) {
-            updatingCheck = !isSaved(member);
+        var updateCheck = true;
+        if (!forceUpdate) {
+            updateCheck = !isSaved(member);
         }
 
-        if (!isAbsent(member) && updatingCheck) {
+        if (!isAbsent(member) && updateCheck) {
             var vote = {
                 member_id: $(member).data('id'),
                 answer_id: getSelectedAnswer(member)
@@ -422,11 +422,12 @@ function submitVotes(votes, goToNext) {
         },
         error: function(data) {
             // Show error
-            // todo: show error to user
-            /*
-             * (Possibly check if the success message from the end of the voting is shown and remove it
-             * and then prepend an error)
-             */
+            var errorDiv =  '<div class="alert alert-danger">' +
+                                '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι φήφοι!' +
+                            '</div>';
+
+            $('#votingCompleteAlert').remove();
+            $('.container').prepend(errorDiv);
         }
     });
 }
@@ -452,13 +453,13 @@ function votingComplete(success) {
     var alertDiv;
 
     if (success) {
-        alertDiv =  '<div class="alert alert-success">' +
+        alertDiv =  '<div class="alert alert-success" id="votingCompleteAlert">' +
                         '<strong>Η ψηφοφορία ολοκληρώθηκε με επιτυχία!</strong>' +
                         (reading == 1 ? ' Όλοι οι βουλευτές ψήφισαν στην πρώτη ανάγνωση.' : '') +
                         ' Δείτε τα αποτελέσματα <a href="/votings/' + voting_id + '" class="alert-link">εδώ</a>.' +
                     '</div>';
     } else {
-        alertDiv =  '<div class="alert alert-danger">' +
+        alertDiv =  '<div class="alert alert-danger" id="votingCompleteAlert">' +
                         '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι ψήφοι.' +
                     '</div>';
     }
