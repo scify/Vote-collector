@@ -88,11 +88,16 @@ class VotingsController extends Controller {
                 ])->first();                        // Not get(), because a member can only vote once in a voting
 
                 if (count($vote) > 0) {             // If member has voted put member and answer to array
-                    $answer = VoteTypeAnswer::findOrFail($vote->answer_id);
-
+                    $answerId = $vote->answer_id;
+                    if ($answerId != null) {
+                        $vta = VoteTypeAnswer::findOrFail($answerId);
+                        $answer = $vta->answer;
+                    } else {
+                        $answer = 'Απών';
+                    }
                     $memberVotes[] = [
                         'member' => $member->first_name . ' ' . $member->last_name,
-                        'answer' => $answer->answer
+                        'answer' => $answer
                     ];
                 }
             }
