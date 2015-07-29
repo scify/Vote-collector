@@ -1,6 +1,13 @@
 var orderChanged = false;
 
 $(document).ready(function() {
+    // Setup CSRF token for middleware
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     // Helper function to keep table row from collapsing when being sorted
     var fixHelperModified = function(e, tr) {
         var $originals = tr.children();
@@ -59,13 +66,6 @@ function showSaveOrderButton() {
  */
 function saveOrder() {
     var members = collectMembersByOrder();
-
-    // Setup CSRF token for middleware
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
     // Send the ajax request to server
     $.ajax({
