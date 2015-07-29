@@ -41,6 +41,15 @@ function clickHandler(e) {
 
     if (target.nodeName == 'SPAN') {
         if ($(target).is('.memberName') && !$(target).is('.currentMember')) {
+            // Save old member's vote
+            var currMember = memberDivs[currentMember];
+            if (!isAbsent(currMember)) {
+                var m_id = $(currMember).data('id');
+                if (!isSaved(currMember) || (getSelectedAnswer(currMember) != savedVotes[m_id])) {
+                    saveMember(currMember, false);
+                }
+            }
+
             // Remove current status from old div
             removeCurrentStatus(memberDivs[currentMember]);
 
@@ -108,23 +117,17 @@ function nextButtonHandler() {
     if (!isAbsent(member)) {
         saveMember(member, true);
     } else {
-        nextMember(false);
+        nextMember();
     }
 
     return false;
 }
 
 /**
- * Saves the current member's vote, and goes to the next member in the list
- *
- * @param markAsVoted   Set to true if you want to mark the current member as "voted" before going to the next one
+ * Goes to the next member in the list
  */
-function nextMember(markAsVoted) {
+function nextMember() {
     if (currentMember < memberDivs.length - 1) {
-        if (markAsVoted) {
-            $(memberDivs[currentMember]).data('saved', 'true'); // Mark member as voted
-        }
-
         // Go to next member
         removeCurrentStatus(memberDivs[currentMember]);
         currentMember++;
@@ -142,6 +145,7 @@ function absentButtonHandler() {
 
     if (!isAbsent(member)) {
         if (isSaved(member)) {
+            $(member).data('saved', 'false');   // Mark member as not saved
             deleteVote(member);
         }
 
@@ -277,7 +281,6 @@ function isSaved(member) {
 function makeAbsent(member) {
     $(member).addClass('text-muted');
     $(member).prepend(absentLabel());
-    $(member).data('saved', 'false');
 }
 
 /**
@@ -295,14 +298,12 @@ function makeNotAbsent(member) {
  * (to save the votes, and submit them to the server)
  */
 function endVoting() {
-    console.log('END VOTING');
     // Save votes of not absent members
     var votes = getVotes(memberDivs, false);
     submitVotes(votes, false);                  // Submit the votes
 
     // Save votes of absent members
     votes = getAbsentMemberVotes();
-    console.log(votes);
     submitVotes(votes, false);
 
     votingComplete(true);                   // Clear page and show voting complete message
@@ -352,7 +353,8 @@ function startSecondReading() {
 }
 
 /**
- * Saves the votes of members who voted to the votes array
+ * Puts the votes of members who voted to an array, ready to
+ * be saved to the database by the submitVotes() function
  *
  * @param members       The divs of the members
  * @param forceUpdate   Set true if updating members, so it will ignore the data-saved attribute.
@@ -362,8 +364,14 @@ function getVotes(members, forceUpdate) {
     var votes = [];
 
     $(members).each(function(index, member) {
+        if (isSaved(member)) {
+            console.log('IGNORING SAVED MEMBER BRUH! ' + $(member).data('id'));
+        }
+
         if (!isAbsent(member) && (forceUpdate || !isSaved(member))) {
-            votes.push(getMemberVote(member));   // Add member's vote to votes array
+            console.log('troloolololol');
+            $(member).data('saved', 'true');    // Mark as saved
+            votes.push(getMemberVote(member));  // Add member's vote to votes array
         }
     });
 
@@ -457,7 +465,7 @@ function submitVotes(votes, goToNext) {
         dataType: 'json',
         success: function(data) {
             if (goToNext) {
-                nextMember(true);
+                nextMember();
             }
         },
         error: function(data) {
