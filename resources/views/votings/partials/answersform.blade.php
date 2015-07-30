@@ -7,4 +7,4 @@
 @endforeach
 
 {!! Form::submit('Αποθήκευση', ['class' => 'btn btn-primary']) !!}
-<a href="/votings" class="btn btn-default">Άκυρο</a>
+<a href="{{ url('votings') }}" class="btn btn-default">Άκυρο</a>
