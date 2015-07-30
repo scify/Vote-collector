@@ -475,7 +475,7 @@ function submitVotes(votes, goToNext) {
 
     // Send ajax request to server
     $.ajax({
-        url: '/votings/reading',
+        url: 'votings/reading',
         type: 'POST',
         data: {
             data: votes,
