@@ -24,7 +24,7 @@
                                 <td>{{ $member->first_name }}</td>
                                 <td>{{ $member->last_name }}</td>
                                 <td> {{-- Info button --}}
-                                    @include('partials.infoBtn', ['url' => '/members/' . $member->id])
+                                    @include('partials.infoBtn', ['url' => 'members/' . $member->id])
                                 </td>
                             </tr>
                         @endforeach

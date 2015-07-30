@@ -12,4 +12,4 @@
 
 <!-- Submit and cancel buttons -->
 {!! Form::submit($submitButtonText, array('class' => 'btn btn-primary')) !!}
-<a href="/voteobjectives" class="btn btn-default">Άκυρο</a>
+<a href="{{ url('voteobjectives') }}" class="btn btn-default">Άκυρο</a>

@@ -39,7 +39,7 @@
                                         {{ $group->name }}
                                     </td>
                                     <td> {{-- Info button --}}
-                                        @include('partials.infoBtn', ['url' => '/groups/' . $group->id])
+                                        @include('partials.infoBtn', ['url' => 'groups/' . $group->id])
                                     </td>
                                 </tr>
                             @endforeach

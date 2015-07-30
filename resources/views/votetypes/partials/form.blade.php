@@ -30,4 +30,4 @@
 <a href="#" id="addAnswer" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus"></span> Προσθήκη απάντησης</a>
 
 {!! Form::submit($submitButtonText, array('class' => 'btn btn-primary')) !!}
-<a href="/votetypes" class="btn btn-default">Άκυρο</a>
+<a href="{{ url('votetypes') }}" class="btn btn-default">Άκυρο</a>

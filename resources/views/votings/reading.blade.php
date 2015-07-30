@@ -26,7 +26,7 @@
             </div>
         @endforeach
 
-        <a href="/votings" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
+        <a href="{{ url('votings') }}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
         <a href="#" id="nextPhaseBtn" class="btn btn-primary"><span class="glyphicon glyphicon-forward"></span> Δεύτερη ανάγνωση</a>
     {!! Form::close() !!}
 @stop

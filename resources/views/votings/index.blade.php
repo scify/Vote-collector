@@ -39,7 +39,7 @@
                                         <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
                                             <span class="glyphicon glyphicon-book"></span> Εκκίνηση
                                         </a>
-                                        <a href="/votings/answers/{{ $voting->id }}/edit" class="btn btn-primary btn-xs">
+                                        <a href="votings/answers/{{ $voting->id }}/edit" class="btn btn-primary btn-xs">
                                             <span class="glyphicon glyphicon-pencil"></span> Αλλαγή απαντήσεων
                                         </a>
                                     </div>

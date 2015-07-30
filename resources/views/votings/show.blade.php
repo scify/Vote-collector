@@ -19,7 +19,7 @@
         </p>
         @if(count($memberVotes) > 0)
             <p>
-                <a class="btn btn-primary btn-lg" href="/votings/{{ $voting->id }}/download" role="button"><span class="glyphicon glyphicon-cloud-download"></span> Κατέβασμα αποτελεσμάτων</a>
+                <a class="btn btn-primary btn-lg" href="{{ url('votings/' . $voting->id . '/download') }}" role="button"><span class="glyphicon glyphicon-cloud-download"></span> Κατέβασμα αποτελεσμάτων</a>
             </p>
         @endif
     </div>

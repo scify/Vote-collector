@@ -39,5 +39,4 @@
     @endif
 
     <a href="groups/create" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Νέα ομάδα</a>
-
 @stop

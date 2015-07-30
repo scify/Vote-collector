@@ -11,4 +11,4 @@
 </div>
 
 {!! Form::submit($submitButtonText, array('class' => 'btn btn-primary')) !!}
-<a href="/groups" class="btn btn-default">Άκυρο</a>
+<a href="{{ url('groups') }}" class="btn btn-default">Άκυρο</a>
