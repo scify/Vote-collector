@@ -516,7 +516,7 @@ function votingComplete(success) {
     if (success) {
         msg =   '<strong>Η ψηφοφορία ολοκληρώθηκε με επιτυχία!</strong>' +
                 (reading == 1 ? ' Όλοι οι βουλευτές ψήφισαν στην πρώτη ανάγνωση.' : '') +
-                ' Δείτε τα αποτελέσματα <a href="/votings/' + voting_id + '" class="alert-link">εδώ</a>.';
+                ' Δείτε τα αποτελέσματα <a href="' + votingUrl + '" class="alert-link">εδώ</a>.';
     } else {
         msg =   '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι ψήφοι.';
     }

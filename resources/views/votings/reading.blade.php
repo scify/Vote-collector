@@ -33,7 +33,8 @@
 
 @section('footer')
     <script>
-        var submitVotesUrl = '{{ url('votings/reading') }}';    {{-- Url for submitting votes, using url() --}}
+        var submitVotesUrl = '{{ url('votings/reading') }}';    {{-- URL for submitting votes, using url() --}}
+        var votingUrl = '{{ url('votings/' . $votingid) }}';    {{-- URL for going to the voting page, used by the alert shown after voting is complete --}}
     </script>
     <script src="{{ URL::asset('js/readings.js') }}"></script>
 @stop
