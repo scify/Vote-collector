@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Vouliwatch</a>
+            <a class="navbar-brand" href="{{ url('/') }}">Vouliwatch</a>
         </div>
 
         <div id="navbarCollapse" class="collapse navbar-collapse">

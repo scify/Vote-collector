@@ -69,7 +69,7 @@ function saveOrder() {
 
     // Send the ajax request to server
     $.ajax({
-        url: 'membersorder',
+        url: submitOrderUrl,
         type: 'POST',
         data: { data: members },
         dataType: 'json',

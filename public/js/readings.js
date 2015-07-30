@@ -383,12 +383,7 @@ function getVotes(members, forceUpdate) {
     var votes = [];
 
     $(members).each(function(index, member) {
-        if (isSaved(member)) {
-            console.log('IGNORING SAVED MEMBER BRUH! ' + $(member).data('id'));
-        }
-
         if (!isAbsent(member) && (forceUpdate || !isSaved(member))) {
-            console.log('troloolololol');
             $(member).data('saved', 'true');    // Mark as saved
             votes.push(getMemberVote(member));  // Add member's vote to votes array
         }
@@ -475,7 +470,7 @@ function submitVotes(votes, goToNext) {
 
     // Send ajax request to server
     $.ajax({
-        url: 'votings/reading',
+        url: submitVotesUrl,
         type: 'POST',
         data: {
             data: votes,

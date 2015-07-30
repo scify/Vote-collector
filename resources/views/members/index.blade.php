@@ -53,5 +53,8 @@
 
 @section('footer')
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script>
+        var submitOrderUrl = '{{ url('membersorder') }}';    {{-- Url for submitting votes, using url() --}}
+    </script>
     <script src="{{ URL::asset('js/members.js') }}"></script>
 @stop

@@ -32,5 +32,8 @@
 @stop
 
 @section('footer')
+    <script>
+        var submitVotesUrl = '{{ url('votings/reading') }}';    {{-- Url for submitting votes, using url() --}}
+    </script>
     <script src="{{ URL::asset('js/readings.js') }}"></script>
 @stop
