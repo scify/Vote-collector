@@ -37,15 +37,19 @@ $(function(){
  * Handles keypresses and calls the appropriate functions
  * @param e
  */
-function keyboardHandler(e) {   //todo: scroll page down or up depending on what user presses???
+function keyboardHandler(e) {   //todo: scroll page down or up?
     var btn = e.which;
 
     switch(btn) {
         case 83:    // S (next member)
-            saveMember(memberDivs[currentMember], true);
+            var member = memberDivs[currentMember];
+            if (!isAbsent(member)) {
+                saveMember(memberDivs[currentMember], false);
+            }
+            nextMember();
             break;
         case 87:    // W (previous member)
-
+            changeToMember(currentMember - 1);
             break;
         case 65:    // A (mark as absent)
             absentButtonHandler();
@@ -64,26 +68,37 @@ function clickHandler(e) {
 
     if (target.nodeName == 'SPAN') {
         if ($(target).is('.memberName') && !$(target).is('.currentMember')) {
-            // Save old member's vote
-            var currMember = memberDivs[currentMember];
-            if (!isAbsent(currMember)) {
-                var m_id = $(currMember).data('id');
-                if (!isSaved(currMember) || (getSelectedAnswer(currMember) != savedVotes[m_id])) {
-                    saveMember(currMember, false);
-                }
-            }
+            var newMember = $(memberDivs).index($(target).parent());    // Get index of clicked member
 
-            // Remove current status from old div
-            removeCurrentStatus(memberDivs[currentMember]);
-
-            // Get new div and change currentMember variable
-            var memberDiv = $(target).parent();
-            currentMember = $(memberDivs).index(memberDiv);
-
-            // Add current status to new div
-            addCurrentStatus(memberDiv);
+            changeToMember(newMember);
         }
     }
+}
+
+/**
+ * Changes the current member to another member and saves the current member's
+ * value if it should
+ *
+ * @param memberIndex   The index (in the memberDivs array) of the member you want to switch to
+ */
+function changeToMember(memberIndex) {
+    // Save old member's vote
+    var currMember = memberDivs[currentMember];
+    if (!isAbsent(currMember)) {
+        var m_id = $(currMember).data('id');
+        if (!isSaved(currMember) || (getSelectedAnswer(currMember) != savedVotes[m_id])) {
+            saveMember(currMember, false);
+        }
+    }
+
+    // Remove current status from old div
+    removeCurrentStatus(memberDivs[currentMember]);
+
+    // Change currentMember to new member index
+    currentMember = memberIndex;
+
+    // Add current status to new div
+    addCurrentStatus(memberDivs[currentMember]);
 }
 
 /**
