@@ -13,16 +13,23 @@ $(function(){
     // Set the voting_id variable (needed for when the form is saved)
     voting_id = $('#votesform').data('votingid');
 
-    // Add confirmation before leaving the page so no data is lost by a misclick
-    $(window).bind('beforeunload', function() {
-        return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
-    });
-
     // Setup CSRF token for middleware
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+    });
+
+    // Keyboard shortcuts
+    $(document).keydown(function(e) {
+        if (e.which == 83) {    // S button
+            saveMember(memberDivs[currentMember], true);
+        }
+    });
+
+    // Add confirmation before leaving the page so no data is lost by a misclick
+    $(window).bind('beforeunload', function() {
+        return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
     });
 
     $('body').click(clickHandler);                  // Used to change between members by clicking on their names
