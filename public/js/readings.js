@@ -132,14 +132,14 @@ function nextButtonHandler() {
 
 /**
  * Goes to the next member in the list
+ * (if the current member is the last in the list, it adds current status again to update absent buttons)
  */
 function nextMember() {
+    removeCurrentStatus(memberDivs[currentMember]);
     if (currentMember < memberDivs.length - 1) {
-        // Go to next member
-        removeCurrentStatus(memberDivs[currentMember]);
         currentMember++;
-        addCurrentStatus(memberDivs[currentMember]);
     }
+    addCurrentStatus(memberDivs[currentMember]);
 }
 
 /**
@@ -158,16 +158,7 @@ function absentButtonHandler() {
 
         makeAbsent(member);
 
-        // Go to next member
-        removeCurrentStatus(member);            // Remove current status from the current member
-
-        if (currentMember < memberDivs.length - 1) {        // If this wasn't the last member in the list
-            currentMember++;                                // go to the next member
-
-            addCurrentStatus(memberDivs[currentMember]);    // and add current status to them
-        } else {
-            addCurrentStatus(member);           // Add current status to the last member again so the button updates and label hides
-        }
+        nextMember();   // Go to next member
     } else {
         removeCurrentStatus(member);
         makeNotAbsent(member);
@@ -326,7 +317,7 @@ function makeNotAbsent(member) {
 function endVoting() {
     // Save votes of not absent members
     var votes = getVotes(memberDivs, false);
-    submitVotes(votes, false);                  // Submit the votes
+    submitVotes(votes, false);              // Submit the votes
 
     // Save votes of absent members
     votes = getAbsentMemberVotes();
@@ -425,7 +416,6 @@ function getAbsentMemberVotes() {
 
     $('.member').each(function(index, member) {
         if (isAbsent(member)) {
-            console.log(index + ' is absent!!!');
             absentVotes.push(getMemberVote(member));
         }
     });
