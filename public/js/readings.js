@@ -14,9 +14,9 @@ $(function(){
     voting_id = $('#votesform').data('votingid');
 
     // Add confirmation before leaving the page so no data is lost by a misclick
-    //$(window).bind('beforeunload', function() {
-    //    return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
-    //});
+    $(window).bind('beforeunload', function() {
+        return 'Σίγουρα θέλετε να φύγετε από τη σελίδα;';
+    });
 
     // Setup CSRF token for middleware
     $.ajaxSetup({
@@ -180,7 +180,7 @@ function deleteVote(member) {
 
     // Send ajax request to server
     $.ajax({
-        url: '/votings/reading/dv',
+        url: deleteVoteUrl,
         type: 'POST',
         data: {
             m_id: m_id,
