@@ -21,11 +21,7 @@ $(function(){
     });
 
     // Keyboard shortcuts
-    $(document).keydown(function(e) {
-        if (e.which == 83) {    // S button
-            saveMember(memberDivs[currentMember], true);
-        }
-    });
+    $(document).keydown(keyboardHandler);
 
     // Add confirmation before leaving the page so no data is lost by a misclick
     $(window).bind('beforeunload', function() {
@@ -36,6 +32,26 @@ $(function(){
 
     $('#nextPhaseBtn').click(nextPhaseBtnHandler);  // Second voting/end voting button
 });
+
+/**
+ * Handles keypresses and calls the appropriate functions
+ * @param e
+ */
+function keyboardHandler(e) {   //todo: scroll page down or up depending on what user presses???
+    var btn = e.which;
+
+    switch(btn) {
+        case 83:    // S (next member)
+            saveMember(memberDivs[currentMember], true);
+            break;
+        case 87:    // W (previous member)
+
+            break;
+        case 65:    // A (mark as absent)
+            absentButtonHandler();
+            break;
+    }
+}
 
 /**
  * Checks if the user clicked a member name, and makes that
