@@ -27,7 +27,9 @@
         @endforeach
 
         <a href="{{ url('votings') }}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
-        <a href="#" id="nextPhaseBtn" class="btn btn-primary"><span class="glyphicon glyphicon-forward"></span> Δεύτερη ανάγνωση</a>
+        <div id="readingsButtonGroup" class="btn-group">
+            <a href="#" id="nextPhaseBtn" class="btn btn-primary"><span class="glyphicon glyphicon-forward"></span> Δεύτερη ανάγνωση</a>
+        </div>
     {!! Form::close() !!}
 @stop
 
@@ -37,5 +39,5 @@
         var votingUrl = '{{ url('votings/' . $votingid) }}';    {{-- URL for going to the voting page, used by the alert shown after voting is complete --}}
         var deleteVoteUrl = '{{ url('votings/reading/dv') }}';  {{-- URL for deleting a member's vote after they're marked as absent --}}
     </script>
-    <script src="{{ URL::asset('js/readings.js') }}"></script>
+    <script src="{{ URL::asset('js/readings/readings.js') }}"></script>
 @stop

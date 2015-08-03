@@ -37,7 +37,7 @@ $(function(){
  * Handles keypresses and calls the appropriate functions
  * @param e
  */
-function keyboardHandler(e) {   //todo: scroll page down or up?
+function keyboardHandler(e) {
     var btn = e.which;
 
     switch(btn) {
@@ -397,6 +397,7 @@ function startSecondReading() {
         addCurrentStatus(memberDivs[currentMember]);    // Add curr. status to current member
 
         $('#nextPhaseBtn').text('Τέλος ψηφοφορίας');    // Change the next phase button to say "end voting"
+        $('#readingsButtonGroup').prepend(getPrevReadingButton());  // Add button to go to the previous reading
     }
 }
 
@@ -536,8 +537,8 @@ function votingComplete(success) {
         $(div).remove();
     });
 
-    // Remove the next phase button
-    $('#nextPhaseBtn').remove();
+    // Remove the next phase button and previous reading button
+    $('#readingsButtonGroup').remove();
 
     var alertDiv;
     var msg;
@@ -586,6 +587,15 @@ function getNotAbsentButton() {
  */
 function getNextButton() {
     return '<a id="nextBtn" class="btn btn-primary" href="#"><span class="glyphicon glyphicon-chevron-down"></span> Επόμενος</a>'
+}
+
+/**
+ * Creates and returns the button that is used to go back to the first reading
+ *
+ * @returns {string}
+ */
+function getPrevReadingButton() {
+    return '<a id="prevReadingBtn" class="btn btn-default" href="#"><span class="glyphicon glyphicon-backward"></span></a>'
 }
 
 /**
