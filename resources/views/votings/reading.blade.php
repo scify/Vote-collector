@@ -9,20 +9,20 @@
 
     {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal', 'id' => 'votesform', 'data-votingid' => $votingid]) !!}
         @foreach($myMembers as $member)
-            <div class="form-group member col-sm-12" data-saved="false" data-id="{{ $member['id'] }}">
+            <div class="form-group member col-sm-12" data-saved="{{ $member['hasVoted'] }}" data-id="{{ $member['id'] }}">
                 <span class="memberName pull-left col-sm-3">
                     {{ $member['full_name'] }}
                 </span>
 
                 <div class="radios col-sm-3 hidden">
                     @foreach($myAnswers as $answer)
-                        {!! Form::radio('answer_' . $member['id'], $answer['id'], $member['groupAnswerId'] == $answer['id'], ['id' => 'rd' . $member['id'] . $answer['id']]) !!}
+                        {!! Form::radio('answer_' . $member['id'], $answer['id'], $member['answerId'] == $answer['id'], ['id' => 'rd' . $member['id'] . $answer['id']]) !!}
                         {!! Form::label('rd' . $member['id'] . $answer['id'], $answer['answer'], ['class' => 'control-label']) !!}
                         <br/>
                     @endforeach
                 </div>
 
-                <span id="selAnswerLabel{{ $member['id'] }}" class="label label-primary pull-left"></span>
+                <span id="selAnswerLabel{{ $member['id'] }}" class="label label-primary pull-left">{{ $member['label'] }}</span>
             </div>
         @endforeach
 

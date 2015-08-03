@@ -10,6 +10,13 @@ $(function(){
     // The page just loaded so make the first member in the list the current one
     addCurrentStatus(memberDivs[0]);
 
+    // In case the page loaded because the user changed from 2nd -> 1st reading, put votes of saved members in the savedVotes variable
+    $(memberDivs).each(function(index, member) {
+        if (isSaved(member)) {
+            savedVotes[getMemberId(member)] = getSelectedAnswer(member);
+        }
+    });
+
     // Set the voting_id variable (needed for when the form is saved)
     voting_id = $('#votesform').data('votingid');
 
@@ -85,7 +92,7 @@ function changeToMember(memberIndex) {
     // Save old member's vote
     var currMember = memberDivs[currentMember];
     if (!isAbsent(currMember)) {
-        var m_id = $(currMember).data('id');
+        var m_id = getMemberId(currMember);
         if (!isSaved(currMember) || (getSelectedAnswer(currMember) != savedVotes[m_id])) {
             saveMember(currMember, false);
         }
@@ -118,7 +125,7 @@ function nextPhaseBtnHandler() {
         var changedMembers = [];
         $(memberDivs).each(function (index, member) {
             if (isSaved(member)) {
-                var memberId = $(member).data('id');        // Get id
+                var memberId = getMemberId(member);            // Get id
                 var answerId = getSelectedAnswer(member);   // Get selected answer
 
                 if (savedVotes[memberId] != answerId) {     // If selected answer is different from saved one, add it to the array
@@ -182,8 +189,10 @@ function absentButtonHandler() {
     var member = memberDivs[currentMember];
 
     if (!isAbsent(member)) {
+        console.log('\tis not absent!');
         if (isSaved(member)) {
-            $(member).data('saved', 'false');   // Mark member as not saved
+            console.log('\tis saved, deleting..');
+            $(member).data('saved', false);   // Mark member as not saved
             deleteVote(member);
         }
 
@@ -191,6 +200,7 @@ function absentButtonHandler() {
 
         nextMember();   // Go to next member
     } else {
+        console.log('\tis absent, making not absent');
         removeCurrentStatus(member);
         makeNotAbsent(member);
         addCurrentStatus(member);
@@ -205,7 +215,7 @@ function absentButtonHandler() {
  * @param member    The member to delete the vote of
  */
 function deleteVote(member) {
-    var m_id = $(member).data('id');    // member id
+    var m_id = getMemberId(member);    // member id
 
     // Send ajax request to server
     $.ajax({
@@ -254,7 +264,7 @@ function addCurrentStatus(member) {
     $(member).find('.radios').removeClass('hidden');
 
     // Hide the selected answer label
-    $('#selAnswerLabel' + memberId(member)).text('');
+    $('#selAnswerLabel' + getMemberId(member)).text('');
 
     // If member is marked as absent, hide the absent label temporarily
     $(member).find('.absentLabel').addClass('hidden');
@@ -280,8 +290,8 @@ function removeCurrentStatus(member) {
 
     // Show the selected answer label
     if (!isAbsent(member)) {
-        var answerText = $(member).find('label[for=rd' + memberId(member) + '' + getSelectedAnswer(member) + ']').text();
-        $('#selAnswerLabel' + memberId(member)).text(answerText);
+        var answerText = $(member).find('label[for=rd' + getMemberId(member) + '' + getSelectedAnswer(member) + ']').text();
+        $('#selAnswerLabel' + getMemberId(member)).text(answerText);
     }
 
     // If member is marked as absent, unhide the absent label
@@ -307,7 +317,7 @@ function isAbsent(member) {
  * @param member        The div of the member
  * @returns {*|jQuery}  The id of the given member
  */
-function memberId(member) {
+function getMemberId(member) {
     return $(member).data('id');
 }
 
@@ -318,7 +328,9 @@ function memberId(member) {
  * @returns {boolean}
  */
 function isSaved(member) {
-    return ( $(member).data('saved') == 'true' );
+    console.log(( $(member).data('saved') == true )?'member iz saved':'member iz NOT saved');
+    console.log($(member).data('saved'));
+    return ( $(member).data('saved') == true );
 }
 
 /**
@@ -391,16 +403,16 @@ function startSecondReading() {
             makeNotAbsent(div);
         });
 
-        reading = 2;                                    // Set reading variable
-        currentMember = 0;                              // Current member is the first one again
-        $('#title').text('Δεύτερη ανάγνωση');           // Change title
-        addCurrentStatus(memberDivs[currentMember]);    // Add curr. status to current member
+        reading = 2;                                                    // Set reading variable
+        currentMember = 0;                                              // Current member is the first one again
+        $('#title').text('Δεύτερη ανάγνωση');                           // Change title
+        addCurrentStatus(memberDivs[currentMember]);                    // Add curr. status to current member
 
-        $('#nextPhaseBtn').text('Τέλος ψηφοφορίας');    // Change the next phase button to say "end voting"
-        $('#readingsButtonGroup').prepend(getPrevReadingButton());  // Add button to go to the previous reading
+        $('#nextPhaseBtn').text('Τέλος ψηφοφορίας');                    // Change the next phase button to say "end voting"
+        $('#readingsButtonGroup').prepend(getPrevReadingButton());      // Add button to go to the previous reading
         $('#prevReadingBtn').click(function() {
             if (confirm('Θέλετε να επιστρέψετε στην 1η ανάγνωση;')) {
-                $(window).off('beforeunload');          // Turn off the message about leaving the page
+                $(window).off('beforeunload');                          // Turn off the message about leaving the page
                 window.location.href = currentPageUrl;
             }
         });
@@ -420,7 +432,7 @@ function getVotes(members, forceUpdate) {
 
     $(members).each(function(index, member) {
         if (!isAbsent(member) && (forceUpdate || !isSaved(member))) {
-            $(member).data('saved', 'true');    // Mark as saved
+            $(member).data('saved', true);    // Mark as saved
             votes.push(getMemberVote(member));  // Add member's vote to votes array
         }
     });
@@ -437,7 +449,7 @@ function getVotes(members, forceUpdate) {
  */
 function getMemberVote(member) {
     var vote = {
-        member_id: $(member).data('id'),
+        member_id: getMemberId(member),
         answer_id: isAbsent(member) ? null : getSelectedAnswer(member)
     };
 
@@ -465,10 +477,10 @@ function getAbsentMemberVotes() {
  * Returns the id of the selected answer of a member
  *
  * @param member        The div of the member to get answer from
- * @returns {*|jQuery}
+ * @returns {*|jQuery}  The id of the selected answer of the member
  */
 function getSelectedAnswer(member) {
-    return $(member).find('input[type="radio"][name="answer_' + $(member).data('id') + '"]:checked').val();
+    return $(member).find('input[type="radio"][name="answer_' + getMemberId(member) + '"]:checked').val();
 }
 
 /**
@@ -520,9 +532,9 @@ function submitVotes(votes, goToNext) {
         error: function(data) {
             // Show error
             $('#couldNotSaveAlert').remove();
-            var errorDiv =  getAlertDiv(false, 'couldNotSaveAlert', '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι φήφοι!');
-
             $('#votingCompleteAlert').remove();
+
+            var errorDiv =  getAlertDiv(false, 'couldNotSaveAlert', '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι φήφοι!');
             $('.container').prepend(errorDiv);
         }
     });

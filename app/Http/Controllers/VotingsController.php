@@ -207,9 +207,13 @@ class VotingsController extends Controller {
     {
         $voting = Voting::findOrFail($id);  // Get the voting to start the reading for
 
-        if ($voting->defaultVotesSet() && $voting->votes->count() == 0) {               // Check if the voting has default votes for each group
+        if ($voting->defaultVotesSet()) {                                               // Check if the voting has default votes for each group
             $members = Member::orderBy('district_id')->orderBy('order')->get();         // Get members sorted based on their district, then order
-            $answers = VoteTypeAnswer::where('type', '=', $voting->type->id)->get();
+            $answers = VoteTypeAnswer::where('type', '=', $voting->type->id)->get();    // Get answers of this voting's vote type
+
+            if ($voting->votes->count() > 0) {
+
+            }
 
             // Gather info the view needs about the answers
             $myAnswers = [];
@@ -229,9 +233,26 @@ class VotingsController extends Controller {
                 $m = [];
                 $m['id'] = $member->id;
                 $m['full_name'] = $member->first_name . ' ' . $member->last_name;
-                $m['groupAnswerId'] = $member->groupAnswer($votingid);
-                if ($m['groupAnswerId'] == null) {
-                    $m['groupAnswerId'] = $myAnswers[0]['id'];    // if member is not in any group, the first answer will be selected by default
+
+                $m['hasVoted'] = 'true';
+                $m['answerId'] = $member->vote($votingid);
+                $m['label'] = '';                           // Default label value if nothing (it will change below if member has voted)
+
+                if ($m['answerId'] == null) {
+                    $m['hasVoted'] = 'false';
+                    $m['answerId'] = $member->groupAnswer($votingid);
+
+                    if ($m['answerId'] == null) {
+                        $m['answerId'] = $myAnswers[0]['id'];    // if member is not in any group, the first answer will be selected by default
+                    }
+                } else {
+                    // Find answer text from the answer id
+                    foreach($myAnswers as $ans) {
+                        if ($ans['id'] == $m['answerId']) {
+                            $m['label'] = $ans['answer'];
+                            break;
+                        }
+                    }
                 }
 
                 $myMembers[] = $m;

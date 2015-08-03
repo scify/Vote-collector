@@ -45,7 +45,7 @@ class Member extends Model
             $answerId = GroupVote::where([
                 'group_id' => $firstGroup->id,
                 'voting_id' => $votingId
-            ])->get()->first()->answer->id;
+            ])->first()->answer->id;
 
             // If there was an answer for this group and this voting, return it
             // (otherwise will be null and the 1st answer will be selected by the form)
@@ -53,5 +53,20 @@ class Member extends Model
         }
 
         return null;    // If the member isn't in any groups, return null so the first answer is selected
+    }
+
+    /**
+     * Returns the id of the answer that this member voted for in a specified voting, or null if the member
+     * hasn't voted on that voting at all yet.
+     *
+     * @param $votingId The id of the voting
+     * @return int      VoteTypeAnswer id!
+     */
+    public function vote($votingId) {
+        $vote = $this->votes()->where('voting_id', '=', $votingId)->first();    // get it
+        if ($vote != null) {
+            return $vote->answer->id;
+        }
+        return null;
     }
 }
