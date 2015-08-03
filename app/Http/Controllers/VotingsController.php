@@ -238,9 +238,12 @@ class VotingsController extends Controller {
             }
 
             return view('votings.reading', compact('votingid', 'myMembers', 'myAnswers'));
+        } else {
+            return 'ERROR';
+            //todo: show same page with saved answers instead of default ones if there are saved for a member
+            //todo: do not save all members of 2nd reading before going to the 1st
+            //todo: on saved members (all of 1st reading) show the blue label (???????)
         }
-
-        return 'ERROR';
     }
 
     /**

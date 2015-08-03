@@ -380,7 +380,7 @@ function startSecondReading() {
         }
     });
 
-    memberDivs = $('.member');          // Update memberDivs
+    memberDivs = $('.member');                          // Update memberDivs
 
     // If all members voted, no need for second reading
     if (memberDivs.length == 0) {
@@ -398,6 +398,12 @@ function startSecondReading() {
 
         $('#nextPhaseBtn').text('Τέλος ψηφοφορίας');    // Change the next phase button to say "end voting"
         $('#readingsButtonGroup').prepend(getPrevReadingButton());  // Add button to go to the previous reading
+        $('#prevReadingBtn').click(function() {
+            if (confirm('Θέλετε να επιστρέψετε στην 1η ανάγνωση;')) {
+                $(window).off('beforeunload');          // Turn off the message about leaving the page
+                window.location.href = currentPageUrl;
+            }
+        });
     }
 }
 

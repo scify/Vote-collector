@@ -35,9 +35,10 @@
 
 @section('footer')
     <script>
-        var submitVotesUrl = '{{ url('votings/reading') }}';    {{-- URL for submitting votes, using url() --}}
-        var votingUrl = '{{ url('votings/' . $votingid) }}';    {{-- URL for going to the voting page, used by the alert shown after voting is complete --}}
-        var deleteVoteUrl = '{{ url('votings/reading/dv') }}';  {{-- URL for deleting a member's vote after they're marked as absent --}}
+        var submitVotesUrl = '{{ url('votings/reading') }}';                {{-- URL for submitting votes, using url() --}}
+        var currentPageUrl = '{{ url('votings/reading/' . $votingid) }}';   {{-- URL of current page --}}
+        var votingUrl = '{{ url('votings/' . $votingid) }}';                {{-- URL for going to the voting page, used by the alert shown after voting is complete --}}
+        var deleteVoteUrl = '{{ url('votings/reading/dv') }}';              {{-- URL for deleting a member's vote after they're marked as absent --}}
     </script>
     <script src="{{ URL::asset('js/readings/components.js') }}"></script>
     <script src="{{ URL::asset('js/readings/readings.js') }}"></script>
