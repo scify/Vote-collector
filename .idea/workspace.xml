@@ -33,8 +33,8 @@
             <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/public/js/readings/readings.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.55052793" vertical-offset="8051" max-vertical-offset="9872">
-                    <caret line="539" column="63" selection-start-line="539" selection-start-column="63" selection-end-line="539" selection-end-column="63" />
+                  <state vertical-scroll-proportion="-0.3514329" vertical-offset="5593" max-vertical-offset="8752">
+                    <caret line="348" column="28" selection-start-line="348" selection-start-column="28" selection-end-line="348" selection-end-column="28" />
                     <folding>
                       <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
                       <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
@@ -58,8 +58,18 @@
       <file leaf-file-name="reading.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.469459" vertical-offset="179" max-vertical-offset="768">
-              <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.7486911" vertical-offset="179" max-vertical-offset="784">
+              <caret line="38" column="71" selection-start-line="38" selection-start-column="71" selection-end-line="38" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="components.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/readings/components.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="573" max-vertical-offset="1184">
+              <caret line="44" column="3" selection-start-line="44" selection-start-column="3" selection-end-line="44" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -75,7 +85,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/groups/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/groups/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/app.blade.php" />
         <option value="$PROJECT_DIR$/database/seeds/PerifereiesTableSeeder.php" />
@@ -124,8 +133,9 @@
         <option value="$PROJECT_DIR$/public/js/members.js" />
         <option value="$PROJECT_DIR$/resources/views/partials/navbar.blade.php" />
         <option value="$PROJECT_DIR$/public/js/readings.js" />
-        <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/readings/components.js" />
         <option value="$PROJECT_DIR$/public/js/readings/readings.js" />
+        <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
       </list>
     </option>
   </component>
@@ -665,13 +675,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/phpspec/php-diff/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33224222" vertical-offset="181" max-vertical-offset="1008">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Member.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05972696" vertical-offset="381" max-vertical-offset="992">
@@ -1014,8 +1017,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/readings/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55052793" vertical-offset="8051" max-vertical-offset="9872">
-          <caret line="539" column="63" selection-start-line="539" selection-start-column="63" selection-end-line="539" selection-end-column="63" />
+        <state vertical-scroll-proportion="-0.3514329" vertical-offset="5593" max-vertical-offset="8752">
+          <caret line="348" column="28" selection-start-line="348" selection-start-column="28" selection-end-line="348" selection-end-column="28" />
           <folding>
             <element signature="n#!!doc;n#isAbsent#0" expanded="false" />
             <element signature="n#!!doc;n#makeAbsent#0" expanded="false" />
@@ -1024,10 +1027,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/readings/components.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="573" max-vertical-offset="1184">
+          <caret line="44" column="3" selection-start-line="44" selection-start-column="3" selection-end-line="44" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.469459" vertical-offset="179" max-vertical-offset="768">
-          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.7486911" vertical-offset="179" max-vertical-offset="784">
+          <caret line="38" column="71" selection-start-line="38" selection-start-column="71" selection-end-line="38" selection-end-column="71" />
           <folding />
         </state>
       </provider>
