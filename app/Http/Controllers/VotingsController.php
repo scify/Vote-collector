@@ -211,10 +211,6 @@ class VotingsController extends Controller {
             $members = Member::orderBy('district_id')->orderBy('order')->get();         // Get members sorted based on their district, then order
             $answers = VoteTypeAnswer::where('type', '=', $voting->type->id)->get();    // Get answers of this voting's vote type
 
-            if ($voting->votes->count() > 0) {
-
-            }
-
             // Gather info the view needs about the answers
             $myAnswers = [];
             foreach($answers as $answer) {
@@ -234,18 +230,27 @@ class VotingsController extends Controller {
                 $m['id'] = $member->id;
                 $m['full_name'] = $member->first_name . ' ' . $member->last_name;
 
-                $m['hasVoted'] = 'true';
+                $m['isSaved'] = 'true';
+                $m['isAbsent'] = 'false';
                 $m['answerId'] = $member->vote($votingid);
                 $m['label'] = '';                           // Default label value if nothing (it will change below if member has voted)
 
-                if ($m['answerId'] == null) {
-                    $m['hasVoted'] = 'false';
-                    $m['answerId'] = $member->groupAnswer($votingid);
+                if ($m['answerId'] == null) {               // Member has not voted or is saved as absent
+                    if ($m['answerId'] === null) {
+                        $m['isSaved'] = 'false';            // If answer id is indeed NULL, then the member has not voted at all in this voting
+                    } else {
+                        $m['isAbsent'] = 'true';            // If it is not NULL, then it is '', so the member was absent!!!
+                    }
+
+                    $m['answerId'] = $member->groupAnswer($votingid); // Get the answer of this member's group
+                    /*if ($m['id'] == 9) {
+                        dd($groupAnswer);
+                    }*/
 
                     if ($m['answerId'] == null) {
-                        $m['answerId'] = $myAnswers[0]['id'];    // if member is not in any group, the first answer will be selected by default
+                        $m['answerId'] = $myAnswers[0]['id'];       // If member is not in any group, the first answer will be selected by default
                     }
-                } else {
+                } else {                                    // Member has voted
                     // Find answer text from the answer id
                     foreach($myAnswers as $ans) {
                         if ($ans['id'] == $m['answerId']) {
@@ -337,7 +342,8 @@ class VotingsController extends Controller {
      *
      * @return mixed    Success json message
      */
-    public function markAsComplete() {
+    public function markAsComplete()
+    {
         $id = Input::get('v_id');
         $v = Voting::findOrFail($id);  // Find the voting
         $v->completed = true;

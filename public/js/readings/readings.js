@@ -13,7 +13,12 @@ $(function(){
     // In case the page loaded because the user changed from 2nd -> 1st reading, put votes of saved members in the savedVotes variable
     $(memberDivs).each(function(index, member) {
         if (isSaved(member)) {
-            savedVotes[getMemberId(member)] = getSelectedAnswer(member);
+            if ($(member).data('wassavedasabsent') == true) {
+                makeAbsent(member);
+                savedVotes[getMemberId(member)] = null;
+            } else {
+                savedVotes[getMemberId(member)] = getSelectedAnswer(member);
+            }
         }
     });
 
@@ -94,7 +99,11 @@ function changeToMember(memberIndex) {
     if (!isAbsent(currMember)) {
         var m_id = getMemberId(currMember);
         if (!isSaved(currMember) || (getSelectedAnswer(currMember) != savedVotes[m_id])) {
+            console.log('is not saved, or answer changed');
             saveMember(currMember, false);
+        } else {
+            console.log('has the answer changed??');
+            console.log(getSelectedAnswer(currMember) + ' vs ' + savedVotes[m_id]);
         }
     }
 
@@ -427,7 +436,7 @@ function getVotes(members, forceUpdate) {
 
     $(members).each(function(index, member) {
         if (!isAbsent(member) && (forceUpdate || !isSaved(member))) {
-            $(member).data('saved', true);    // Mark as saved
+            $(member).data('saved', true);      // Mark as saved
             votes.push(getMemberVote(member));  // Add member's vote to votes array
         }
     });
