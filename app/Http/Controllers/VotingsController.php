@@ -391,6 +391,7 @@ class VotingsController extends Controller {
         // Make a voting and save it
         Voting::create([
             'title' => $request->input('title'),
+            'completed' => false,   // cannot create a voting that is complete immediately
             'voting_type' => $request->input('voting_type'),
             'objective' => $request->input('objective')
         ]);
