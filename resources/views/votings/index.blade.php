@@ -35,9 +35,9 @@
                                         Η ψηφοφορία ολοκληρώθηκε
                                     </span>
                                 @elseif( $voting->votes->count() > 0 )
-                                    <span class="label label-danger">
-                                        κόπηκε
-                                    </span>
+                                    <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
+                                        <span class="glyphicon glyphicon-play"></span> Συνέχιση
+                                    </a>
                                 @elseif( $voting->defaultVotesSet() )
                                     <div class="text-nowrap">
                                         <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
