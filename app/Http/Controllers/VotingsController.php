@@ -207,7 +207,7 @@ class VotingsController extends Controller {
     {
         $voting = Voting::findOrFail($id);  // Get the voting to start the reading for
 
-        if ($voting->defaultVotesSet()) {                                               // Check if the voting has default votes for each group
+        if ($voting->defaultVotesSet() && !$voting->completed) {                        // Check if the voting has default votes for each group
             $members = Member::orderBy('district_id')->orderBy('order')->get();         // Get members sorted based on their district, then order
             $answers = VoteTypeAnswer::where('type', '=', $voting->type->id)->get();    // Get answers of this voting's vote type
 
@@ -260,7 +260,7 @@ class VotingsController extends Controller {
 
             return view('votings.reading', compact('votingid', 'myMembers', 'myAnswers'));
         } else {
-            return 'ERROR: There are no default votes set for this voting';
+            return 'ERROR: There are no default votes set for this voting or this voting has been completed';
         }
     }
 
@@ -335,12 +335,12 @@ class VotingsController extends Controller {
     /**
      * Marks the specified voting as complete (sets the complete field to true instead of false)
      *
-     * @param $id
-     * @return mixed
+     * @return mixed    Success json message
      */
-    public function markAsComplete($id) {
+    public function markAsComplete() {
+        $id = Input::get('v_id');
         $v = Voting::findOrFail($id);  // Find the voting
-        $v->complete = true;
+        $v->completed = true;
         $v->save();
 
         // Return success json

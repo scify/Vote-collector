@@ -39,6 +39,7 @@
         var currentPageUrl = '{{ url('votings/reading/' . $votingid) }}';   {{-- URL of current page --}}
         var votingUrl = '{{ url('votings/' . $votingid) }}';                {{-- URL for going to the voting page, used by the alert shown after voting is complete --}}
         var deleteVoteUrl = '{{ url('votings/reading/dv') }}';              {{-- URL for deleting a member's vote after they're marked as absent --}}
+        var markCompleteUrl = '{{ url('votings/complete/' . $votingid) }}'; {{-- URL for making the ajax request to mark this voting as completed --}}
     </script>
     <script src="{{ URL::asset('js/readings/components.js') }}"></script>
     <script src="{{ URL::asset('js/readings/readings.js') }}"></script>

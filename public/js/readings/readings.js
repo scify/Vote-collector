@@ -189,9 +189,7 @@ function absentButtonHandler() {
     var member = memberDivs[currentMember];
 
     if (!isAbsent(member)) {
-        console.log('\tis not absent!');
         if (isSaved(member)) {
-            console.log('\tis saved, deleting..');
             $(member).data('saved', false);   // Mark member as not saved
             deleteVote(member);
         }
@@ -200,7 +198,6 @@ function absentButtonHandler() {
 
         nextMember();   // Go to next member
     } else {
-        console.log('\tis absent, making not absent');
         removeCurrentStatus(member);
         makeNotAbsent(member);
         addCurrentStatus(member);
@@ -328,8 +325,6 @@ function getMemberId(member) {
  * @returns {boolean}
  */
 function isSaved(member) {
-    console.log(( $(member).data('saved') == true )?'member iz saved':'member iz NOT saved');
-    console.log($(member).data('saved'));
     return ( $(member).data('saved') == true );
 }
 
@@ -570,4 +565,19 @@ function votingComplete(success) {
     alertDiv = getAlertDiv(success, 'votingCompleteAlert', msg);
 
     $('.container').prepend(alertDiv);
+
+    // Mark voting as complete in the database
+    $.ajax({
+        url: markCompleteUrl,
+        type: 'POST',
+        data: {
+            v_id: voting_id
+        },
+        dataType: 'json',
+        error: function(data) {
+            // Show error
+            var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτεί η ψηφοφορία ως "ολοκληρωμένη"!';
+            $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
+        }
+    });
 }
