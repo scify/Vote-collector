@@ -30,9 +30,13 @@
                                 @include('partials.infoBtn', ['url' => 'votings/' . $voting->id])
                             </td>
                             <td class="col-lg-3">
-                                @if( $voting->votes->count() > 0 )
+                                @if($voting->complete)
                                     <span class="label label-info">
                                         Η ψηφοφορία ολοκληρώθηκε
+                                    </span>
+                                @elseif( $voting->votes->count() > 0 )
+                                    <span class="label label-danger">
+                                        κόπηκε
                                     </span>
                                 @elseif( $voting->defaultVotesSet() )
                                     <div class="text-nowrap">
@@ -43,7 +47,7 @@
                                             <span class="glyphicon glyphicon-pencil"></span> Αλλαγή απαντήσεων
                                         </a>
                                     </div>
-                                @elseif ($voting->type->answers->count() > 0)
+                                @elseif($voting->type->answers->count() > 0)
                                     <a href="votings/answers/{{ $voting->id }}" class="btn btn-primary btn-xs">
                                         <span class="glyphicon glyphicon-file"></span> Επιλογή απαντήσεων
                                     </a>

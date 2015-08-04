@@ -260,10 +260,7 @@ class VotingsController extends Controller {
 
             return view('votings.reading', compact('votingid', 'myMembers', 'myAnswers'));
         } else {
-            return 'ERROR';
-            //todo: show same page with saved answers instead of default ones if there are saved for a member
-            //todo: do not save all members of 2nd reading before going to the 1st
-            //todo: on saved members (all of 1st reading) show the blue label (???????)
+            return 'ERROR: There are no default votes set for this voting';
         }
     }
 
@@ -330,6 +327,21 @@ class VotingsController extends Controller {
         if ($v->count() > 0) {
             $v->first()->delete();
         }
+
+        // Return success json
+        return Response::json('success', 200);
+    }
+
+    /**
+     * Marks the specified voting as complete (sets the complete field to true instead of false)
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function markAsComplete($id) {
+        $v = Voting::findOrFail($id);  // Find the voting
+        $v->complete = true;
+        $v->save();
 
         // Return success json
         return Response::json('success', 200);
