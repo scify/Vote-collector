@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Voting extends Model
 {
-    protected $fillable = ['title', 'voting_type', 'objective'];
+    protected $fillable = ['title', 'completed', 'voting_type', 'objective'];
 
     // vote type relation
     public function type() {
