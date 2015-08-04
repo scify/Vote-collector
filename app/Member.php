@@ -65,7 +65,11 @@ class Member extends Model
     public function vote($votingId) {
         $vote = $this->votes()->where('voting_id', '=', $votingId)->first();    // get it
         if ($vote != null) {
-            return $vote->answer->id;
+            if ($vote->answer != null) {
+                return $vote->answer->id;
+            } else {
+                return '';  // Return empty string to show that the member was saved as absent
+            }
         }
         return null;
     }

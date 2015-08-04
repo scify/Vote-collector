@@ -9,7 +9,7 @@
 
     {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal', 'id' => 'votesform', 'data-votingid' => $votingid]) !!}
         @foreach($myMembers as $member)
-            <div class="form-group member col-sm-12" data-saved="{{ $member['hasVoted'] }}" data-id="{{ $member['id'] }}">
+            <div class="form-group member col-sm-12" data-saved="{{ $member['isSaved'] }}" data-id="{{ $member['id'] }}" data-wassavedasabsent="{{ $member['isAbsent'] }}">
                 <span class="memberName pull-left col-sm-3">
                     {{ $member['full_name'] }}
                 </span>
