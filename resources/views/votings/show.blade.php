@@ -17,15 +17,15 @@
         <p>
             Αντικείμενο: {{ $objective->title }}
         </p>
-        @if(count($memberVotes) > 0)
+        @if($voting->completed)
             <p>
                 <a class="btn btn-primary btn-lg" href="{{ url('votings/' . $voting->id . '/download') }}" role="button"><span class="glyphicon glyphicon-cloud-download"></span> Κατέβασμα αποτελεσμάτων</a>
             </p>
         @endif
     </div>
 
-    {{-- Check if the voting has any votes, and show them --}}
-    @if(count($memberVotes) > 0)
+    {{-- If the voting is completed, show the votes --}}
+    @if($voting->completed)
         {{-- Google Chart --}}
         <div id="piechart" style="width: 900px; height: 500px; display: block; margin: 0 auto;"></div>
 
