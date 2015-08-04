@@ -30,7 +30,7 @@
                                 @include('partials.infoBtn', ['url' => 'votings/' . $voting->id])
                             </td>
                             <td class="col-lg-3">
-                                @if($voting->complete)
+                                @if($voting->completed)
                                     <span class="label label-info">
                                         Η ψηφοφορία ολοκληρώθηκε
                                     </span>
