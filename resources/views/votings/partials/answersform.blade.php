@@ -27,7 +27,7 @@
                         <td>
                             {!! Form::select('answer_' . $group->id . '[]', $vItem->voteType->answers->lists('answer', 'id'), isset($edit)?$group->defaultAnswer($voting->id, $vItem->id):null, ['class' => 'selectpicker']) !!}
                         </td>
-                        @endforeach
+                    @endforeach
                 </tr>
             @endforeach
         </tbody>
