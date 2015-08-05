@@ -16,9 +16,12 @@ class Voting extends Model
     // Returns true if this voting has default votes set for all the groups that exist
     public function defaultVotesSet() {
         // todo: this is broken
-        if (GroupVote::where('voting_id', '=', $this->id)->count() == Group::all()->count()) {
+        /*if (GroupVote::where('voting_id', '=', $this->id)->count() == Group::all()->count()) {
             return true;
-        }
+        }*/
+
+        $votingItems = $this->votingItems();
+
 
         return false;
     }
