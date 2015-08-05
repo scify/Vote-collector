@@ -79,12 +79,20 @@ class CreateTables extends Migration
             $table->increments('id');
             $table->string('title');
             $table->boolean('completed');
-            $table->integer('voting_type')->unsigned();
-            $table->integer('objective')->unsigned();
+            $table->timestamps();
+        });
+
+        // VotingItems
+        Schema::create('voting_items', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('voting_id')->unsigned();
+            $table->integer('vote_type_id')->unsigned();
+            $table->integer('vote_objective_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('voting_type')->references('id')->on('vote_types')->onDelete('cascade');
-            $table->foreign('objective')->references('id')->on('vote_objectives')->onDelete('cascade');
+            $table->foreign('voting_id')->references('id')->on('votings')->onDelete('cascade');
+            $table->foreign('vote_type_id')->references('id')->on('vote_types')->onDelete('cascade');
+            $table->foreign('vote_objective_id')->references('id')->on('vote_objective')->onDelete('cascade');
         });
 
         // Votes

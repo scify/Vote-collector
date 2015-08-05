@@ -44,12 +44,12 @@
                                             <span class="glyphicon glyphicon-book"></span> Εκκίνηση
                                         </a>
                                         <a href="votings/answers/{{ $voting->id }}/edit" class="btn btn-primary btn-xs">
-                                            <span class="glyphicon glyphicon-pencil"></span> Αλλαγή απαντήσεων
+                                            <span class="glyphicon glyphicon-pencil"></span> Αλλαγή προεπιλεγμένων απαντήσεων
                                         </a>
                                     </div>
                                 @elseif($voting->type->answers->count() > 0)
                                     <a href="votings/answers/{{ $voting->id }}" class="btn btn-primary btn-xs">
-                                        <span class="glyphicon glyphicon-file"></span> Επιλογή απαντήσεων
+                                        <span class="glyphicon glyphicon-file"></span> Επιλογή προεπιλεγμένων απαντήσεων
                                     </a>
                                 @else
                                     <span class="label label-warning">

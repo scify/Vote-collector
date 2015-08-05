@@ -6,16 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Voting extends Model
 {
-    protected $fillable = ['title', 'completed', 'voting_type', 'objective'];
+    protected $fillable = ['title', 'completed'];
 
-    // vote type relation
-    public function type() {
-        return $this->belongsTo('App\VoteType', 'voting_type');
-    }
-
-    // vote objective relation
-    public function objective() {
-        return $this->belongsTo('App\VoteObjective', 'objective');
+    // voting items relation
+    public function votingItems() {
+        return $this->hasMany('App\VotingItem');
     }
 
     // votes of voting
