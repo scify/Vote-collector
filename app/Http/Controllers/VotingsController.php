@@ -13,6 +13,7 @@ use App\Vote;
 use App\Group;
 use App\GroupVote;
 use App\Member;
+use App\VotingItem;
 use \Session;
 use \Redirect;
 use \Response;
@@ -73,9 +74,10 @@ class VotingsController extends Controller {
 
         // Get each member's vote (if there are any for this voting) and put them in an array
         $memberVotes = [];
-
+        //todo: member votes are not gathered since the database changed
         if ($voting->votes->count() > 0) {
-            /*$members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
+            /* old code
+            $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
 
             foreach($members as $member) {
                 $vote = Vote::where([
@@ -391,11 +393,17 @@ class VotingsController extends Controller {
     private function createVoting(VotingRequest $request)
     {
         // Make a voting and save it
-        Voting::create([
+        $v = Voting::create([
             'title' => $request->input('title'),
-            'completed' => false,   // cannot create a voting that is complete immediately
-            'voting_type' => $request->input('voting_type'),
-            'objective' => $request->input('objective')
+            'completed' => false                    // cannot create a voting that is complete immediately
+        ]);
+
+        // Make a voting item and save it
+        //todo: in the future, will need to save multiple voting items (when the form supports it)
+        VotingItem::create([
+            'voting_id' => $v->id,
+            'vote_type_id' => $request->input('voting_type'),
+            'vote_objective_id' => $request->input('objective')
         ]);
     }
 
