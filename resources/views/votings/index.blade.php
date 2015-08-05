@@ -34,7 +34,7 @@
                                     <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
                                         <span class="glyphicon glyphicon-play"></span> Συνέχιση
                                     </a>
-                                @elseif( false ) {{-- voting has no group votes now $voting->defaultVotesSet() --}}
+                                @elseif( $voting->defaultVotesSet() ) {{-- voting has no group votes now $voting->defaultVotesSet() --}}
                                     <div class="text-nowrap">
                                         <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
                                             <span class="glyphicon glyphicon-book"></span> Εκκίνηση

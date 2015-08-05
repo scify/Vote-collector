@@ -24,4 +24,9 @@ class Vote extends Model
     public function answer() {
         return $this->belongsTo('App\VoteTypeAnswer', 'answer_id');
     }
+
+    // Scope to get all votes with a specified voting id
+    public function scopeOfVoting($query, $votingId) {
+        return $query->where('voting_id', '=', $votingId);
+    }
 }

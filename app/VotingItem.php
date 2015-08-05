@@ -21,4 +21,9 @@ class VotingItem extends Model
         return $this->belongsTo('App\VoteObjective');
     }
 
+    // Scope to get all voting items of a specified voting
+    public function scopeOfVoting($query, $votingId) {
+        return $query->where('voting_id', '=', $votingId);
+    }
+
 }

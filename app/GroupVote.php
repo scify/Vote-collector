@@ -23,4 +23,9 @@ class GroupVote extends Model {
         return $this->belongsTo('App\VoteTypeAnswer', 'answer_id');
     }
 
+    // Scope to get all group votes with a specified voting id
+    public function scopeOfVoting($query, $votingId) {
+        return $query->where('voting_id', '=', $votingId);
+    }
+
 }

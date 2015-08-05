@@ -15,13 +15,15 @@ class Voting extends Model
 
     // Returns true if this voting has default votes set for all the groups that exist
     public function defaultVotesSet() {
-        // todo: this is broken
-        /*if (GroupVote::where('voting_id', '=', $this->id)->count() == Group::all()->count()) {
+        // check that the count of GroupVotes with this voting's id is equal to the count of all groups * number of voting items of this voting
+        $groupCount = Group::all()->count();
+        $votingItemCount = VotingItem::ofVoting($this->id)->count();
+
+        $correctAmount = $groupCount * $votingItemCount;
+
+        if (GroupVote::ofVoting($this->id)->count() == $correctAmount) {
             return true;
-        }*/
-
-        $votingItems = $this->votingItems();
-
+        }
 
         return false;
     }
