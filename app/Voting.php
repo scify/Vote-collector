@@ -13,13 +13,9 @@ class Voting extends Model
         return $this->hasMany('App\VotingItem');
     }
 
-    // votes of voting
-    public function votes() {
-        return $this->hasMany('App\Vote');
-    }
-
     // Returns true if this voting has default votes set for all the groups that exist
     public function defaultVotesSet() {
+        // todo: this is broken
         if (GroupVote::where('voting_id', '=', $this->id)->count() == Group::all()->count()) {
             return true;
         }

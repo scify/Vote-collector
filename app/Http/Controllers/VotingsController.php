@@ -29,10 +29,8 @@ class VotingsController extends Controller {
 	public function index()
 	{
         $votings = Voting::all();                           // Get all votings for the list
-        $types = VoteType::lists('title', 'id');            // Get all vote types to show their titles for the list
-        $objectives = VoteObjective::lists('title', 'id');  // Get all vote objectives to show their titles for the list
 
-		return view('votings.index', compact('votings', 'types', 'objectives'));
+        return view('votings.index', compact('votings'));
 	}
 
 	/**
