@@ -131,8 +131,9 @@ class VotingsController extends Controller {
     {
         $voting = Voting::findOrFail($id);
         $groups = Group::all();
+        $votingItems = $voting->votingItems;
 
-        return view('votings.answers', compact('voting', 'groups'));
+        return view('votings.answers', compact('voting', 'groups', 'votingItems'));
     }
 
     /**
@@ -144,22 +145,30 @@ class VotingsController extends Controller {
     public function saveDefaultAnswers(Request $request)
     {
         $voting = Voting::findOrFail($request->get('voting_id'));   // Find the voting to store answers for
+        $v_id = $voting->id;
 
         // Delete this voting's default answers if there are any
-        $this->deleteGroupVotes($voting->id);
+        $this->deleteGroupVotes($v_id);
 
         // Save the new default answers
         $groups = Group::all();
 
         foreach($groups as $group) {
             // Check if there is an answer for this group
-            if ($request->has('answer_' . $group->id)) {
-                // Save the group answer to the database
-                GroupVote::create([
-                    'voting_id' => $voting->id,
-                    'group_id' => $group->id,
-                    'answer_id' => $request->get('answer_' . $group->id)
-                ]);
+            $groupId = $group->id;
+            if ($request->has('answer_' . $groupId)) {                  // If there is
+                $groupAnswers = $request->get('answer_' . $groupId);    // Get the group answers
+                $votingItemIds = $request->get('votingItems');          // Get the voting item ids (this and the groupAnswers array should have same length)
+
+                $count = count($votingItemIds);
+                for ($i = 0; $i < $count; $i++) {                       // Create new group vote
+                    GroupVote::create([
+                        'voting_id' => $v_id,
+                        'voting_item_id' => $votingItemIds[$i],
+                        'group_id' => $groupId,
+                        'answer_id' => $groupAnswers[$i]
+                    ]);
+                }
             }
         }
 
@@ -189,7 +198,7 @@ class VotingsController extends Controller {
      */
     private function deleteGroupVotes($id)
     {
-        $prevVotes = GroupVote::where('voting_id', '=', $id)->get();
+        $prevVotes = GroupVote::ofVoting($id)->get();
         foreach($prevVotes as $gv) {
             $gv->delete();
         }
