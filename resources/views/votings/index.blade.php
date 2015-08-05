@@ -9,7 +9,7 @@
                 <thead>
                     <tr>
                         <th>Τίτλος</th>
-                        <th>Voting items</th>
+                        <th>Αντικείμενα</th>
                         <th colspan="3">Ενέργειες</th>
                     </tr>
                 </thead>
@@ -20,13 +20,17 @@
                                 {{ $voting->title }}
                             </td>
                             <td class="col-lg-2">
-                                {{ $voting->votingItems()->count() }} item(s)
+                                {{ $voting->votingItems()->count() }} αντικείμενο/α
                             </td>
                             <td class="col-lg-1"> {{-- Info button --}}
                                 @include('partials.infoBtn', ['url' => 'votings/' . $voting->id])
                             </td>
                             <td class="col-lg-3">
-                                @if($voting->completed)
+                                @if( $voting->votingItems()->count() == 0)
+                                    <span class="label label-danger">
+                                        Δεν υπάρχουν αντικείμενα ψηφοφορίας
+                                    </span>
+                                @elseif($voting->completed)
                                     <span class="label label-info">
                                         Η ψηφοφορία ολοκληρώθηκε
                                     </span>
