@@ -70,14 +70,12 @@ class VotingsController extends Controller {
 	public function show($id)
 	{
 		$voting = Voting::findOrFail($id);                          // Find the voting or fail
-        $type = VoteType::findOrFail($voting->voting_type);         // Get the type of the voting
-        $objective = VoteObjective::findOrFail($voting->objective); // Get objective of voting
 
         // Get each member's vote (if there are any for this voting) and put them in an array
         $memberVotes = [];
 
         if ($voting->votes->count() > 0) {
-            $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
+            /*$members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
 
             foreach($members as $member) {
                 $vote = Vote::where([
@@ -98,10 +96,10 @@ class VotingsController extends Controller {
                         'answer' => $answer
                     ];
                 }
-            }
+            }*/
         }
 
-        return view('votings.show', compact('voting', 'type', 'objective', 'memberVotes'));
+        return view('votings.show', compact('voting', 'memberVotes'));
 	}
 
 	/**

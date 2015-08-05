@@ -12,10 +12,7 @@
         <h1>{{ $voting->title }}</h1>
 
         <p>
-            Τύπος: {{ $type->title }}
-        </p>
-        <p>
-            Αντικείμενο: {{ $objective->title }}
+            Αντικείμενα: {{ $voting->votingItems()->count() }}
         </p>
         @if($voting->completed)
             <p>
