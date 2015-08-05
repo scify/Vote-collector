@@ -13,7 +13,7 @@ class VotingTableSeeder extends Seeder
     {
         DB::table('votings')->delete();
 
-        App\Voting::create(['title' => 'Ψηφοφορία 1', 'completed' => false, 'voting_type' => 1, 'objective' => 1]);
-        App\Voting::create(['title' => 'Ψηφοφορία 2', 'completed' => false, 'voting_type' => 2, 'objective' => 2]);
+        App\Voting::create(['title' => 'Ψηφοφορία 1', 'completed' => false]);
+        App\Voting::create(['title' => 'Ψηφοφορία 2', 'completed' => false]);
     }
 }

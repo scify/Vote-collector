@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call('VoteTypeSeeder');
         $this->call('VoteTypeAnswerTableSeeder');
         $this->call('VotingTableSeeder');
-        $this->call('VoteTableSeeder');
+        $this->call('VotingItemTableSeeder');
 
         Model::reguard();
     }
