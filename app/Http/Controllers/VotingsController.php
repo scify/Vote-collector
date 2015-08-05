@@ -187,8 +187,9 @@ class VotingsController extends Controller {
     {
         $voting = Voting::findOrFail($id);
         $groups = Group::all();
+        $votingItems = $voting->votingItems;
 
-        return view('votings.editAnswers', compact('voting', 'groups'));
+        return view('votings.editAnswers', compact('voting', 'groups', 'votingItems'));
     }
 
     /**

@@ -26,11 +26,12 @@ class Group extends Model
      * @param $voting_id    Id of voting
      * @return mixed        The id of the group vote
      */
-    public function defaultAnswer($voting_id) {
+    public function defaultAnswer($voting_id, $voting_item_id) {
         $gv = GroupVote::where([
             'voting_id' => $voting_id,
+            'voting_item_id' => $voting_item_id,
             'group_id' => $this->id
-        ])->first();    // there should only be one
+        ])->first();    // there can only be one
 
         return $gv->answer_id;
     }

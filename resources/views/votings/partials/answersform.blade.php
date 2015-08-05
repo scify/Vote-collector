@@ -20,10 +20,12 @@
         <tbody>
             @foreach($groups as $group)
                 <tr>
-                    <td><strong>{{ $group->name }}</strong></td>
+                    <td>
+                        <strong>{{ $group->name }}</strong>
+                    </td>
                     @foreach($votingItems as $vItem)
                         <td>
-                            {!! Form::select('answer_' . $group->id . '[]', $vItem->voteType->answers->lists('answer', 'id'), null, ['class' => 'selectpicker']) !!}
+                            {!! Form::select('answer_' . $group->id . '[]', $vItem->voteType->answers->lists('answer', 'id'), isset($edit)?$group->defaultAnswer($voting->id, $vItem->id):null, ['class' => 'selectpicker']) !!}
                         </td>
                         @endforeach
                 </tr>
