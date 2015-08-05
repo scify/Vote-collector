@@ -8,6 +8,11 @@ class Voting extends Model
 {
     protected $fillable = ['title', 'completed'];
 
+    // votes relation
+    public function votes() {
+        return $this->hasMany('App\Vote');
+    }
+
     // voting items relation
     public function votingItems() {
         return $this->hasMany('App\VotingItem');

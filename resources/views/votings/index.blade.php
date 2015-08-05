@@ -30,11 +30,11 @@
                                     <span class="label label-info">
                                         Η ψηφοφορία ολοκληρώθηκε
                                     </span>
-                                @elseif( false ) {{-- voting has no votes now $voting->votes->count() > 0 --}}
+                                @elseif( $voting->votes->count() > 0 )
                                     <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
                                         <span class="glyphicon glyphicon-play"></span> Συνέχιση
                                     </a>
-                                @elseif( $voting->defaultVotesSet() ) {{-- voting has no group votes now $voting->defaultVotesSet() --}}
+                                @elseif( $voting->defaultVotesSet() )
                                     <div class="text-nowrap">
                                         <a href="votings/reading/{{ $voting->id }}" class="btn btn-success btn-xs">
                                             <span class="glyphicon glyphicon-book"></span> Εκκίνηση
