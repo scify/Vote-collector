@@ -22,9 +22,7 @@ class VotingRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title' => 'required',
-            'voting_type' => 'required',
-            'objective' => 'required'
+			'title' => 'required'
 		];
 	}
 

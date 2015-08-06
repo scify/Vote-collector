@@ -409,12 +409,20 @@ class VotingsController extends Controller {
         ]);
 
         // Make a voting item and save it
-        //todo: in the future, will need to save multiple voting items (when the form supports it)
-        VotingItem::create([
-            'voting_id' => $v->id,
-            'vote_type_id' => $request->input('voting_type'),
-            'vote_objective_id' => $request->input('objective')
-        ]);
-    }
+        $objectives = $request->input('objectives');
+        $types = $request->input('voting_types');
 
+        if (count($objectives) != count($types)) {  // objectives and types should always have the same length because of the way the form is made
+            return 'ERROR: Vote objectives and types length is different!';
+        }
+
+        $count = count($objectives);
+        for($i = 0; $i < $count; $i++) {
+            VotingItem::create([
+                'voting_id' => $v->id,
+                'vote_type_id' => $types[$i],
+                'vote_objective_id' => $objectives[$i]
+            ]);
+        }
+    }
 }

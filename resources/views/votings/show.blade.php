@@ -2,7 +2,7 @@
 
 @section('head')
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script src="{{ URL::asset('js/votingChart.js') }}"></script>
+    <script src="{{ URL::asset('js/votings/votingChart.js') }}"></script>
 @stop
 
 @section('content')

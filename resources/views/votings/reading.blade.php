@@ -41,6 +41,6 @@
         var deleteVoteUrl = '{{ url('votings/reading/dv') }}';              {{-- URL for deleting a member's vote after they're marked as absent --}}
         var markCompleteUrl = '{{ url('votings/complete/' . $votingid) }}'; {{-- URL for making the ajax request to mark this voting as completed --}}
     </script>
-    <script src="{{ URL::asset('js/readings/components.js') }}"></script>
-    <script src="{{ URL::asset('js/readings/readings.js') }}"></script>
+    <script src="{{ URL::asset('js/votings/readings/components.js') }}"></script>
+    <script src="{{ URL::asset('js/votings/readings/readings.js') }}"></script>
 @stop

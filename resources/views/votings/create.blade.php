@@ -9,3 +9,7 @@
         @include('votings.partials.form', ['submitButtonText' => 'Δημιουργία'])
     {!! Form::close() !!}
 @stop
+
+@section('footer')
+    <script src="{{ URL::asset('js/votings/createVoting.js') }}"></script>
+@stop
