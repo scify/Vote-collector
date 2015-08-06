@@ -30,25 +30,27 @@ class Member extends Model
     }
 
     /**
-     * Function that returns the default answer of this member, based
-     * on the first group that they are in
+     * Function that returns the default answer of this member,
+     * for a specified voting and voting item, based on the
+     * first group that they are in
      *
-     * @param $votingId The id of the voting to return an answer for
-     * @return int      The id of the answer
+     * @param $votingId     The id of the voting
+     * @param $votingItemId The id of the votingItem
+     * @return int          The id of the answer
      */
-    public function groupAnswer($votingId) {
+    public function groupAnswer($votingId, $votingItemId) {
         // Check if member is in ANY group
         if ($this->groups()->count() > 0) {
             $firstGroup = $this->groups()->firstOrFail();   // Get the first group
 
             // Get the group vote of the above group in the specified voting and get the answer id
             $answerId = GroupVote::where([
-                'group_id' => $firstGroup->id,
-                'voting_id' => $votingId
+                'voting_id' => $votingId,
+                'voting_item_id' => $votingItemId,
+                'group_id' => $firstGroup->id
             ])->first()->answer->id;
 
-            // If there was an answer for this group and this voting, return it
-            // (otherwise will be null and the 1st answer will be selected by the form)
+            // If there was an answer for this group, voting and voting item, return it (otherwise will be null)
             return $answerId;
         }
 
@@ -56,14 +58,19 @@ class Member extends Model
     }
 
     /**
-     * Returns the id of the answer that this member voted for in a specified voting, or null if the member
-     * hasn't voted on that voting at all yet.
+     * Returns the id of the answer that this member voted for in a specified voting and for a specific voting item,
+     * or null if the member hasn't voted on that voting at all yet.
      *
-     * @param $votingId The id of the voting
-     * @return int      VoteTypeAnswer id!
+     * @param $votingId     The id of the voting
+     * @param $votingItemId The id of the votingItem
+     * @return int          VoteTypeAnswer id!
      */
-    public function vote($votingId) {
-        $vote = $this->votes()->where('voting_id', '=', $votingId)->first();    // get it
+    public function vote($votingId, $votingItemId) {
+        $vote = $this->votes()->where([
+            'voting_id' => $votingId,
+            'voting_item_id' => $votingItemId
+        ])->first();
+
         if ($vote != null) {
             if ($vote->answer != null) {
                 return $vote->answer->id;
