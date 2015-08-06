@@ -1,20 +1,24 @@
 $(function(){
     $('#addVotingItemButton').click(addVotingItemButtonHandler);
+    $('#remVotingItemButton').click(removeVotingItemButtonHandler);
 });
 
 function addVotingItemButtonHandler() {
-    var newVItem = $('.votingItem:first').clone();
+    var newVItem = $('.votingItem:first').clone();          // Make a copy of the first voting item
 
     $(newVItem).children('.form-group').each(function(index, group) {
-        console.log('oh a child');
-        console.log($(group).children('select'));
-        $(group).children('select').val(0);
-        $(group).children('select').show();
-        $(group).children('.bootstrap-select').remove();
+        $(group).children('select').val(0);                 // Select the first choice on both select fields
+        $(group).children('select').show();                 // Show both hidden select fields
+        $(group).children('.bootstrap-select').remove();    // Remove old bootstrap-select button thingy
     });
 
-    $(newVItem).insertAfter('.votingItem:last');
+    $(newVItem).insertAfter('.votingItem:last');            // Add to page
 
-    $(".selectpicker").selectpicker('refresh');
+    $(".selectpicker").selectpicker('refresh');             // refresh all select picker elements
 }
-//todo:button to remove a voting item
+
+function removeVotingItemButtonHandler() {
+    if ($('.votingItem').length > 1) {
+        $('.votingItem:last').remove();
+    }
+}

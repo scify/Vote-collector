@@ -25,36 +25,16 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="form.blade.php" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/resources/views/votings/partials/form.blade.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.3003413" vertical-offset="0" max-vertical-offset="586">
-                    <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Vouliwatch" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4973822" vertical-offset="5987" max-vertical-offset="6592">
+            <state vertical-scroll-proportion="-11.4" vertical-offset="5987" max-vertical-offset="6592">
               <caret line="414" column="8" selection-start-line="414" selection-start-column="8" selection-end-line="414" selection-end-column="8" />
               <folding>
                 <element signature="e#39#56#0#PHP" expanded="true" />
@@ -74,11 +54,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createVoting.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="createVoting.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/votings/createVoting.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="400">
-              <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.28805238" vertical-offset="0" max-vertical-offset="611">
+              <caret line="11" column="104" selection-start-line="11" selection-start-column="104" selection-end-line="11" selection-end-column="104" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="form.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/votings/partials/form.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.56" vertical-offset="16" max-vertical-offset="672">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -142,9 +132,9 @@
         <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/partials/form.blade.php" />
         <option value="$PROJECT_DIR$/public/js/votings/createVoting.js" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
       </list>
     </option>
   </component>
@@ -992,19 +982,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/votings/partials/form.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3003413" vertical-offset="0" max-vertical-offset="586">
-          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/votings/createVoting.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="400">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-          <folding />
+        <state vertical-scroll-proportion="-11.4" vertical-offset="5987" max-vertical-offset="6592">
+          <caret line="414" column="8" selection-start-line="414" selection-start-column="8" selection-end-line="414" selection-end-column="8" />
+          <folding>
+            <element signature="e#39#56#0#PHP" expanded="true" />
+            <element signature="e#1934#3012#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1016,14 +1001,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/votings/partials/form.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4973822" vertical-offset="5987" max-vertical-offset="6592">
-          <caret line="414" column="8" selection-start-line="414" selection-start-column="8" selection-end-line="414" selection-end-column="8" />
-          <folding>
-            <element signature="e#39#56#0#PHP" expanded="true" />
-            <element signature="e#1934#3012#0#PHP" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="-2.56" vertical-offset="16" max-vertical-offset="672">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/votings/createVoting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28805238" vertical-offset="0" max-vertical-offset="611">
+          <caret line="11" column="104" selection-start-line="11" selection-start-column="104" selection-end-line="11" selection-end-column="104" />
+          <folding />
         </state>
       </provider>
     </entry>

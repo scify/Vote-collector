@@ -19,10 +19,18 @@
     </div>
 </div>
 
+<!--todo: make ids unique in this page-->
 
-{{-- Submit and cancel buttons --}}
-{!! Form::submit($submitButtonText, array('class' => 'btn btn-primary')) !!}
-<a href="{{ url('votings') }}" class="btn btn-default">Άκυρο</a>
+<div class="col-sm12">
+    {{-- Submit and cancel buttons --}}
+    <div class="pull-left">
+        {!! Form::submit($submitButtonText, array('class' => 'btn btn-primary')) !!}
+        <a href="{{ url('votings') }}" class="btn btn-default">Άκυρο</a>
+    </div>
 
-{{-- New voting item button --}}
-<a href="#" id="addVotingItemButton" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus"></span> Προσθήκη αντικειμένου</a>
+    {{-- Create & delete voting item buttons --}}
+    <div class="pull-right">
+        <a href="#" id="addVotingItemButton" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Προσθήκη αντικειμένου</a>
+        <a href="#" id="remVotingItemButton" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Αφαίρεση</a>
+    </div>
+</div>
