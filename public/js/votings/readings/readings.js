@@ -80,7 +80,7 @@ function keyboardHandler(e) {
 function clickHandler(e) {
     var target = e.target;
 
-    if (target.nodeName == 'SPAN') {
+    if (target.nodeName == 'TD') {
         if ($(target).is('.memberName') && !$(target).is('.currentMember')) {
             var newMember = $(memberRows).index($(target).parent());    // Get index of clicked member
 
