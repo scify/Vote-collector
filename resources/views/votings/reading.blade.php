@@ -36,7 +36,7 @@
                                 <span id="selAnswerLabel{{ $member['id'] . $vi['id'] }}" class="label label-primary pull-left">{{ $member['labels'][$vi['id']] }}</span>
                             </td>
                         @endforeach
-                        <td class="btnCell">
+                        <td class="btnCell col-sm-3">
                             {{-- buttons or an absent label will be added here when/if needed by javascript --}}
                         </td>
                     </tr>
