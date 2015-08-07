@@ -7,7 +7,6 @@
 @section('content')
     <h1 id="title" class="page-header">Πρώτη ανάγνωση <small>{{ $votingTitle }}</small></h1>
 
-    {{-- votesform is now votesDiv --}}
     <div id="votesDiv" class="table-responsive" data-votingid="{{ $votingid }}">
         <table class="table">
             <thead>
@@ -38,7 +37,7 @@
                             </td>
                         @endforeach
                         <td class="btnCell">
-                            {{-- buttons will be added here when needed by javascript --}}
+                            {{-- buttons or an absent label will be added here when/if needed by javascript --}}
                         </td>
                     </tr>
                 @endforeach

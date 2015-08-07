@@ -23,7 +23,7 @@ $(function(){
     });
 
     // Set the voting_id variable (needed for when the form is saved)
-    voting_id = $('#votesform').data('votingid');
+    voting_id = $('#votesDiv').data('votingid');
 
     // Setup CSRF token for middleware
     $.ajaxSetup({
@@ -61,7 +61,9 @@ function keyboardHandler(e) {
             nextMember();
             break;
         case 87:    // W (previous member)
-            changeToMember(currentMember - 1);
+            if (currentMember - 1 >= 0) {
+                changeToMember(currentMember - 1);
+            }
             break;
         case 65:    // A (mark as absent)
             absentButtonHandler();
@@ -216,32 +218,6 @@ function absentButtonHandler() {
 }
 
 /**
- * Deletes the vote of the given member from the database
- *
- * @param member    The member to delete the vote of
- */
-function deleteVote(member) {
-    var m_id = getMemberId(member);    // member id
-
-    // Send ajax request to server
-    $.ajax({
-        url: deleteVoteUrl,
-        type: 'POST',
-        data: {
-            m_id: m_id,
-            v_id: voting_id
-        },
-        dataType: 'json',
-        error: function(data) {
-            // Show error
-            $('#memberDeleteFailAlert').remove();
-            var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να διαγραφεί η απάντηση του/ης βουλευτή αφού επισημάνθηκε ως απών!';
-            $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
-        }
-    });
-}
-
-/**
  * Adds current status to a member (currently shown by the buttons next to them only)
  *
  * @param member    The form-control div of the member
@@ -344,7 +320,7 @@ function isSaved(member) {
  */
 function makeAbsent(member) {
     $(member).addClass('text-muted');
-    $(member).append(absentLabel());
+    $(member).children('.btnCell').append(absentLabel());
 }
 
 /**
@@ -519,6 +495,14 @@ function submitVotes(votes, goToNext) {
         savedVotes[memberId] = answerId;
     });
 
+
+    //////////////////////////////////////////////////////////////////
+    console.log('=> would normally send request to save vote(s)');
+    if (goToNext) {
+        nextMember();
+    }
+    //////////////////////////////////////////////////////////////////
+    /*
     // Send ajax request to server
     $.ajax({
         url: submitVotesUrl,
@@ -541,7 +525,7 @@ function submitVotes(votes, goToNext) {
             var errorDiv =  getAlertDiv(false, 'couldNotSaveAlert', '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι φήφοι!');
             $('.container').prepend(errorDiv);
         }
-    });
+    });*/
 }
 
 /**
@@ -576,6 +560,8 @@ function votingComplete(success) {
     $('.container').prepend(alertDiv);
 
     // Mark voting as complete in the database
+    console.log('=> would normally send request to mark voting as complete');
+    /*
     $.ajax({
         url: markCompleteUrl,
         type: 'POST',
@@ -588,5 +574,33 @@ function votingComplete(success) {
             var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτεί η ψηφοφορία ως "ολοκληρωμένη"!';
             $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
         }
-    });
+    });*/
+}
+
+/**
+ * Deletes the vote of the given member from the database
+ *
+ * @param member    The member to delete the vote of
+ */
+function deleteVote(member) {
+    var m_id = getMemberId(member);    // member id
+    console.log('=> would normally send request to delete member');
+    // Send ajax request to server
+    /*
+     $.ajax({
+     url: deleteVoteUrl,
+     type: 'POST',
+     data: {
+     m_id: m_id,
+     v_id: voting_id
+     },
+     dataType: 'json',
+     error: function(data) {
+     // Show error
+     $('#memberDeleteFailAlert').remove();
+     var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να διαγραφεί η απάντηση του/ης βουλευτή αφού επισημάνθηκε ως απών!';
+     $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
+     }
+     });
+     */
 }
