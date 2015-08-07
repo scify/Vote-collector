@@ -5,6 +5,8 @@ var savedVotes = {};    // Keeps the votes of the saved members, to check for ch
 var votingItemIds = []; // Keeps the voting item ids
 var voting_id;
 
+//todo: make changing labels of the page work
+
 $(function(){
     memberRows = $('.member');  // Get all member divs
 

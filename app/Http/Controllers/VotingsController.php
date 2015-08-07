@@ -387,13 +387,15 @@ class VotingsController extends Controller {
         $voting_id = Input::get('v_id');
         $member_id = Input::get('m_id');
 
-        $v = Vote::where([
+        $votes = Vote::where([
             'voting_id' => $voting_id,
             'member_id' => $member_id
         ])->get();
 
-        if ($v->count() > 0) {
-            $v->first()->delete();
+        if ($votes->count() > 0) {
+            foreach($votes as $v) {
+                $v->delete();
+            }
         }
 
         // Return success json
