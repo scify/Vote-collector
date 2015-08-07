@@ -101,8 +101,8 @@
       <file leaf-file-name="reading.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19546248" vertical-offset="0" max-vertical-offset="1136">
-              <caret line="7" column="92" selection-start-line="7" selection-start-column="92" selection-end-line="7" selection-end-column="92" />
+            <state vertical-scroll-proportion="0.41884816" vertical-offset="0" max-vertical-offset="1120">
+              <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -177,8 +177,8 @@
         <option value="$PROJECT_DIR$/public/js/votings/createVoting.js" />
         <option value="$PROJECT_DIR$/app/Member.php" />
         <option value="$PROJECT_DIR$/public/js/votings/readings/readings.js" />
-        <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
       </list>
     </option>
   </component>
@@ -1045,8 +1045,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19546248" vertical-offset="0" max-vertical-offset="1136">
-          <caret line="7" column="92" selection-start-line="7" selection-start-column="92" selection-end-line="7" selection-end-column="92" />
+        <state vertical-scroll-proportion="0.41884816" vertical-offset="0" max-vertical-offset="1120">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
           <folding />
         </state>
       </provider>
