@@ -304,7 +304,9 @@ class VotingsController extends Controller {
                 $myMembers[] = $m;
             }
 
-            return view('votings.reading', compact('votingid', 'myMembers', 'myVotingItems'));
+            $votingTitle = $voting->title;
+
+            return view('votings.reading', compact('votingid', 'votingTitle', 'myMembers', 'myVotingItems'));
         } else {
             return 'ERROR: There are no default votes set for this voting or this voting has been completed';
         }

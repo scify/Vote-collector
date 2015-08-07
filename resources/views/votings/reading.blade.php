@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h1 id="title" class="page-header">Πρώτη ανάγνωση</h1>
+    <h1 id="title" class="page-header">Πρώτη ανάγνωση <small>{{ $votingTitle }}</small></h1>
 
     {!! Form::open(['action' => 'VotingsController@saveAnswers', 'class' => 'form-horizontal', 'id' => 'votesform', 'data-votingid' => $votingid]) !!}
         <div class="table-responsive">
@@ -25,11 +25,11 @@
                             </td>
                             @foreach($myVotingItems as $vi)
                                 <td class="votingItem" data-id="{{ $vi['id'] }}">
-                                    <div class="radios">
+                                    <div class="radios hidden">
                                         @foreach($vi['answers'] as $answerId => $answer)
                                             {!! Form::radio('answer_' . $member['id'] . $vi['id'], $answerId, $member['answerIds'][$vi['id']] == $answerId, ['id' => 'rd' . $member['id'] . $vi['id'] . $answerId]) !!}
                                             {!! Form::label('rd' . $member['id'] . $vi['id'] . $answerId, $answer, ['class' => 'control-label']) !!}
-                                            <br/>
+                                            <br>
                                         @endforeach
                                     </div>
 
@@ -45,17 +45,6 @@
                 </tbody>
             </table>
         </div>
-        {{--
-                <div class="radios col-sm-3 hidden">
-                    @foreach($myAnswers as $answer)
-                        {!! Form::radio('answer_' . $member['id'], $answer['id'], $member['answerId'] == $answer['id'], ['id' => 'rd' . $member['id'] . $answer['id']]) !!}
-                        {!! Form::label('rd' . $member['id'] . $answer['id'], $answer['answer'], ['class' => 'control-label']) !!}
-                        <br/>
-                    @endforeach
-                </div>
-
-
-        --}}
 
         <a href="{{ url('votings') }}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
         <div id="readingsButtonGroup" class="btn-group">
