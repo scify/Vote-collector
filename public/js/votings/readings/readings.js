@@ -2,10 +2,17 @@ var reading = 1;        // Shows if this is the first, or second reading
 var currentMember = 0;  // current member in the reading
 var memberRows;         // Keeps divs of members
 var savedVotes = {};    // Keeps the votes of the saved members, to check for changes
+var votingItemIds = []; // Keeps the voting item ids
 var voting_id;
 
 $(function(){
     memberRows = $('.member');  // Get all member divs
+
+    // For each voting item, add an object to savedVotes (to keep votes in) and its id in the votingItemIds array
+    $(memberRows[0]).children('.votingItem').each(function(index, vi) {
+        savedVotes[$(vi).data('id')] = {};      // Each object will be used to keep votes in
+        votingItemIds.push($(vi).data('id'));   // votingItemIds has all the ids of the voting items in this voting
+    });
 
     // The page just loaded so make the first member in the list the current one
     addCurrentStatus(memberRows[0]);
@@ -15,9 +22,15 @@ $(function(){
         if (isSaved(member)) {
             if ($(member).data('wassavedasabsent') == true) {
                 makeAbsent(member);
-                savedVotes[getMemberId(member)] = null;
+                $(votingItemIds).each(function(index, id) {
+                    savedVotes[id][getMemberId(member)] = null;
+                });
+                //savedVotes[getMemberId(member)] = null;
             } else {
-                savedVotes[getMemberId(member)] = getSelectedAnswer(member);
+                $(votingItemIds).each(function(index, id) {
+                    savedVotes[id][getMemberId(member)] = getSelectedAnswer(member, id);
+                });
+                //savedVotes[getMemberId(member)] = getSelectedAnswer(member);
             }
         }
     });
@@ -100,12 +113,12 @@ function changeToMember(memberIndex) {
     var currMember = memberRows[currentMember];
     if (!isAbsent(currMember)) {
         var m_id = getMemberId(currMember);
-        if (!isSaved(currMember) || (getSelectedAnswer(currMember) != savedVotes[m_id])) {
+        if (!isSaved(currMember) || answerChanged(currMember)) { // (getSelectedAnswer(currMember) != savedVotes[m_id])
             console.log('is not saved, or answer changed');
             saveMember(currMember, false);
         } else {
             console.log('has the answer changed??');
-            console.log(getSelectedAnswer(currMember) + ' vs ' + savedVotes[m_id]);
+            console.log(answerChanged(currMember));
         }
     }
 
@@ -117,6 +130,23 @@ function changeToMember(memberIndex) {
 
     // Add current status to new div
     addCurrentStatus(memberRows[currentMember]);
+}
+
+/**
+ * Checks with the savedVotes array if any of this member's answers in the voting's items
+ * have changed, and returns true if they changed and false if they didn't
+ *
+ * @param member
+ * @returns {boolean}
+ */
+function answerChanged(member) {
+    $(votingItemIds).each(function(index, id) {
+        if (getSelectedAnswer(member, id) != savedVotes[id][getMemberId(member)]) {
+            return true;
+        }
+    });
+
+    return false;
 }
 
 /**
@@ -430,8 +460,13 @@ function getVotes(members, forceUpdate) {
 function getMemberVote(member) {
     var vote = {
         member_id: getMemberId(member),
-        answer_id: isAbsent(member) ? null : getSelectedAnswer(member)
+        //answer_id: isAbsent(member) ? null : getSelectedAnswer(member)
     };
+
+    // For each voting id add an answer for this member
+    $(votingItemIds).each(function(index, id) {
+        vote['answer_for_' + id] = isAbsent(member) ? null : getSelectedAnswer(member, id);
+    });
 
     return vote;
 }
@@ -457,10 +492,11 @@ function getAbsentMemberVotes() {
  * Returns the id of the selected answer of a member
  *
  * @param member        The div of the member to get answer from
+ * @param votingItemId  The id of the voting item to get answer from
  * @returns {*|jQuery}  The id of the selected answer of the member
  */
-function getSelectedAnswer(member) {
-    return $(member).find('input[type="radio"][name="answer_' + getMemberId(member) + '"]:checked').val();
+function getSelectedAnswer(member, votingItemId) {
+    return $(member).find('input[type="radio"][name="answer_' + getMemberId(member) + '' + votingItemId + '"]:checked').val();
 }
 
 /**
@@ -490,14 +526,17 @@ function submitVotes(votes, goToNext) {
     // Before submitting votes, save them to the array used to check for changes
     $(votes).each(function(index, vote) {
         var memberId = vote['member_id'];
-        var answerId = vote['answer_id'];
 
-        savedVotes[memberId] = answerId;
+        $(votingItemIds).each(function(index, id) {
+            savedVotes[id][memberId] = vote['answer_for_' + id];
+        });
+
+        //var answerId = vote['answer_id'];
+        //savedVotes[memberId] = answerId;
     });
 
-
     //////////////////////////////////////////////////////////////////
-    console.log('=> would normally send request to save vote(s)');
+    console.log('=> saving votes (kai kala)');
     if (goToNext) {
         nextMember();
     }
