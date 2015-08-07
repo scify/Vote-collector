@@ -23,6 +23,7 @@
                             {{ $member['full_name'] }}
                         </td>
                         @foreach($myVotingItems as $vi)
+                                                                            <!-- todo: data-id below might be useless!!!!-->
                             <td class="votingItem" data-id="{{ $vi['id'] }}">
                                 <div class="radios hidden">
                                     @foreach($vi['answers'] as $answerId => $answer)

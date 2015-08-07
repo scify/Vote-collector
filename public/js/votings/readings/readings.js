@@ -136,17 +136,19 @@ function changeToMember(memberIndex) {
  * Checks with the savedVotes array if any of this member's answers in the voting's items
  * have changed, and returns true if they changed and false if they didn't
  *
- * @param member
- * @returns {boolean}
+ * @param member        Member to check for changed answers
+ * @returns {boolean}   Shows if any answers have changed or not
  */
 function answerChanged(member) {
+    var changed = false;
     $(votingItemIds).each(function(index, id) {
         if (getSelectedAnswer(member, id) != savedVotes[id][getMemberId(member)]) {
-            return true;
+            changed = true;
+            return;
         }
     });
 
-    return false;
+    return changed;
 }
 
 /**
@@ -536,7 +538,7 @@ function submitVotes(votes, goToNext) {
     });
 
     //////////////////////////////////////////////////////////////////
-    console.log('=> saving votes (kai kala)');
+    console.log('[submitVotes] submitting votes to server (kai kala)');
     if (goToNext) {
         nextMember();
     }
@@ -625,21 +627,19 @@ function deleteVote(member) {
     var m_id = getMemberId(member);    // member id
     console.log('=> would normally send request to delete member');
     // Send ajax request to server
-    /*
-     $.ajax({
-     url: deleteVoteUrl,
-     type: 'POST',
-     data: {
-     m_id: m_id,
-     v_id: voting_id
-     },
-     dataType: 'json',
-     error: function(data) {
-     // Show error
-     $('#memberDeleteFailAlert').remove();
-     var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να διαγραφεί η απάντηση του/ης βουλευτή αφού επισημάνθηκε ως απών!';
-     $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
-     }
-     });
-     */
+    //$.ajax({
+    //    url: deleteVoteUrl,
+    //    type: 'POST',
+    //    data: {
+    //        m_id: m_id,
+    //        v_id: voting_id
+    //    },
+    //    dataType: 'json',
+    //    error: function(data) {
+    //        // Show error
+    //        $('#memberDeleteFailAlert').remove();
+    //        var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να διαγραφεί η απάντηση του/ης βουλευτή αφού επισημάνθηκε ως απών!';
+    //        $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
+    //    }
+    //});
 }
