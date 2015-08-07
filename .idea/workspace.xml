@@ -78,15 +78,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4363002" vertical-offset="5654" max-vertical-offset="7504">
-              <caret line="391" column="25" selection-start-line="391" selection-start-column="25" selection-end-line="391" selection-end-column="25" />
+            <state vertical-scroll-proportion="-2.96" vertical-offset="6422" max-vertical-offset="7520">
+              <caret line="428" column="61" selection-start-line="428" selection-start-column="61" selection-end-line="428" selection-end-column="61" />
               <folding>
                 <element signature="e#39#56#0#PHP" expanded="true" />
                 <element signature="e#1934#3012#0#PHP" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="readings.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/readings.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.64214045" vertical-offset="0" max-vertical-offset="598">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -158,10 +168,10 @@
         <option value="$PROJECT_DIR$/resources/views/votings/partials/form.blade.php" />
         <option value="$PROJECT_DIR$/public/js/votings/createVoting.js" />
         <option value="$PROJECT_DIR$/app/Member.php" />
-        <option value="$PROJECT_DIR$/public/css/readings.css" />
         <option value="$PROJECT_DIR$/public/js/votings/readings/readings.js" />
         <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
+        <option value="$PROJECT_DIR$/public/css/readings.css" />
       </list>
     </option>
   </component>
@@ -995,14 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/readings.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31423897" vertical-offset="0" max-vertical-offset="611">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/votings/readings/readings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="5150" max-vertical-offset="10240">
@@ -1021,12 +1023,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4363002" vertical-offset="5654" max-vertical-offset="7504">
-          <caret line="391" column="25" selection-start-line="391" selection-start-column="25" selection-end-line="391" selection-end-column="25" />
+        <state vertical-scroll-proportion="-2.96" vertical-offset="6422" max-vertical-offset="7520">
+          <caret line="428" column="61" selection-start-line="428" selection-start-column="61" selection-end-line="428" selection-end-column="61" />
           <folding>
             <element signature="e#39#56#0#PHP" expanded="true" />
             <element signature="e#1934#3012#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/readings.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64214045" vertical-offset="0" max-vertical-offset="598">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
