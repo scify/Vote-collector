@@ -462,7 +462,6 @@ function getVotes(members, forceUpdate) {
 function getMemberVote(member) {
     var vote = {
         member_id: getMemberId(member),
-        //answer_id: isAbsent(member) ? null : getSelectedAnswer(member)
     };
 
     // For each voting id add an answer for this member
@@ -532,18 +531,9 @@ function submitVotes(votes, goToNext) {
         $(votingItemIds).each(function(index, id) {
             savedVotes[id][memberId] = vote['answer_for_' + id];
         });
-
-        //var answerId = vote['answer_id'];
-        //savedVotes[memberId] = answerId;
     });
 
-    //////////////////////////////////////////////////////////////////
     console.log('[submitVotes] submitting votes to server (kai kala)');
-    if (goToNext) {
-        nextMember();
-    }
-    //////////////////////////////////////////////////////////////////
-    /*
     // Send ajax request to server
     $.ajax({
         url: submitVotesUrl,
@@ -566,7 +556,7 @@ function submitVotes(votes, goToNext) {
             var errorDiv =  getAlertDiv(false, 'couldNotSaveAlert', '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτούν οι φήφοι!');
             $('.container').prepend(errorDiv);
         }
-    });*/
+    });
 }
 
 /**
@@ -601,8 +591,6 @@ function votingComplete(success) {
     $('.container').prepend(alertDiv);
 
     // Mark voting as complete in the database
-    console.log('=> would normally send request to mark voting as complete');
-    /*
     $.ajax({
         url: markCompleteUrl,
         type: 'POST',
@@ -615,7 +603,7 @@ function votingComplete(success) {
             var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να αποθηκευτεί η ψηφοφορία ως "ολοκληρωμένη"!';
             $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
         }
-    });*/
+    });
 }
 
 /**
@@ -627,19 +615,19 @@ function deleteVote(member) {
     var m_id = getMemberId(member);    // member id
     console.log('=> would normally send request to delete member');
     // Send ajax request to server
-    //$.ajax({
-    //    url: deleteVoteUrl,
-    //    type: 'POST',
-    //    data: {
-    //        m_id: m_id,
-    //        v_id: voting_id
-    //    },
-    //    dataType: 'json',
-    //    error: function(data) {
-    //        // Show error
-    //        $('#memberDeleteFailAlert').remove();
-    //        var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να διαγραφεί η απάντηση του/ης βουλευτή αφού επισημάνθηκε ως απών!';
-    //        $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
-    //    }
-    //});
+    $.ajax({
+        url: deleteVoteUrl,
+        type: 'POST',
+        data: {
+            m_id: m_id,
+            v_id: voting_id
+        },
+        dataType: 'json',
+        error: function(data) {
+            // Show error
+            $('#memberDeleteFailAlert').remove();
+            var msg = '<strong>Σφάλμα!</strong> Δεν ήταν δυνατό να διαγραφεί η απάντηση του/ης βουλευτή αφού επισημάνθηκε ως απών!';
+            $('.container').prepend(getAlertDiv(false, 'memberDeleteFailAlert', msg));
+        }
+    });
 }

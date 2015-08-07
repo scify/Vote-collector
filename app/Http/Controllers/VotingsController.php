@@ -325,30 +325,50 @@ class VotingsController extends Controller {
         // Get member/vote pairs
         $votes = Input::get('data');
 
+        // Get voting items of this voting and put their ids in another array to not make a lot of queries afterwards
+        $votingItems = VotingItem::ofVoting($v_id)->get();
+        $votingItemIds= [];
+        foreach($votingItems as $vi) {
+            $votingItemIds[] = $vi->id;
+        }
+
         // Save votes to the database
         foreach($votes as $vote) {
             // Check if a vote already exists (which means the user is changing the vote from the form) and delete it
-            $tmp = Vote::where([
+            $prevVotes = Vote::where([
                 'voting_id' => $v_id,
                 'member_id' => $vote['member_id']
             ])->get();
 
-            if ($tmp->count() > 0) {
-                $tmp->first()->delete();    // First because there is only one vote for each member & voting
+            if ($prevVotes->count() > 0) {
+                foreach($prevVotes as $v) {
+                    $v->delete();               // Delete vote for every voting item
+                }
             }
 
             // Create the new vote
-            if ($vote['answer_id'] == '') {
-                $answer = null;
-            } else {
-                $answer = $vote['answer_id'];
-            }
+            foreach($votingItemIds as $vItem_id) {
+                // Make string which is the key to this voting item's answer in the $vote[] array
+                $str = 'answer_for_' . $vItem_id;
 
-            Vote::create([
-                'voting_id' => $v_id,
-                'member_id' => $vote['member_id'],
-                'answer_id' => $answer
-            ]);
+                // If the key exists in the $vote[] array, save the vote to the database
+                //todo: check if it works for absent!!
+                if (isset($vote[$str]) || array_key_exists($str, $vote)) {
+                    if ($vote[$str] == '') {
+                        $answer = null;
+                    } else {
+                        $answer = $vote[$str];
+                    }
+
+                    // Save the vote to the database
+                    Vote::create([
+                        'voting_id' => $v_id,
+                        'voting_item_id' => $vItem_id,
+                        'member_id' => $vote['member_id'],
+                        'answer_id' => $vote[$str]
+                    ]);
+                }
+            }
         }
 
         // Return success json
