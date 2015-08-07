@@ -25,7 +25,7 @@
                         </td>
                         @foreach($myVotingItems as $vi)
                             <td class="votingItem" data-id="{{ $vi['id'] }}">
-                                <div class="radios "> {{--hidden--}}
+                                <div class="radios hidden">
                                     @foreach($vi['answers'] as $answerId => $answer)
                                         <input type="radio" value="{{ $answerId }}" id="rd{{ $member['id'] . $vi['id'] . $answerId }}" name="answer_{{ $member['id'] . $vi['id'] }}" {{ ($member['answerIds'][$vi['id']] == $answerId) ? 'checked=checked' : '' }}>
                                         <label for="rd{{ $member['id'] . $vi['id'] . $answerId }}" class="control-label">{{ $answer }}</label>
@@ -60,6 +60,6 @@
         var deleteVoteUrl = '{{ url('votings/reading/dv') }}';              {{-- URL for deleting a member's vote after they're marked as absent --}}
         var markCompleteUrl = '{{ url('votings/complete/' . $votingid) }}'; {{-- URL for making the ajax request to mark this voting as completed --}}
     </script>
-    {{--<script src="{{ URL::asset('js/votings/readings/components.js') }}"></script>
-    <script src="{{ URL::asset('js/votings/readings/readings.js') }}"></script>--}}
+    <script src="{{ URL::asset('js/votings/readings/components.js') }}"></script>
+    <script src="{{ URL::asset('js/votings/readings/readings.js') }}"></script>
 @stop

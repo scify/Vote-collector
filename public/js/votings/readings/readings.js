@@ -1,17 +1,17 @@
 var reading = 1;        // Shows if this is the first, or second reading
 var currentMember = 0;  // current member in the reading
-var memberDivs;         // Keeps divs of members
+var memberRows;         // Keeps divs of members
 var savedVotes = {};    // Keeps the votes of the saved members, to check for changes
 var voting_id;
 
 $(function(){
-    memberDivs = $('.member');  // Get all member divs
+    memberRows = $('.member');  // Get all member divs
 
     // The page just loaded so make the first member in the list the current one
-    addCurrentStatus(memberDivs[0]);
+    addCurrentStatus(memberRows[0]);
 
     // In case the page loaded because the user changed from 2nd -> 1st reading, put votes of saved members in the savedVotes variable
-    $(memberDivs).each(function(index, member) {
+    $(memberRows).each(function(index, member) {
         if (isSaved(member)) {
             if ($(member).data('wassavedasabsent') == true) {
                 makeAbsent(member);
@@ -54,9 +54,9 @@ function keyboardHandler(e) {
 
     switch(btn) {
         case 83:    // S (next member)
-            var member = memberDivs[currentMember];
+            var member = memberRows[currentMember];
             if (!isAbsent(member)) {
-                saveMember(memberDivs[currentMember], false);
+                saveMember(memberRows[currentMember], false);
             }
             nextMember();
             break;
@@ -80,7 +80,7 @@ function clickHandler(e) {
 
     if (target.nodeName == 'SPAN') {
         if ($(target).is('.memberName') && !$(target).is('.currentMember')) {
-            var newMember = $(memberDivs).index($(target).parent());    // Get index of clicked member
+            var newMember = $(memberRows).index($(target).parent());    // Get index of clicked member
 
             changeToMember(newMember);
         }
@@ -91,11 +91,11 @@ function clickHandler(e) {
  * Changes the current member to another member and saves the current member's
  * value if it should
  *
- * @param memberIndex   The index (in the memberDivs array) of the member you want to switch to
+ * @param memberIndex   The index (in the memberRows array) of the member you want to switch to
  */
 function changeToMember(memberIndex) {
     // Save old member's vote
-    var currMember = memberDivs[currentMember];
+    var currMember = memberRows[currentMember];
     if (!isAbsent(currMember)) {
         var m_id = getMemberId(currMember);
         if (!isSaved(currMember) || (getSelectedAnswer(currMember) != savedVotes[m_id])) {
@@ -108,13 +108,13 @@ function changeToMember(memberIndex) {
     }
 
     // Remove current status from old div
-    removeCurrentStatus(memberDivs[currentMember]);
+    removeCurrentStatus(memberRows[currentMember]);
 
     // Change currentMember to new member index
     currentMember = memberIndex;
 
     // Add current status to new div
-    addCurrentStatus(memberDivs[currentMember]);
+    addCurrentStatus(memberRows[currentMember]);
 }
 
 /**
@@ -132,7 +132,7 @@ function nextPhaseBtnHandler() {
     if (confirm(msg)) {
         // Check if any saved member's answer is different (so it needs updating)
         var changedMembers = [];
-        $(memberDivs).each(function (index, member) {
+        $(memberRows).each(function (index, member) {
             if (isSaved(member)) {
                 var memberId = getMemberId(member);            // Get id
                 var answerId = getSelectedAnswer(member);   // Get selected answer
@@ -167,7 +167,7 @@ function nextPhaseBtnHandler() {
  */
 function nextButtonHandler() {
     // Save current member's vote if they are not absent
-    var member = memberDivs[currentMember];
+    var member = memberRows[currentMember];
     if (!isAbsent(member)) {
         saveMember(member, true);
     } else {
@@ -182,11 +182,11 @@ function nextButtonHandler() {
  * (if the current member is the last in the list, it adds current status again to update absent buttons)
  */
 function nextMember() {
-    removeCurrentStatus(memberDivs[currentMember]);
-    if (currentMember < memberDivs.length - 1) {
+    removeCurrentStatus(memberRows[currentMember]);
+    if (currentMember < memberRows.length - 1) {
         currentMember++;
     }
-    addCurrentStatus(memberDivs[currentMember]);
+    addCurrentStatus(memberRows[currentMember]);
 }
 
 /**
@@ -195,7 +195,7 @@ function nextMember() {
  * @return {boolean}    To prevent the page from scrolling to the top when a button is clicked
  */
 function absentButtonHandler() {
-    var member = memberDivs[currentMember];
+    var member = memberRows[currentMember];
 
     if (!isAbsent(member)) {
         if (isSaved(member)) {
@@ -249,15 +249,15 @@ function deleteVote(member) {
 function addCurrentStatus(member) {
     // Put the appropriate button next to the member
     if (isAbsent(member)) {
-        $(member).append(getNotAbsentButton());
+        $(member).children('.btnCell').append(getNotAbsentButton());
     } else {
-        $(member).append(getAbsentButton());
+        $(member).children('.btnCell').append(getAbsentButton());
     }
 
     $('#absentBtn').click(absentButtonHandler);     // Event listener for the absent button
 
     // Remove the next button if it's the last member in the list, or add event listener to it if it's not
-    if ($(memberDivs).index(member) == memberDivs.length - 1) {
+    if ($(memberRows).index(member) == memberRows.length - 1) {
         $(member).find('#nextBtn').remove();
     } else {
         $('#nextBtn').click(nextButtonHandler);
@@ -363,7 +363,7 @@ function makeNotAbsent(member) {
  */
 function endVoting() {
     // Save votes of not absent members
-    var votes = getVotes(memberDivs, false);
+    var votes = getVotes(memberRows, false);
     submitVotes(votes, false);              // Submit the votes
 
     // Save votes of absent members
@@ -377,7 +377,7 @@ function endVoting() {
  * Switches from the first to the second reading
  */
 function startSecondReading() {
-    removeCurrentStatus(memberDivs[currentMember]);     // Remove current status from current member
+    removeCurrentStatus(memberRows[currentMember]);     // Remove current status from current member
 
     // Save the votes of members who voted
     var membersToSave = [];
@@ -396,21 +396,21 @@ function startSecondReading() {
         }
     });
 
-    memberDivs = $('.member');                          // Update memberDivs
+    memberRows = $('.member');                          // Update memberRows
 
     // If all members voted, no need for second reading
-    if (memberDivs.length == 0) {
+    if (memberRows.length == 0) {
         votingComplete(true);
     } else {
         // Make all remaining members not absent
-        $(memberDivs).each(function(index, div) {
+        $(memberRows).each(function(index, div) {
             makeNotAbsent(div);
         });
 
         reading = 2;                                                    // Set reading variable
         currentMember = 0;                                              // Current member is the first one again
         $('#title').text('Δεύτερη ανάγνωση');                           // Change title
-        addCurrentStatus(memberDivs[currentMember]);                    // Add curr. status to current member
+        addCurrentStatus(memberRows[currentMember]);                    // Add curr. status to current member
 
         $('#nextPhaseBtn').text('Τέλος ψηφοφορίας');                    // Change the next phase button to say "end voting"
         $('#readingsButtonGroup').prepend(getPrevReadingButton());      // Add button to go to the previous reading
@@ -555,7 +555,7 @@ function votingComplete(success) {
     $(window).off('beforeunload');  // Turn off message that warns before leaving page
 
     // Remove any fields remaining
-    $(memberDivs).each(function(index, div) {
+    $(memberRows).each(function(index, div) {
         $(div).remove();
     });
 
