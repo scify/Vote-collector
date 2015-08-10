@@ -45,7 +45,6 @@
         </table>
     </div>
 
-    <a href="{{ url('votings') }}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Πίσω</a>
     <div id="readingsButtonGroup" class="btn-group">
         <a href="#" id="nextPhaseBtn" class="btn btn-primary"><span class="glyphicon glyphicon-forward"></span> Δεύτερη ανάγνωση</a>
     </div>

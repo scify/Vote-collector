@@ -577,10 +577,8 @@ function votingComplete(success) {
 
     $(window).off('beforeunload');  // Turn off message that warns before leaving page
 
-    // Remove any fields remaining
-    $(memberRows).each(function(index, div) {
-        $(div).remove();
-    });
+    // Remove entire table
+    $('#votesDiv').remove();
 
     // Remove the next phase button and previous reading button
     $('#readingsButtonGroup').remove();
