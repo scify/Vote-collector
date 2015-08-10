@@ -279,8 +279,11 @@ function addCurrentStatus(member) {
     // Unhide radio buttons
     $(member).find('.radios').removeClass('hidden');
 
-    // Hide the selected answer label
-    $('#selAnswerLabel' + getMemberId(member)).text('');
+    // Hide the selected answer labels
+    var m_id = getMemberId(member);
+    $(votingItemIds).each(function(index, vi_id) {
+        $(member).find('#selAnswerLabel' + m_id + '' + vi_id).text('');
+    });
 
     // If member is marked as absent, hide the absent label temporarily
     $(member).find('.absentLabel').addClass('hidden');
@@ -304,10 +307,13 @@ function removeCurrentStatus(member) {
     // Hide buttons with css
     $(member).find('.radios').addClass('hidden');
 
-    // Show the selected answer label
+    // Show the selected answer labels
     if (!isAbsent(member)) {
-        var answerText = $(member).find('label[for=rd' + getMemberId(member) + '' + getSelectedAnswer(member) + ']').text();
-        $('#selAnswerLabel' + getMemberId(member)).text(answerText);
+        m_id = getMemberId(member);
+        $(votingItemIds).each(function(index, vi_id) {
+            var answerText = $(member).find('label[for=rd' + m_id + '' + vi_id + '' + getSelectedAnswer(member, vi_id) + ']').text();
+            $('#selAnswerLabel' + m_id + '' + vi_id).text(answerText);
+        });
     }
 
     // If member is marked as absent, unhide the absent label
