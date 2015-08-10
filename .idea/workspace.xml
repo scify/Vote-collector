@@ -30,8 +30,8 @@
             <file leaf-file-name="VotingItem.php" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/app/VotingItem.php">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.075235106" vertical-offset="0" max-vertical-offset="638">
-                    <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+                  <state vertical-scroll-proportion="0.60188085" vertical-offset="0" max-vertical-offset="638">
+                    <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
                     <folding />
                   </state>
                 </provider>
@@ -40,8 +40,8 @@
             <file leaf-file-name="VoteObjective.php" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/app/VoteObjective.php">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="320">
-                    <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+                  <state vertical-scroll-proportion="-4.48" vertical-offset="0" max-vertical-offset="320">
+                    <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
                     <folding />
                   </state>
                 </provider>
@@ -71,12 +71,17 @@
       <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38219896" vertical-offset="1093" max-vertical-offset="7120">
-              <caret line="82" column="50" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.53583616" vertical-offset="1030" max-vertical-offset="4992">
+              <caret line="84" column="50" selection-start-line="84" selection-start-column="50" selection-end-line="84" selection-end-column="50" />
               <folding>
                 <element signature="e#39#56#0#PHP" expanded="true" />
-                <element signature="e#8255#11081#0#PHP" expanded="false" />
-                <element signature="e#11344#12062#0#PHP" expanded="false" />
+                <element signature="e#4657#6146#0#PHP" expanded="false" />
+                <element signature="e#8284#11110#0#PHP" expanded="false" />
+                <element signature="e#12195#14331#0#PHP" expanded="false" />
+                <element signature="e#14591#15046#0#PHP" expanded="false" />
+                <element signature="e#15217#15482#0#PHP" expanded="false" />
+                <element signature="e#15629#16288#0#PHP" expanded="false" />
+                <element signature="e#16395#17354#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -612,7 +617,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1699" y="259" width="904" height="488" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.24963397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="1378" y="111" width="305" height="640" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.24963397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="1378" y="111" width="305" height="640" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19253294" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -649,7 +654,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -950,14 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/VoteObjective.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="320">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/readings.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10702341" vertical-offset="0" max-vertical-offset="598">
@@ -978,14 +975,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3715221" vertical-offset="93" max-vertical-offset="1184">
           <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/VotingItem.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.075235106" vertical-offset="0" max-vertical-offset="638">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1014,6 +1003,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/VoteObjective.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.48" vertical-offset="0" max-vertical-offset="320">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/VotingItem.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60188085" vertical-offset="0" max-vertical-offset="638">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.48" vertical-offset="99" max-vertical-offset="960">
@@ -1024,12 +1029,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38219896" vertical-offset="1093" max-vertical-offset="7120">
-          <caret line="82" column="50" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.53583616" vertical-offset="1030" max-vertical-offset="4992">
+          <caret line="84" column="50" selection-start-line="84" selection-start-column="50" selection-end-line="84" selection-end-column="50" />
           <folding>
             <element signature="e#39#56#0#PHP" expanded="true" />
-            <element signature="e#8255#11081#0#PHP" expanded="false" />
-            <element signature="e#11344#12062#0#PHP" expanded="false" />
+            <element signature="e#4657#6146#0#PHP" expanded="false" />
+            <element signature="e#8284#11110#0#PHP" expanded="false" />
+            <element signature="e#12195#14331#0#PHP" expanded="false" />
+            <element signature="e#14591#15046#0#PHP" expanded="false" />
+            <element signature="e#15217#15482#0#PHP" expanded="false" />
+            <element signature="e#15629#16288#0#PHP" expanded="false" />
+            <element signature="e#16395#17354#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

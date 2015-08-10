@@ -73,51 +73,61 @@ class VotingsController extends Controller {
 		$voting = Voting::findOrFail($id);                          // Find the voting or fail
 
         // Get each member's vote (if there are any for this voting) and put them in an array
+        $memberVotes = $this->gatherMemberVotes($voting);
+
+        // Get voting item ids and titles
+        $votingItems = VotingItem::ofVoting($voting->id)->get();
+
+        $myVotingItems = [];
+        foreach($votingItems as $votingItem) {
+            $vItem = [];
+            $vItem['id'] = $votingItem->id;
+            $vItem['title'] = $votingItem->voteObjective->title;
+
+            $myVotingItems[] = $vItem;
+        }
+
+        return view('votings.show', compact('voting', 'memberVotes', 'myVotingItems'));
+	}
+
+    /**
+     * Gathers all the votes of a voting
+     *
+     * @param $voting   The voting to gather votes for
+     * @return array    The formatted array
+     */
+    private function gatherMemberVotes($voting) {
         $memberVotes = [];
         if ($voting->votes->count() > 0) {
             $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
 
+            $votingId = $voting->id;
             foreach($members as $member) {
                 // Create member info array and add full name to it
                 $m = [];
-                $m['fullname'] = $member->first_name . ' ' . $member->last_name;
+                $m['fullname'] = $member->first_name . $member->last_name;
 
                 // Add the votes of this member for each voting item
                 $votes = Vote::where([
                     'member_id' => $member->id,
-                    'voting_id' => $voting->id
+                    'voting_id' => $votingId
                 ])->get();
 
-                //todo
-            }
-
-            /* old code
-            $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
-
-            foreach($members as $member) {
-                $vote = Vote::where([
-                    'member_id' => $member->id,
-                    'voting_id' => $voting->id
-                ])->first();                        // Not get(), because a member can only vote once in a voting
-
-                if (count($vote) > 0) {             // If member has voted put member and answer to array
-                    $answerId = $vote->answer_id;
-                    if ($answerId != null) {
-                        $vta = VoteTypeAnswer::findOrFail($answerId);
-                        $answer = $vta->answer;
+                foreach($votes as $vote) {
+                    $ansId = $vote->answer_id;
+                    if ($ansId != null) {
+                        $m['vote_for_' . $vote->voting_item_id] = VoteTypeAnswer::findOrFail($ansId)->answer;
                     } else {
-                        $answer = 'Απών';
+                        $m['vote_for_' . $vote->voting_item_id] = null;
                     }
-                    $memberVotes[] = [
-                        'member' => $member->first_name . ' ' . $member->last_name,
-                        'answer' => $answer
-                    ];
                 }
-            }*/
+
+                $memberVotes[] = $m;
+            }
         }
 
-        return view('votings.show', compact('voting', 'memberVotes'));
-	}
+        return $memberVotes;
+    }
 
 	/**
 	 * Remove the specified voting from storage.
