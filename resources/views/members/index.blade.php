@@ -1,8 +1,10 @@
 @extends('app')
 
 @section('content')
-    <h1>Βουλευτές</h1>
+    {{-- Title and export to json button --}}
+    <h1>Βουλευτές<a href="#" class="btn btn-default pull-right"><span class="glyphicon glyphicon-export"></span> Εξαγωγή</a></h1>
 
+    {{-- Panels for each district --}}
     @foreach($districts as $district)
         @if($district->members->count() > 0)
             <div class="panel panel-default">
