@@ -73,7 +73,7 @@ class VotingsController extends Controller {
 		$voting = Voting::findOrFail($id);                          // Find the voting or fail
 
         // Get each member's vote (if there are any for this voting) and put them in an array
-        $memberVotes = $this->gatherMemberVotes($voting);
+        $memberVotes = $this->gatherMemberVotes($voting, true);
 
         // Get voting item ids and titles
         $myVotingItems = $this->gatherVotingItemTitles($voting->id);
@@ -108,9 +108,10 @@ class VotingsController extends Controller {
      * Gathers all the votes of a voting
      *
      * @param $voting   The voting to gather votes for
+     * @param $useName  Set true if you want to use name to identify members, or false if you want to use the id
      * @return array    The formatted array
      */
-    private function gatherMemberVotes($voting)
+    private function gatherMemberVotes($voting, $useName)
     {
         $memberVotes = [];
         if ($voting->votes->count() > 0) {
@@ -120,7 +121,11 @@ class VotingsController extends Controller {
             foreach($members as $member) {
                 // Create member info array and add full name to it
                 $m = [];
-                $m['fullname'] = $member->first_name . ' ' . $member->last_name;
+                if ($useName) {
+                    $m['fullname'] = $member->first_name . ' ' . $member->last_name;
+                } else {
+                    $m['id'] = $member->id;
+                }
 
                 // Add the votes of this member for each voting item
                 $votes = Vote::where([
@@ -500,7 +505,7 @@ class VotingsController extends Controller {
 
         // Put votes in the reply
         $voting = Voting::findOrFail($id);
-        $reply['votes'] = $this->gatherMemberVotes($voting);
+        $reply['votes'] = $this->gatherMemberVotes($voting, false);
 
         return response()->json($reply);
     }
