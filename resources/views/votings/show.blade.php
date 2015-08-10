@@ -11,7 +11,7 @@
         </p>
         @if($voting->completed)
             <p>
-                <a class="btn btn-primary btn-lg" href="{{ url('votings/' . $voting->id . '/download') }}" role="button"><span class="glyphicon glyphicon-cloud-download"></span> Κατέβασμα αποτελεσμάτων</a>
+                <a class="btn btn-primary btn-lg" href="{{ url('votings/' . $voting->id . '/download') }}" role="button"><span class="glyphicon glyphicon-export"></span> Εξαγωγή αποτελεσμάτων</a>
             </p>
         @endif
     </div>
