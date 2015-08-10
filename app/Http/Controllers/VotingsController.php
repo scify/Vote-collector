@@ -426,7 +426,6 @@ class VotingsController extends Controller {
      */
     public function download($id)
     {
-        //todo: do not forget that this function may not work
         $reply = [];
 
         $votes = Vote::where('voting_id', '=', $id)->get();

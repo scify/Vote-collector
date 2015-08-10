@@ -10,11 +10,11 @@
     <div id="votesDiv" class="table-responsive" data-votingid="{{ $votingid }}">
         <table class="table">
             <thead>
-                <th>Βουλευτής</th>
+                <th></th>
                 @foreach($myVotingItems as $vi)
                     <th>{{ $vi['title'] }}</th>
                 @endforeach
-                <th>Ενέργειες</th>
+                <th></th>
             </thead>
             <tbody>
                 @foreach($myMembers as $member)
