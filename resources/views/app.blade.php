@@ -13,7 +13,7 @@
 <body>
     @include('partials.navbar')
 
-    <div class="container">
+    <div class="container" style="padding-bottom: 20px">
         @include('partials.flash')
 
         @yield('content')

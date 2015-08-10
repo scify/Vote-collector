@@ -53,8 +53,12 @@ function showSaveOrderButton() {
     // Create the button
     var btn = document.createElement('button');
     btn.innerHTML = '<span class="glyphicon glyphicon-floppy-disk"></span> Αποθήκευση σειράς';
-    btn.className = 'btn btn-primary pull-right';
+    btn.className = 'btn btn-primary';
     btn.id = 'saveOrderBtn';
+    btn.style.position = 'fixed';
+    btn.style.bottom = '20px';
+    btn.style.right = '20px';
+
     btn.addEventListener('click', saveOrder);
 
     // Add button to page
@@ -96,7 +100,7 @@ function saveOrder() {
 function collectMembersByOrder() {
     var newOrdering = [];
 
-    $(".member").each(function(index,member){
+    $(".member").each(function(index,member) {
         var order = {
             order: $($(member).children('.priority')[0]).html(),
             id: $(member).data("id")
