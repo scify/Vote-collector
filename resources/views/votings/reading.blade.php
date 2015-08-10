@@ -10,9 +10,9 @@
         <div class="panel panel-info">
             <div class="panel-heading">Συντομεύσεις <a href="#" id="closeShortcutsLink" class="btn btn-xs pull-right">&times;</a></div>
             <div class="panel-body">
-                <strong>W</strong>: Προηγούμενος βουλευτής<br>
-                <strong>A</strong>: Απουσιάζει / Δεν απουσιάζει<br>
-                <strong>S</strong>: Επόμενος βουλευτής
+                <kbd>W</kbd> <span class="glyphicon glyphicon-arrow-right"></span> <span class="label label-default">Προηγούμενος</span><br>
+                <kbd>A</kbd> <span class="glyphicon glyphicon-arrow-right"></span> <span class="label label-warning">Απουσιάζει</span> / <span class="label label-success">Δεν απουσιάζει</span><br>
+                <kbd>S</kbd> <span class="glyphicon glyphicon-arrow-right"></span> <span class="label label-primary">Επόμενος</span>
             </div>
         </div>
     </div>
