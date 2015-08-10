@@ -34,17 +34,21 @@
                 <table class="table">
                     <thead>
                         <th>Ονοματεπώνυμο</th>
-                        <th>Ψήφος</th>
+                        @foreach($myVotingItems as $votingItem)
+                            <th>{{ $votingItem['title'] }}</th>
+                        @endforeach
                     </thead>
                     <tbody>
                         @foreach($memberVotes as $mv)
                             <tr>
                                 <td>
-                                    {{ $mv['member'] }}
+                                    {{ $mv['fullname'] }}
                                 </td>
-                                <td>
-                                    {{ $mv['answer'] }}
-                                </td>
+                                @foreach($myVotingItems as $votingItem)
+                                    <td>
+                                        {{ $mv['vote_for_' . $votingItem['id']] or 'Απών' }}
+                                    </td>
+                                @endforeach
                             </tr>
                         @endforeach
                     </tbody>
