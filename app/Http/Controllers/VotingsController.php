@@ -120,7 +120,7 @@ class VotingsController extends Controller {
             foreach($members as $member) {
                 // Create member info array and add full name to it
                 $m = [];
-                $m['fullname'] = $member->first_name . $member->last_name;
+                $m['fullname'] = $member->first_name . ' ' . $member->last_name;
 
                 // Add the votes of this member for each voting item
                 $votes = Vote::where([

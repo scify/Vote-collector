@@ -22,3 +22,4 @@ Route::post('votings/complete/{id}', 'VotingsController@markAsComplete');   // F
 Route::get('votings/{id}/download', 'VotingsController@download');          // Download the votes of a voting
 
 Route::post('membersorder', 'MembersController@changeOrder');               // For saving new members order
+Route::get('membersexport', 'MembersController@exportMembers');             // For exporting members' names and ids to json

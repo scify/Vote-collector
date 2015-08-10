@@ -196,4 +196,27 @@ class MembersController extends Controller {
     {
         $member->groups()->sync($groups);
     }
+
+    /**
+     * Returns json with every member's id and name
+     *
+     * @return string
+     */
+    public function exportMembers() {
+        $reply = [];
+
+        $members = Member::all();
+
+        foreach($members as $member) {
+            $m = [];
+
+            $m['id'] = $member->id;
+            $m['first_name'] = $member->first_name;
+            $m['last_name'] = $member->last_name;
+
+            $reply[] = $m;
+        }
+
+        return response()->json($reply);
+    }
 }

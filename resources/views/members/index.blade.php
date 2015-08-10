@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Title and export to json button --}}
-    <h1>Βουλευτές<a href="#" class="btn btn-default pull-right"><span class="glyphicon glyphicon-export"></span> Εξαγωγή</a></h1>
+    <h1>Βουλευτές<a href="{{ url('membersexport') }}" class="btn btn-default pull-right"><span class="glyphicon glyphicon-export"></span> Εξαγωγή</a></h1>
 
     {{-- Panels for each district --}}
     @foreach($districts as $district)
