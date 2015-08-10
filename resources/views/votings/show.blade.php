@@ -46,7 +46,7 @@
                                 </td>
                                 @foreach($myVotingItems as $votingItem)
                                     <td>
-                                        {{ $mv['vote_for_' . $votingItem['id']] or 'Απών' }}
+                                        {{ $mv[$votingItem['id']] or 'Απών' }}
                                     </td>
                                 @endforeach
                             </tr>

@@ -76,7 +76,21 @@ class VotingsController extends Controller {
         $memberVotes = $this->gatherMemberVotes($voting);
 
         // Get voting item ids and titles
-        $votingItems = VotingItem::ofVoting($voting->id)->get();
+        $myVotingItems = $this->gatherVotingItemTitles($voting->id);
+
+        return view('votings.show', compact('voting', 'memberVotes', 'myVotingItems'));
+	}
+
+    /**
+     * Gathers the ids and titles of all voting items of a specified voting
+     * and returns an array of them
+     *
+     * @param $votingId The id of the voting to gather voting items of
+     * @return array    The array
+     */
+    private function gatherVotingItemTitles($votingId)
+    {
+        $votingItems = VotingItem::ofVoting($votingId)->get();
 
         $myVotingItems = [];
         foreach($votingItems as $votingItem) {
@@ -87,8 +101,8 @@ class VotingsController extends Controller {
             $myVotingItems[] = $vItem;
         }
 
-        return view('votings.show', compact('voting', 'memberVotes', 'myVotingItems'));
-	}
+        return $myVotingItems;
+    }
 
     /**
      * Gathers all the votes of a voting
@@ -96,7 +110,8 @@ class VotingsController extends Controller {
      * @param $voting   The voting to gather votes for
      * @return array    The formatted array
      */
-    private function gatherMemberVotes($voting) {
+    private function gatherMemberVotes($voting)
+    {
         $memberVotes = [];
         if ($voting->votes->count() > 0) {
             $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
@@ -116,9 +131,9 @@ class VotingsController extends Controller {
                 foreach($votes as $vote) {
                     $ansId = $vote->answer_id;
                     if ($ansId != null) {
-                        $m['vote_for_' . $vote->voting_item_id] = VoteTypeAnswer::findOrFail($ansId)->answer;
+                        $m[$vote->voting_item_id] = VoteTypeAnswer::findOrFail($ansId)->answer;
                     } else {
-                        $m['vote_for_' . $vote->voting_item_id] = null;
+                        $m[$vote->voting_item_id] = null;
                     }
                 }
 
@@ -266,7 +281,8 @@ class VotingsController extends Controller {
      * @param $votingId     The voting id of the voting
      * @return array        The array needed by the readings view
      */
-    private function gatherMembers($votingItems, $votingId) {
+    private function gatherMembers($votingItems, $votingId)
+    {
         $members = Member::orderBy('district_id')->orderBy('order')->get();
 
         $myMembers = [];
@@ -339,7 +355,8 @@ class VotingsController extends Controller {
      * @param $votingId The id of the voting to gather voting items for
      * @return array    The array!
      */
-    private function gatherVotingItems($votingId) {
+    private function gatherVotingItems($votingId)
+    {
         $votingItems = VotingItem::ofVoting($votingId)->get();
 
         $myVotingItems = [];
@@ -478,26 +495,12 @@ class VotingsController extends Controller {
     {
         $reply = [];
 
-        $votes = Vote::where('voting_id', '=', $id)->get();
-        foreach($votes as $vote) {
-            // Get full name
-            $m = $vote->member;
-            $fullname = $m->first_name . ' ' . $m->last_name;
+        // Put voting item info in the reply
+        $reply['votingItems'] = $this->gatherVotingItemTitles($id);
 
-            // Get answer
-            if ($vote->answer == null) {
-                $answer = 'Απών';
-            } else {
-                $answer = $vote->answer->answer;
-            }
-
-            $tmp = [
-                'member' => $fullname,
-                'vote' => $answer
-            ];
-
-            $reply[] = $tmp;
-        }
+        // Put votes in the reply
+        $voting = Voting::findOrFail($id);
+        $reply['votes'] = $this->gatherMemberVotes($voting);
 
         return response()->json($reply);
     }
