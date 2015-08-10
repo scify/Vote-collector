@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h2>Τύπος ψηφοφορίας: {{ $vt->title }}</h2>
+    <h2>Τύπος απάντησης: {{ $vt->title }}</h2>
 
     @if (count($vt->answers) > 0)
         <div class="panel panel-default">
@@ -21,7 +21,7 @@
         </div>
     @else
         <p>
-            Αυτός ο τύπος ψηφοφορίας δεν έχει απαντήσεις!
+            Δεν υπάρχουν απαντήσεις!
         </p>
     @endif
 @stop

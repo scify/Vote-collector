@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1>Δημιουργία τύπου ψηφοφορίας</h1>
+    <h1>Δημιουργία τύπου απάντησης</h1>
 
     @include('errors.list')
 

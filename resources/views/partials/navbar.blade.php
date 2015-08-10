@@ -18,7 +18,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Διαχείριση <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        @include('partials.navbarlink', ['link' => 'votetypes', 'linkText' => 'Τύποι ψηφοφορίας'])
+                        @include('partials.navbarlink', ['link' => 'votetypes', 'linkText' => 'Τύποι απαντήσεων'])
                         @include('partials.navbarlink', ['link' => 'voteobjectives', 'linkText' => 'Αντικείμενα ψηφοφορίας'])
                     </ul>
                 </li>

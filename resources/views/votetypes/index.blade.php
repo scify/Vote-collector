@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h1>Τύποι ψηφοφορίας</h1>
+    <h1>Τύποι απαντήσεων</h1>
 
     @if (count($voteTypes) > 0)
         <div class="table-responsive">
