@@ -74,8 +74,23 @@ class VotingsController extends Controller {
 
         // Get each member's vote (if there are any for this voting) and put them in an array
         $memberVotes = [];
-        //todo: member votes are not gathered since the database changed
         if ($voting->votes->count() > 0) {
+            $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
+
+            foreach($members as $member) {
+                // Create member info array and add full name to it
+                $m = [];
+                $m['fullname'] = $member->first_name . ' ' . $member->last_name;
+
+                // Add the votes of this member for each voting item
+                $votes = Vote::where([
+                    'member_id' => $member->id,
+                    'voting_id' => $voting->id
+                ])->get();
+
+                //todo
+            }
+
             /* old code
             $members = Member::orderBy('district_id')->orderBy('order')->get();  // get members sorted based on their district, then order
 
@@ -219,90 +234,11 @@ class VotingsController extends Controller {
         if ($voting->defaultVotesSet() && !$voting->completed) {
             $votingid = $voting->id;
 
-            // Get members sorted based on their district, then order
-            $members = Member::orderBy('district_id')->orderBy('order')->get();
-
             // Gather all voting items with their object's title and answers
-            $votingItems = VotingItem::ofVoting($votingid)->get();
-
-            $myVotingItems = [];
-            foreach($votingItems as $vItem) {
-                $myVItem = [];
-
-                // Get id and title of voting item
-                $myVItem['id'] = $vItem->id;
-                $myVItem['title'] = $vItem->voteObjective->title;
-
-                // Get answers of this voting item's type
-                $myVItem['answers'] = [];
-                $answers = $vItem->voteType->answers;
-                foreach($answers as $answer) {
-                    $myVItem['answers'][$answer->id] = $answer->answer;
-                }
-
-                $myVotingItems[] = $myVItem;
-            }
+            $myVotingItems = $this->gatherVotingItems($votingid);
 
             // Gather all the info that the form needs about members
-            $myMembers = [];
-            foreach($members as $member) {
-                $m = [];
-
-                // Id and full name
-                $m['id'] = $member->id;
-                $m['full_name'] = $member->first_name . ' ' . $member->last_name;
-
-                // Add default properties to show state of member
-                $m['isSaved'] = 'true';
-                $m['isAbsent'] = 'false';
-                $m['labels'] = [];
-
-                // Gather default answers for each voting item
-                $answerIds = [];
-                foreach($myVotingItems as $vi) {
-                    $vItemId = $vi['id'];
-                    $answerIds[$vItemId] = $member->vote($votingid, $vItemId);  // If member has voted already, the answer will be returned
-                    $m['labels'][$vItemId] = '';                                // Initialize label as nothing (will be changed afterwards)
-                }
-
-                $m['answerIds'] = $answerIds;
-
-                $tmpAnswerId = reset($m['answerIds']);  // reset() returns the first value of the array
-
-                if ($tmpAnswerId == null) {         // Member has not voted or is saved as absent
-                    if ($tmpAnswerId === null) {
-                        $m['isSaved'] = 'false';    // If answer id is indeed NULL, then the member has not voted at all in this voting
-                    } else {
-                        $m['isAbsent'] = 'true';    // If it is not NULL, then it is '', so the member was absent!!!
-                    }
-
-                    // For each voting item in this voting, get this member's default group answer
-                    foreach($myVotingItems as $vi) {
-                        $vItemId = $vi['id'];
-
-                        // Get default group answer
-                        $tmpAnswer = $member->groupAnswer($votingid, $vItemId);
-
-                        // If it's null (which means the member isn't in any groups) then select the first answer
-                        if ($tmpAnswer == null) {
-                            $tmpAnswer = $vi['answers'][0];
-                        }
-
-                        $m['answerIds'][$vItemId] = $tmpAnswer;
-                    }
-                } else {
-                    // For each voting item, get the member's answer id and find that answer's text and put it in the labels array
-                    foreach($myVotingItems as $vi) {
-                        $vItemId = $vi['id'];                       // This voting item's id
-                        $answerId = $m['answerIds'][$vItemId];      // The member's answer id
-                        $answerText = $vi['answers'][$answerId];    // The text of the member's answer
-
-                        $m['labels'][$vItemId] = $answerText;
-                    }
-                }
-
-                $myMembers[] = $m;
-            }
+            $myMembers = $this->gatherMembers($myVotingItems, $votingid);
 
             $votingTitle = $voting->title;
 
@@ -310,6 +246,111 @@ class VotingsController extends Controller {
         } else {
             return 'ERROR: There are no default votes set for this voting or this voting has been completed';
         }
+    }
+
+    /**
+     * Gathers all the info needed by a reading in one array (so that the view doesn't have to
+     * make database requests)
+     *
+     * @param $votingItems  The voting items of a voting, as returned by the gatherVotingItems() function
+     * @param $votingId     The voting id of the voting
+     * @return array        The array needed by the readings view
+     */
+    private function gatherMembers($votingItems, $votingId) {
+        $members = Member::orderBy('district_id')->orderBy('order')->get();
+
+        $myMembers = [];
+        foreach($members as $member) {
+            $m = [];
+
+            // Id and full name
+            $m['id'] = $member->id;
+            $m['full_name'] = $member->first_name . ' ' . $member->last_name;
+
+            // Add default properties to show state of member
+            $m['isSaved'] = 'true';
+            $m['isAbsent'] = 'false';
+            $m['labels'] = [];
+
+            // Gather default answers for each voting item
+            $answerIds = [];
+            foreach($votingItems as $vi) {
+                $vItemId = $vi['id'];
+                $answerIds[$vItemId] = $member->vote($votingId, $vItemId);  // If member has voted already, the answer will be returned
+                $m['labels'][$vItemId] = '';                                // Initialize label as nothing (will be changed afterwards)
+            }
+
+            $m['answerIds'] = $answerIds;
+
+            $tmpAnswerId = reset($m['answerIds']);  // reset() returns the first value of the array
+
+            if ($tmpAnswerId == null) {         // Member has not voted or is saved as absent
+                if ($tmpAnswerId === null) {
+                    $m['isSaved'] = 'false';    // If answer id is indeed NULL, then the member has not voted at all in this voting
+                } else {
+                    $m['isAbsent'] = 'true';    // If it is not NULL, then it is '', so the member was absent!!!
+                }
+
+                // For each voting item in this voting, get this member's default group answer
+                foreach($votingItems as $vi) {
+                    $vItemId = $vi['id'];
+
+                    // Get default group answer
+                    $tmpAnswer = $member->groupAnswer($votingId, $vItemId);
+
+                    // If it's null (which means the member isn't in any groups) then select the first answer
+                    if ($tmpAnswer == null) {
+                        $tmpAnswer = $vi['answers'][0];
+                    }
+
+                    $m['answerIds'][$vItemId] = $tmpAnswer;
+                }
+            } else {
+                // For each voting item, get the member's answer id and find that answer's text and put it in the labels array
+                foreach($votingItems as $vi) {
+                    $vItemId = $vi['id'];                       // This voting item's id
+                    $answerId = $m['answerIds'][$vItemId];      // The member's answer id
+                    $answerText = $vi['answers'][$answerId];    // The text of the member's answer
+
+                    $m['labels'][$vItemId] = $answerText;
+                }
+            }
+
+            $myMembers[] = $m;
+        }
+
+        return $myMembers;
+    }
+
+    /**
+     * Gather all voting items of a voting in one array in the format expected
+     * by gatherMembers() and the readings view
+     *
+     * @param $votingId The id of the voting to gather voting items for
+     * @return array    The array!
+     */
+    private function gatherVotingItems($votingId) {
+        $votingItems = VotingItem::ofVoting($votingId)->get();
+
+        $myVotingItems = [];
+        foreach($votingItems as $vItem) {
+            $myVItem = [];
+
+            // Get id and title of voting item
+            $myVItem['id'] = $vItem->id;
+            $myVItem['title'] = $vItem->voteObjective->title;
+
+            // Get answers of this voting item's type
+            $myVItem['answers'] = [];
+            $answers = $vItem->voteType->answers;
+            foreach($answers as $answer) {
+                $myVItem['answers'][$answer->id] = $answer->answer;
+            }
+
+            $myVotingItems[] = $myVItem;
+        }
+
+        return $myVotingItems;
     }
 
     /**

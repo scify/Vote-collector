@@ -24,7 +24,7 @@
     {{-- If the voting is completed, show the votes --}}
     @if($voting->completed)
         {{-- Google Chart --}}
-        <div id="piechart" style="width: 900px; height: 500px; display: block; margin: 0 auto;"></div>
+        {{--<div id="piechart" style="width: 900px; height: 500px; display: block; margin: 0 auto;"></div>--}}
 
         {{-- Table with all the votes --}}
         <div class="panel panel-default">

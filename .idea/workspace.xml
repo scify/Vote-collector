@@ -71,11 +71,12 @@
       <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60907507" vertical-offset="5155" max-vertical-offset="7488">
-              <caret line="366" column="46" selection-start-line="366" selection-start-column="46" selection-end-line="366" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.38219896" vertical-offset="1093" max-vertical-offset="7120">
+              <caret line="82" column="50" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
               <folding>
                 <element signature="e#39#56#0#PHP" expanded="true" />
-                <element signature="e#1934#3012#0#PHP" expanded="false" />
+                <element signature="e#8255#11081#0#PHP" expanded="false" />
+                <element signature="e#11344#12062#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -91,21 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reading.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
+      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.48" vertical-offset="0" max-vertical-offset="1088">
-              <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2015_07_06_121640_create_tables.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2015_07_06_121640_create_tables.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.72" vertical-offset="1414" max-vertical-offset="2480">
-              <caret line="103" column="38" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="38" />
+            <state vertical-scroll-proportion="-9.48" vertical-offset="99" max-vertical-offset="960">
+              <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -162,7 +153,6 @@
         <option value="$PROJECT_DIR$/resources/views/votings/partials/answersform.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/VotingRequest.php" />
         <option value="$PROJECT_DIR$/public/js/createVoting.js" />
-        <option value="$PROJECT_DIR$/resources/views/votings/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/votings/partials/form.blade.php" />
         <option value="$PROJECT_DIR$/public/js/votings/createVoting.js" />
@@ -171,6 +161,7 @@
         <option value="$PROJECT_DIR$/public/js/votings/readings/components.js" />
         <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
         <option value="$PROJECT_DIR$/public/js/votings/readings/readings.js" />
+        <option value="$PROJECT_DIR$/resources/views/votings/show.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
       </list>
     </option>
@@ -891,13 +882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08743169" vertical-offset="0" max-vertical-offset="960">
-          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/members.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05237316" vertical-offset="0" max-vertical-offset="1824">
@@ -1008,16 +992,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2015_07_06_121640_create_tables.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.72" vertical-offset="1414" max-vertical-offset="2480">
+        <state vertical-scroll-proportion="0.37201366" vertical-offset="1414" max-vertical-offset="2480">
           <caret line="103" column="38" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.48" vertical-offset="0" max-vertical-offset="1088">
-          <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -1030,13 +1006,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36300173" vertical-offset="0" max-vertical-offset="1088">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/votings/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.48" vertical-offset="99" max-vertical-offset="960">
+          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60907507" vertical-offset="5155" max-vertical-offset="7488">
-          <caret line="366" column="46" selection-start-line="366" selection-start-column="46" selection-end-line="366" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.38219896" vertical-offset="1093" max-vertical-offset="7120">
+          <caret line="82" column="50" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
           <folding>
             <element signature="e#39#56#0#PHP" expanded="true" />
-            <element signature="e#1934#3012#0#PHP" expanded="false" />
+            <element signature="e#8255#11081#0#PHP" expanded="false" />
+            <element signature="e#11344#12062#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
