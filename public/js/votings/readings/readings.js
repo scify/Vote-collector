@@ -5,8 +5,6 @@ var savedVotes = {};    // Keeps the votes of the saved members, to check for ch
 var votingItemIds = []; // Keeps the voting item ids
 var voting_id;
 
-//todo: make changing labels of the page work
-
 $(function(){
     memberRows = $('.member');  // Get all member divs
 
@@ -58,6 +56,11 @@ $(function(){
     $('body').click(clickHandler);                  // Used to change between members by clicking on their names
 
     $('#nextPhaseBtn').click(nextPhaseBtnHandler);  // Second voting/end voting button
+
+    // Add event listener to remove the shortcuts div from the page
+    $('#closeShortcutsLink').click(function() {
+        $('.shortcutsDiv').remove();
+    });
 });
 
 /**

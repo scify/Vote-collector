@@ -5,8 +5,22 @@
 @stop
 
 @section('content')
+    {{-- Shortcuts box --}}
+    <div class="shortcutsDiv pull-right">
+        <div class="panel panel-info">
+            <div class="panel-heading">Συντομεύσεις <a href="#" id="closeShortcutsLink" class="btn btn-xs pull-right">&times;</a></div>
+            <div class="panel-body">
+                <strong>W</strong>: Προηγούμενος βουλευτής<br>
+                <strong>A</strong>: Απουσιάζει / Δεν απουσιάζει<br>
+                <strong>S</strong>: Επόμενος βουλευτής
+            </div>
+        </div>
+    </div>
+
+    {{-- Page header with voting title --}}
     <h1 id="title" class="page-header">Πρώτη ανάγνωση <small>{{ $votingTitle }}</small></h1>
 
+    {{-- Table with members and checkboxes etc. --}}
     <div id="votesDiv" class="table-responsive" data-votingid="{{ $votingid }}">
         <table class="table">
             <thead>
