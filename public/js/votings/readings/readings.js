@@ -309,7 +309,7 @@ function removeCurrentStatus(member) {
 
     // Show the selected answer labels
     if (!isAbsent(member)) {
-        m_id = getMemberId(member);
+        var m_id = getMemberId(member);
         $(votingItemIds).each(function(index, vi_id) {
             var answerText = $(member).find('label[for=rd' + m_id + '' + vi_id + '' + getSelectedAnswer(member, vi_id) + ']').text();
             $('#selAnswerLabel' + m_id + '' + vi_id).text(answerText);

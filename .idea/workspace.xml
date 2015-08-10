@@ -94,8 +94,8 @@
       <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/votings/readings/readings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5270049" vertical-offset="4622" max-vertical-offset="10336">
-              <caret line="309" column="38" selection-start-line="309" selection-start-column="38" selection-end-line="309" selection-end-column="38" />
+            <state vertical-scroll-proportion="-0.15384616" vertical-offset="4622" max-vertical-offset="10336">
+              <caret line="283" column="24" selection-start-line="283" selection-start-column="24" selection-end-line="283" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -1003,6 +1003,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5136" vertical-offset="143" max-vertical-offset="1104">
+          <caret line="29" column="73" selection-start-line="29" selection-start-column="73" selection-end-line="29" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.16" vertical-offset="6422" max-vertical-offset="7520">
@@ -1014,18 +1022,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5136" vertical-offset="143" max-vertical-offset="1104">
-          <caret line="29" column="73" selection-start-line="29" selection-start-column="73" selection-end-line="29" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/votings/readings/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5270049" vertical-offset="4622" max-vertical-offset="10336">
-          <caret line="309" column="38" selection-start-line="309" selection-start-column="38" selection-end-line="309" selection-end-column="38" />
+        <state vertical-scroll-proportion="-0.15384616" vertical-offset="4622" max-vertical-offset="10336">
+          <caret line="283" column="24" selection-start-line="283" selection-start-column="24" selection-end-line="283" selection-end-column="24" />
           <folding />
         </state>
       </provider>
