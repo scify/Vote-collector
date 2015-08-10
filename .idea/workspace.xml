@@ -68,11 +68,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VotingsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.64" vertical-offset="5155" max-vertical-offset="7504">
-              <caret line="353" column="82" selection-start-line="353" selection-start-column="82" selection-end-line="353" selection-end-column="82" />
+            <state vertical-scroll-proportion="0.60907507" vertical-offset="5155" max-vertical-offset="7488">
+              <caret line="366" column="46" selection-start-line="366" selection-start-column="46" selection-end-line="366" selection-end-column="46" />
               <folding>
                 <element signature="e#39#56#0#PHP" expanded="true" />
                 <element signature="e#1934#3012#0#PHP" expanded="false" />
@@ -81,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readings.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="readings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/votings/readings/readings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10801964" vertical-offset="9166" max-vertical-offset="10304">
-              <caret line="577" column="37" selection-start-line="577" selection-start-column="37" selection-end-line="577" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="9358" max-vertical-offset="10304">
+              <caret line="590" column="26" selection-start-line="590" selection-start-column="26" selection-end-line="590" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -94,8 +94,8 @@
       <file leaf-file-name="reading.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.76" vertical-offset="0" max-vertical-offset="1088">
-              <caret line="9" column="80" selection-start-line="9" selection-start-column="80" selection-end-line="9" selection-end-column="80" />
+            <state vertical-scroll-proportion="-4.48" vertical-offset="0" max-vertical-offset="1088">
+              <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -170,8 +170,8 @@
         <option value="$PROJECT_DIR$/public/css/readings.css" />
         <option value="$PROJECT_DIR$/public/js/votings/readings/components.js" />
         <option value="$PROJECT_DIR$/resources/views/votings/reading.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
         <option value="$PROJECT_DIR$/public/js/votings/readings/readings.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/VotingsController.php" />
       </list>
     </option>
   </component>
@@ -1014,30 +1014,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.64" vertical-offset="5155" max-vertical-offset="7504">
-          <caret line="353" column="82" selection-start-line="353" selection-start-column="82" selection-end-line="353" selection-end-column="82" />
-          <folding>
-            <element signature="e#39#56#0#PHP" expanded="true" />
-            <element signature="e#1934#3012#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/votings/reading.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.76" vertical-offset="0" max-vertical-offset="1088">
-          <caret line="9" column="80" selection-start-line="9" selection-start-column="80" selection-end-line="9" selection-end-column="80" />
+        <state vertical-scroll-proportion="-4.48" vertical-offset="0" max-vertical-offset="1088">
+          <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/votings/readings/readings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10801964" vertical-offset="9166" max-vertical-offset="10304">
-          <caret line="577" column="37" selection-start-line="577" selection-start-column="37" selection-end-line="577" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="9358" max-vertical-offset="10304">
+          <caret line="590" column="26" selection-start-line="590" selection-start-column="26" selection-end-line="590" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VotingsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60907507" vertical-offset="5155" max-vertical-offset="7488">
+          <caret line="366" column="46" selection-start-line="366" selection-start-column="46" selection-end-line="366" selection-end-column="46" />
+          <folding>
+            <element signature="e#39#56#0#PHP" expanded="true" />
+            <element signature="e#1934#3012#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

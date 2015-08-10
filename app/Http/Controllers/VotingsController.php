@@ -352,7 +352,6 @@ class VotingsController extends Controller {
                 $str = 'answer_for_' . $vItem_id;
 
                 // If the key exists in the $vote[] array, save the vote to the database
-                //todo: check if it works for absent!!
                 if (isset($vote[$str]) || array_key_exists($str, $vote)) {
                     if ($vote[$str] == '') {
                         $answer = null;
@@ -365,7 +364,7 @@ class VotingsController extends Controller {
                         'voting_id' => $v_id,
                         'voting_item_id' => $vItem_id,
                         'member_id' => $vote['member_id'],
-                        'answer_id' => $vote[$str]
+                        'answer_id' => $answer
                     ]);
                 }
             }
