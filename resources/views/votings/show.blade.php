@@ -18,7 +18,6 @@
 
     {{-- If the voting is completed, show the votes --}}
     @if($voting->completed)
-        {{-- Table with all the votes --}}
         <div class="panel panel-default">
             <div class="panel-heading">Αποτελέσματα</div>
 

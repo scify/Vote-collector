@@ -19,8 +19,8 @@
                             <td class="col-lg-3">
                                 {{ $voting->title }}
                             </td>
-                            <td class="col-lg-2">
-                                {{ $voting->votingItems()->count() }} αντικείμενο/α
+                            <td class="col-lg-2 text-nowrap">
+                                {{ $voting->votingItems()->count() }} αντικείμεν{{ ($voting->votingItems()->count() == 1)?'ο':'α' }}
                             </td>
                             <td class="col-lg-1"> {{-- Info button --}}
                                 @include('partials.infoBtn', ['url' => 'votings/' . $voting->id])
