@@ -29,3 +29,9 @@
     right: 10px;
     z-index: 500;
 }
+
+th {
+    /* Makes background of table header non transparent, so when the user scrolls
+       and the header stays on top of the page, it does not look transparent */
+    background-color: white;
+}

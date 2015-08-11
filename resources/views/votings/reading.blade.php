@@ -65,6 +65,15 @@
 @stop
 
 @section('footer')
+    {{-- Scripts for keeping the table header visible when scrolling --}}
+    <script src="{{ URL::asset('js/jquery.stickytableheaders.min.js') }}"></script>
+    <script>
+        $(function() {
+            $('table').stickyTableHeaders();
+        });
+    </script>
+
+    {{-- Scripts to make the reading work --}}
     <script>
         var submitVotesUrl = '{{ url('votings/reading') }}';                {{-- URL for submitting votes, using url() --}}
         var currentPageUrl = '{{ url('votings/reading/' . $votingid) }}';   {{-- URL of current page --}}

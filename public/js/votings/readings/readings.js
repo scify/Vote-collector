@@ -60,6 +60,7 @@ $(function(){
     // Add event listener to remove the shortcuts div from the page
     $('#closeShortcutsLink').click(function() {
         $('.shortcutsDiv').remove();
+        return false;
     });
 });
 
