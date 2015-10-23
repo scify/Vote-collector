@@ -84,7 +84,7 @@ server {
     listen 80 default_server;
     listen [::]:80 default_server ipv6only=on;
 
-    root /var/www/laravel/public;
+    root /path/to/Vote-collector/public;
     index index.php index.html index.htm;
 
     server_name server_domain_or_IP;
@@ -104,7 +104,7 @@ server {
 }
 ```
 
-`% sudo service nginx restart && sudo chmod -R 755 path/to/project/storage`
+`% sudo service nginx restart && sudo chmod -R 755 path/to/Vote-collector/storage`
 
 And finally, set the group appropriately:
 
