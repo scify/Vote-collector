@@ -110,6 +110,8 @@ And finally, set the group appropriately:
 
 `% sudo chown -R www-data:www-data storage`
 
+### Initialize database:
+
 Initialize the database with `php artisan migrate` and test the installation with `php artisan serve` and hit `localhost:8000/auth/register` at your browser of choice.
 
 After running migrations, it's time to seed the database.
