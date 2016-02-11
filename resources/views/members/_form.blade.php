@@ -19,12 +19,7 @@
 <!-- District selection -->
 <div class="form-group">
     {!! Form::label('district', 'Περιφέρεια') !!}
-    {{-- If user is editing a member, the select must be disabled (perifereia does not change) --}}
-    @if(isset($edit))
-        {!! Form::select('district', $districts, $member->district->id, ['class' => 'form-control', 'disabled']) !!}
-    @else
-        {!! Form::select('district', $districts, null, ['class' => 'form-control']) !!}
-    @endif
+    {!! Form::select('district', $districts, null, ['class' => 'form-control']) !!}
 </div>
 
 

@@ -22,7 +22,7 @@ class MembersController extends Controller {
 	 */
 	public function index()
 	{
-        $districts = District::all();   // Get list of all districts
+        $districts = District::orderBy('ordering', 'ASC')->get();   // Get list of all districts
 
         return view('members.index', compact('members', 'districts'));
 	}
@@ -36,7 +36,6 @@ class MembersController extends Controller {
 	{
         $groups = Group::lists('name', 'id');       // Get list of all groups and their ids for the form
         $districts = District::lists('name', 'id'); // Get list of all districts
-
 		return view('members.create', compact('groups', 'districts'));
 	}
 
