@@ -331,7 +331,7 @@ class VotingsController extends Controller {
 
                     // If it's null (which means the member isn't in any groups) then select the first answer
                     if ($tmpAnswer == null) {
-                        $tmpAnswer = $vi['answers'][0];
+                        $tmpAnswer = $vi['answers'][1];
                     }
 
                     $m['answerIds'][$vItemId] = $tmpAnswer;
